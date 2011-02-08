@@ -22,7 +22,7 @@ get_header();
 			<!-- //#contentA -->
 		</section></div>
 		<!-- //#contentHeadA -->
-	<?php get_sidebar('a'); ?>
+		<?php get_sidebar('a'); ?>
 	</div><!-- //#content -->
 <?php 
 get_sidebar('b'); 
