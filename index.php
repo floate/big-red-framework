@@ -9,7 +9,7 @@ get_header();
 
 			<div id="contentA" class="hfeed">
 
-				<?php get_template_part( 'loop', 'index' ); ?>
+				<?php get_template_part( 'template-parts/loop', 'index' ); ?>
 			
 				<div id="page-nav" class="page-nav nav">
 					<div class="page-nav-older"><?php next_posts_link('Older posts') ?></div>
