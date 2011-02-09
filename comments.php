@@ -76,24 +76,24 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	<div class="section"><section>
 		<?php comment_form(array(
 			'fields' => apply_filters('comment_form_default_fields', array(
-				'author' => '<div class="comment-form-author inputPair">' . '<label for="author">' . __( 'Name' ) . '</label> ' 
+				'author' => '<div class="comment-form-author inputPair text">' . '<label for="author">' . __( 'Name' ) . '</label> ' 
 							. ( $req ? '<span class="required">*</span>' : '' ) .
 				            '<input id="author" name="author" type="text" value="' . 
 							esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req .
 							( $req ? ' required' : '' ) . ' /></div>',
-				'email'  => '<div class="comment-form-email inputPair"><label for="email">' . __( 'Email' ) . '</label> ' .
+				'email'  => '<div class="comment-form-email inputPair email"><label for="email">' . __( 'Email' ) . '</label> ' .
 							( $req ? '<span class="required">*</span>' : '' ) .
 				            '<input id="email" name="email" type="email" value="' . 
 							esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . 
 							( $req ? ' required' : '' ) . ' /></div>',
-				'url'    => '<div class="comment-form-url inputPair"><label for="url">' . __( 'Website' ) . '</label>' .
+				'url'    => '<div class="comment-form-url inputPair url"><label for="url">' . __( 'Website' ) . '</label>' .
 				            '<input id="url" name="url" type="url" value="' . 
 							esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>'
 				)),
 				'comment_notes_after'  => '<p class="form-allowed-tags">' . 
 						sprintf( __( 'You may use these <abbr>HTML</abbr> tags and attributes: %s' ), ' <code>' .
 						allowed_tags() . '</code>' ) . '</p>',
-				'comment_field' => '<div class="comment-form-comment inputPair"><label for="comment">' . 
+				'comment_field' => '<div class="comment-form-comment inputPair textarea"><label for="comment">' . 
 							_x( 'Comment', 'noun' ) . '</label>' . 
 							'<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></div>',
 		
