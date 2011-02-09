@@ -17,7 +17,8 @@ function soup_setupParentThemeClass(){
 		public $postAlt;
 		public $inlineFooterJSarray;
 		public $siteNameTag;
-		public $pageNameTag;	
+		public $pageNameTag;
+		public $searchFormID;
 		
 		
 		
@@ -31,6 +32,7 @@ function soup_setupParentThemeClass(){
 	     */		
 		function __construct(){
 			$this->postAlt = 0;
+			$this->searchFormID = 0;
 			$this->definePaths();
 			$this->defineChildVersions();
 			$this->defineParentVersions();
@@ -1131,6 +1133,10 @@ function soup_setupParentThemeClass(){
 			$classes[] = get_the_tags() ? null : 'untagged';
 
 			return $classes;
+		}
+
+		function searchFormID() {
+			return $this->searchFormID++;
 		}
 
 		function belatedpng() {
