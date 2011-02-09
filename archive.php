@@ -8,23 +8,15 @@ get_header();
 		<div id="contentHeadA" class="section" role="main"><section>
 		
 			<div id="contentHead" class="header"><header>
-				<h1>
+				<h1 id="pageName">
 				<?php if ( is_day() ) : ?>
 					Daily Archives: <span><?php the_time(get_option('date_format')); ?></span>
 				<?php elseif ( is_month() ) : ?>
 					Monthly Archives: <span><?php the_time('F Y'); ?></span>
 				<?php elseif ( is_year() ) : ?>
 					Annual Archives: <span><?php the_time('Y'); ?></span>
-				<?php elseif ( is_category() ) : ?>
-					Category Archives: <span><?php single_cat_title(); ?></span>
 				<?php elseif ( is_tag() ) : ?>
 					Tag Archives: <span><?php echo $soup->tagQuery(); ?></span>
-				<?php elseif ( is_author() ) : ?>
-					Author Archives: <span><?php 
-					the_post();
-					echo $authordata->display_name;
-					rewind_posts();
-					?></span>
 				<?php elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) : ?>
 					Blog Archives
 				<?php endif; ?>				
