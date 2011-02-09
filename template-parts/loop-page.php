@@ -1,6 +1,7 @@
 <?php 
 global $soup;
-while ( have_posts() ) : the_post(); ?>
+while ( have_posts() ) : the_post(); 
+?>
 <div id="contentHeadA" <?php post_class('article'); ?>><article>
 	<div id="contentHead"><header>
 		<h1 id="pageName" class="entry-title">

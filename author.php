@@ -28,11 +28,14 @@ get_header();
 							<?php the_author_meta( 'description' ); ?>
 						</div><!-- #author-description	-->
 					</div><!-- #entry-author-info -->
-				<?php endif; 
+				<?php 
+				
+				endif; //if ( get_the_author_meta( 'description' ) ) :
 				rewind_posts();
 				
+				
+				get_template_part( 'template-parts/loop', 'archive' ); 
 				?>
-				<?php get_template_part( 'template-parts/loop', 'archive' ); ?>
 			
 				<div id="page-nav" class="page-nav nav">
 					<div class="page-nav-older"><?php next_posts_link('Older posts') ?></div>

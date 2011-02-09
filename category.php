@@ -16,11 +16,12 @@ get_header();
 			<div id="contentA" class="hfeed">
 				<?php
 				$category_description = category_description();
-				if ( ! empty( $category_description ) )
+				if ( ! empty( $category_description ) ) {
 					echo '<div class="archive-meta">' . $category_description . '</div>';
+				}
+				
+				get_template_part( 'template-parts/loop', 'archive' ); 
 				?>
-
-				<?php get_template_part( 'template-parts/loop', 'archive' ); ?>
 			
 				<div id="page-nav" class="page-nav nav">
 					<div class="page-nav-older"><?php next_posts_link('Older posts') ?></div>
