@@ -10,7 +10,7 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<div id="contentHead" class="header"><header>
-				<h1>
+				<h1 id="pageName">
 				Results for <span><?php the_search_query() ?></span>
 				</h1>
 			</header></div>
