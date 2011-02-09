@@ -61,6 +61,8 @@ function soup_setupParentThemeClass(){
 
 			add_action('wp_head', array(&$this, 'setHeaderTags'));
 			
+			
+			$this->betterFormShortcodes();
 		}
 		
 		function defineMinimised() {
@@ -1247,6 +1249,278 @@ function soup_setupParentThemeClass(){
 		}
 
 
+		/* === Grunion Contact Form === 
+		   fix up front end code output by
+		   this plugin by replacing shortcodes
+		*/
+		function betterFormShortcodes() {
+			if (function_exists('contact_form_shortcode') 
+				AND function_exists('contact_form_init') 
+				AND function_exists('contact_form_field')) {
+				
+				remove_shortcode('contact-form');
+				add_shortcode('contact-form', array(&$this, 'contact_form_shortcode') );
+				
+				remove_shortcode('contact-field');
+				add_shortcode('contact-field', array(&$this, 'contact_form_field') );
+				
+			}
+		}
+		
+		function contact_form_shortcode( $atts, $content ) {
+			global $post;
+			
+			$content = str_replace("<br />\n", "\n", $content);
+
+			$default_to = get_option( 'admin_email' );
+			$default_subject = "[" . get_option( 'blogname' ) . "]";
+
+			if ( !empty( $atts['widget'] ) && $atts['widget'] ) {
+				$default_subject .=  " Sidebar";
+			} elseif ( $post->ID ) {
+				$default_subject .= " ". wp_kses( $post->post_title, array() );
+				$post_author = get_userdata( $post->post_author );
+				$default_to = $post_author->user_email;
+			}
+
+			extract( shortcode_atts( array(
+				'to' => $default_to,
+				'subject' => $default_subject,
+				'show_subject' => 'no', // only used in back-compat mode
+				'widget' => 0 //This is not exposed to the user. Works with contact_form_widget_atts
+			), $atts ) );
+
+			if ( ( function_exists( 'faux_faux' ) && faux_faux() ) || is_feed() )
+				return '[contact-form]';
+
+			global $wp_query, $grunion_form, $contact_form_errors, $contact_form_values, $user_identity, $contact_form_last_id;
+
+			// used to store attributes, configuration etc for access by contact-field shortcodes
+			$grunion_form = new stdClass();
+			$grunion_form->to = $to;
+			$grunion_form->subject = $subject;
+			$grunion_form->show_subject = $show_subject;
+
+			if ( $widget )
+				$id = 'widget-' . $widget;
+			elseif ( is_singular() )
+				$id = $wp_query->get_queried_object_id();
+			else
+				$id = $GLOBALS['post']->ID;
+			if ( !$id ) // something terrible has happened
+				return '[contact-form]';
+
+			if ( $id == $contact_form_last_id )
+				return;
+			else
+				$contact_form_last_id = $id;
+
+			ob_start();
+				wp_nonce_field( 'contact-form_' . $id );
+				$nonce = ob_get_contents();
+			ob_end_clean();
+
+
+			$body = contact_form_parse( $content );
+
+			$r = "<div id='contact-form-$id'>\n";
+
+			$errors = array();
+			if ( is_wp_error( $contact_form_errors ) && $errors = (array) $contact_form_errors->get_error_codes() ) {
+				$r .= "<div class='form-error'>\n<h3>" . __( 'Error!' ) . "</h3>\n<ul class='form-errors'>\n";
+				foreach ( $contact_form_errors->get_error_messages() as $message )
+					$r .= "\t<li class='form-error-message' >$message</li>\n";
+				$r .= "</ul>\n</div>\n\n";
+			}
+
+
+			$r .= "<form action='#contact-form-$id' method='post' class='contact-form commentsblock'>\n";
+			$r .= '<div >';
+			$r .= $body;
+			$r .= "\t<p class='contact-submit'>\n";
+			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' class='pushbutton-wide'/>\n";
+			$r .= "\t\t$nonce\n";
+			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
+			$r .= "\t</p>\n";
+			$r .= '</div>';
+			$r .= "</form>\n</div>";
+
+			// form wasn't submitted, just a GET
+			if ( empty($_POST) )
+				return $r;
+
+
+			if ( is_wp_error($contact_form_errors) )
+				return $r;
+
+
+			$emails = str_replace( ' ', '', $to );
+			$emails = explode( ',', $emails );
+			foreach ( (array) $emails as $email ) {
+				if ( is_email( $email ) && ( !function_exists( 'is_email_address_unsafe' ) || !is_email_address_unsafe( $email ) ) )
+					$valid_emails[] = $email;
+			}
+
+			$to = ( $valid_emails ) ? $valid_emails : $default_to;
+
+			$message_sent = contact_form_send_message( $to, $subject, $widget );
+
+			if ( is_array( $contact_form_values ) )
+				extract( $contact_form_values );
+
+			if ( !isset( $comment_content ) )
+				$comment_content = '';
+			else
+				$comment_content = wp_specialchars( $comment_content );
+
+
+			$r = "<div id='contact-form-$id'>\n";
+
+			$errors = array();
+			if ( is_wp_error( $contact_form_errors ) && $errors = (array) $contact_form_errors->get_error_codes() ) :
+				$r .= "<div class='form-error'>\n<h3>" . __( 'Error!' ) . "</h3>\n<p>\n";
+				foreach ( $contact_form_errors->get_error_messages() as $message )
+					$r .= "\t$message\n";
+				$r .= "</p>\n</div>\n\n";
+			else :
+				$r .= "<h3>" . __( 'Message Sent' ) . "</h3>\n\n";
+				$r .= wpautop( $comment_content ) . "</div>";
+
+				// Reset for multiple contact forms. Hacky
+				$contact_form_values['comment_content'] = '';
+
+				return $r;
+			endif;
+
+			return $r;
+		}
+		
+		function contact_form_field( $atts, $content, $tag ) {
+			global $contact_form_fields, $contact_form_last_id, $grunion_form;
+
+			$field = shortcode_atts( array(
+				'label' => null,
+				'type' => 'text',
+				'required' => false,
+				'options' => array(),
+				'id' => null,
+				'default' => null,
+			), $atts);
+
+			// special default for subject field
+			if ( $field['type'] == 'subject' && is_null($field['default']) )
+				$field['default'] = $grunion_form->subject;
+
+			// allow required=1 or required=true
+			if ( $field['required'] == '1' || strtolower($field['required']) == 'true' )
+				$field['required'] = true;
+			else
+				$field['required'] = false;
+
+			// parse out comma-separated options list
+			if ( !empty($field['options']) && is_string($field['options']) )
+				$field['options'] = array_map('trim', explode(',', $field['options']));
+
+			// make a unique field ID based on the label, with an incrementing number if needed to avoid clashes
+			$id = $field['id'];
+			if ( empty($id) ) {
+				$id = sanitize_title_with_dashes( $contact_form_last_id . '-' . $field['label'] );
+				$i = 0;
+				while ( isset( $contact_form_fields[ $id ] ) ) {
+					$i++;
+					$id = sanitize_title_with_dashes( $contact_form_last_id . '-' . $field['label'] . '-' . $i );
+				}
+				$field['id'] = $id;
+			}
+
+			$contact_form_fields[ $id ] = $field;
+
+			if ( $_POST )
+				contact_form_validate_field( $field );
+
+			return $this->contact_form_render_field( $field );
+		}
+		
+		function contact_form_render_field( $field ) {
+			global $contact_form_last_id, $contact_form_errors, $contact_form_fields, $current_user, $user_identity;
+
+			$r = '';
+
+			$field_id = $field['id'];
+			if ( isset($_POST[ $field_id ]) ) {
+				$field_value = stripslashes( $_POST[ $field_id ] );
+			} elseif ( is_user_logged_in() ) {
+				// Special defaults for logged-in users
+				if ( $field['type'] == 'email' )
+					$field_value = $current_user->data->user_email;
+				elseif ( $field['type'] == 'name' )
+					$field_value = $user_identity;
+				elseif ( $field['type'] == 'url' )
+					$field_value = $current_user->data->user_url;
+				else
+					$field_value = $field['default'];
+			} else {
+				$field_value = $field['default'];
+			}
+
+			if ( $field['type'] == 'email' ) {
+				$r .= "\n<div class='inputPair email'>\n";
+				$r .= "\t\t<label for='".esc_attr($field_id)."' class='grunion-field-label ".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t\t<input type='email' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
+				$r .= "\t</div>\n";
+			} 
+			
+			elseif ( $field['type'] == 'url' ) {
+				$r .= "\n<div class='inputPair url'>\n";
+				$r .= "\t\t<label for='".esc_attr($field_id)."' class='grunion-field-label ".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t\t<input type='url' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
+				$r .= "\t</div>\n";
+			}
+			
+			elseif ( $field['type'] == 'textarea' ) {
+				$r .= "\n<div class='inputPair textarea'>\n";
+				$r .= "\t\t<label for='contact-form-comment-".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t\t<textarea name='".esc_attr($field_id)."' id='contact-form-comment-".esc_attr($field_id)."' rows='20'>".htmlspecialchars($field_value)."</textarea>\n";
+				$r .= "\t</div>\n";
+			} elseif ( $field['type'] == 'radio' ) {
+				$r .= "\t<fieldset class='radio'><legend class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</legend>\n";
+				foreach ( $field['options'] as $id => $option ) {
+					$r .= "<div class='inputPair radio-input'>\n";
+					$r .= "\t\t<input type='radio' name='".esc_attr($field_id)."' id='".esc_attr($field_id . '-' . $id)."' value='".esc_attr($option)."' class='".esc_attr($field['type'])."' ".( $option == $field_value ? "checked='checked' " : "")." />\n";
+		 			$r .= "\t\t<label for='".esc_attr($field_id . '-' . $id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>". htmlspecialchars( $option ) . "</label>\n";
+					$r .= "\t\t</div>\n";
+				}
+				$r .= "\t\t</fieldset>\n";
+			} elseif ( $field['type'] == 'checkbox' ) {
+				$r .= "\t<div class='inputPair checkbox'>\n";
+				$r .= "\t\t<input type='checkbox' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".__('Yes')."' class='".esc_attr($field['type'])."' ".( $field_value ? "checked='checked' " : "")." />\n";
+				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>\n";
+				$r .= "\t\t". htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t</div>\n";
+			} elseif ( $field['type'] == 'select' ) {
+				$r .= "\n<div class='inputPair select'>\n";
+				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span>'. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t<select name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
+				foreach ( $field['options'] as $option ) {
+					$r .= "\t\t<option".( $option == $field_value ? " selected='selected'" : "").">". htmlspecialchars($option)."</option>\n";
+				}
+				$r .= "\t</select>\n";
+				$r .= "\t</div>\n";
+			} else {
+				// default: text field
+				// note that any unknown types will produce a text input, so we can use arbitrary type names to handle
+				// input fields like name, email, url that require special validation or handling at POST
+				$r .= "\n<div class='inputPair text'>\n";
+				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
+				$r .= "\t\t<input type='text' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
+				$r .= "\t</div>\n";
+			}
+
+			return $r;
+		}
+		/* === // Grunion Contact Form === */
+	
+		
 	}
 
 
