@@ -7,7 +7,11 @@ while ( have_posts() ) : the_post();
 <div id="post-<?php the_ID() ?>" <?php post_class('article'); ?>><article>
 
 	<div class="header"><header>
+		<?php if (is_home()) : ?>
+		<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title()?></a></h2>
+		<?php else : ?>
 		<h3 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title()?></a></h3>
+		<?php endif; ?>
 		
 		<p class="entry-meta">
 			Posted on 
