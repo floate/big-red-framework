@@ -1,0 +1,41 @@
+/* #### Constants #### */
+
+@resetcolor: #000;
+@resetbackground: #fff;
+
+
+
+
+
+/* #### CSS3 Functions #### */
+// most sourced from css3please.com
+
+.border-radius (@radius) {
+       -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+  -o-border-radius: @radius;
+     border-radius: @radius;
+}
+
+.box-shadow (@shadow) {
+     -moz-box-shadow: @shadow;
+  -webkit-box-shadow: @shadow;
+   -o-box-shadow: @shadow;
+      box-shadow: @shadow;
+}
+
+.rgba-background(@red, @blue, @green, @opacity) {
+	
+background-color: rgb(@red, @blue, @green);
+background-color: rgba(@red, @blue, @green, @opacity);  
+/* IE's filter & -ms-filter need to be added manully */
+}
+
+.gradient(@start, @end) {
+  background-color: @start;
+  background-image: -moz-linear-gradient(top, @start, @end);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, @start),color-stop(1, @end));
+  background-image: linear-gradient(top, @start, @end);
+/* IE's filter & -ms-filter need to be added manully */
+}
+
