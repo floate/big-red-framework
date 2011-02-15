@@ -168,33 +168,37 @@ function soup_setupParentThemeClass(){
 			/* *******************
 			 * Don't queue both seperate and combined sheets!
 			 * ****************** */
+			if (!is_admin()) {
 			
 			
-			wp_enqueue_style('soup-all');
-			// wp_enqueue_style('soup-all-ie6');
-			// wp_enqueue_style('soup-all-ie7');
-			// wp_enqueue_style('soup-all-ie8');
-			// wp_enqueue_style('soup-all-ie9');
+				wp_enqueue_style('soup-all');
+				// wp_enqueue_style('soup-all-ie6');
+				// wp_enqueue_style('soup-all-ie7');
+				// wp_enqueue_style('soup-all-ie8');
+				// wp_enqueue_style('soup-all-ie9');
 			
-			wp_enqueue_style('soup-mobile');
+				wp_enqueue_style('soup-mobile');
 
-			wp_enqueue_style('soup-print');
-			// wp_enqueue_style('soup-print-ie6');
-			// wp_enqueue_style('soup-print-ie7');
-			// wp_enqueue_style('soup-print-ie8');
-			// wp_enqueue_style('soup-print-ie9');
+				wp_enqueue_style('soup-print');
+				// wp_enqueue_style('soup-print-ie6');
+				// wp_enqueue_style('soup-print-ie7');
+				// wp_enqueue_style('soup-print-ie8');
+				// wp_enqueue_style('soup-print-ie9');
 			
-			// wp_enqueue_style('soup-all-media');
-			// wp_enqueue_style('soup-all-media-ie6');
-			// wp_enqueue_style('soup-all-media-ie7');
-			// wp_enqueue_style('soup-all-media-ie8');
-			// wp_enqueue_style('soup-all-media-ie9');
+				// wp_enqueue_style('soup-all-media');
+				// wp_enqueue_style('soup-all-media-ie6');
+				// wp_enqueue_style('soup-all-media-ie7');
+				// wp_enqueue_style('soup-all-media-ie8');
+				// wp_enqueue_style('soup-all-media-ie9');
+			}
 			
 		}
 
 		function enqueueChildJs(){
 			/* intended to be overridden in child theme */
-			wp_enqueue_script('custom');
+			if (!is_admin()) {
+				wp_enqueue_script('custom');
+			}
 		}
 		
 		function definePaths(){
