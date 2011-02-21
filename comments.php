@@ -74,28 +74,52 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	
 	
 	<div class="section"><section>
-		<?php comment_form(array(
-			'fields' => apply_filters('comment_form_default_fields', array(
-				'author' => '<div class="comment-form-author inputPair text">' . '<label for="author">' . __( 'Name' ) . '</label> ' 
-							. ( $req ? '<span class="required">*</span>' : '' ) .
-				            '<input id="author" name="author" type="text" value="' . 
-							esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req .
-							( $req ? ' required' : '' ) . ' /></div>',
-				'email'  => '<div class="comment-form-email inputPair email"><label for="email">' . __( 'Email' ) . '</label> ' .
-							( $req ? '<span class="required">*</span>' : '' ) .
-				            '<input id="email" name="email" type="email" value="' . 
-							esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . $aria_req . 
-							( $req ? ' required' : '' ) . ' /></div>',
-				'url'    => '<div class="comment-form-url inputPair url"><label for="url">' . __( 'Website' ) . '</label>' .
-				            '<input id="url" name="url" type="url" value="' . 
-							esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></div>'
-				)),
+		<?php 
+		$req = get_option( 'require_name_email' );
+		$aria_req = ( $req ? " aria-required='true'" : '' );
+		
+		$commentFields = array(
+			'author' => "<div class='inputPair inputSet set-text comment-form-author'>\n" .
+						"<label for='comment-form-author'>" . __('Name') . 
+						( $req ? " <span class='required'>*</span>" : "" ) . "</label>\n" .
+						"<input type='text' id='comment-form-author' name='author' value='" .
+						esc_attr( $commenter['comment_author'] ) . "' size='30' class='" .
+						"text" . ($req ? " required' $aria_req required='required" : "") . 
+						"' /> </div>",
+
+
+			'email' => "<div class='inputPair inputSet set-email comment-form-email'>\n" .
+						"<label for='comment-form-email'>" . __('Email') . 
+						( $req ? " <span class='required'>*</span>" : "" ) . "</label>\n" .
+						"<input type='email' id='comment-form-email' name='email' value='" .
+						esc_attr( $commenter['comment_author_email'] ) . "' size='30' class='" .
+						"email" . ($req ? " required' $aria_req required='required" : "") . 
+						"' /> </div>",
+
+
+			'url' => "<div class='inputPair inputSet set-url comment-form-url'>\n" .
+						"<label for='comment-form-url'>" . __('Website') . "</label>\n" .
+						"<input type='url' id='comment-form-url' name='url' value='" .
+						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
+						"class='url' /> </div>"
+
+		);
+		
+		
+		
+		comment_form(array(
+			'fields' => apply_filters('comment_form_default_fields', $commentFields),
 				'comment_notes_after'  => '<p class="form-allowed-tags">' . 
 						sprintf( __( 'You may use these <abbr>HTML</abbr> tags and attributes: %s' ), ' <code>' .
 						allowed_tags() . '</code>' ) . '</p>',
-				'comment_field' => '<div class="comment-form-comment inputPair textarea"><label for="comment">' . 
-							_x( 'Comment', 'noun' ) . '</label>' . 
-							'<textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></div>',
+				'comment_field' => "<div class='inputPair inputSet set-textarea comment-form-comment'>\n" .
+							"<label for='comment-form-comment'>" . _x( 'Comment', 'noun' ) . 
+							" <span class='required'>*</span></label>\n" .
+							"<textarea id='comment-form-comment' name='comment' " .
+							"cols='45' rows='8' class='required' $aria_req required='required'>" . 
+							"</textarea> </div>",
+							
+				'id_submit' => 'comment-form-submit'
 		
 			)); ?>
 			
