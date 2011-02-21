@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pretty much everything</title>
+
+<link rel="stylesheet" href="all/all.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+
+</head>
+<body>
+
+	<form action="http://www.cs.tut.fi/cgi-bin/run/~jkorpela/echo.cgi"> 
+ 
+		<div><input type="hidden" name="hidden field" value="42"></div> 
+		
+		
+		<div class="inputSet inputPair set-text">
+			<label for="text">Text Input </label>
+			<input name="text" id="text" type="text" />
+		</div>
+		
+		
+		<div class="inputSet inputPair set-textarea">
+			<label for="textarea">Textarea Input </label>
+			<textarea name="textarea" id="textarea" /></textarea>
+		</div>
+		
+		<div class="inputSet inputPair set-email">
+			<label for="email">email Input </label>
+			<input name="email" id="email" type="email" />
+		</div>
+		
+		<div class="inputSet inputPair set-url">
+			<label for="url">url Input </label>
+			<input name="url" id="url" type="url" />
+		</div>
+		
+		<div class="inputSet inputPair set-select">
+			<label for="select">select Input </label>
+			<select name="select" id="select">
+				<option>Value One</option>
+				<option>Value Two</option>
+				<option>Value Three</option>
+			</select>
+		</div>
+		
+		
+		<fieldset class="inputSet set-radio">
+			<legend>Radio Set</legend>
+			<div class="inputPair">
+				<label for="r1">r1 </label>
+				<input name="radio" id="r1" type="radio" />
+			</div>
+
+			<div class="inputPair">
+				<label for="r2">r2 </label>
+				<input name="radio" id="r2" type="radio" />
+			</div>
+		</fieldset>
+		
+		
+		<fieldset class="inputSet set-checkbox">
+			<legend>checkbox Set</legend>
+			<div class="inputPair">
+				<label for="c1">c1 </label>
+				<input name="checkbox" id="c1" type="checkbox" />
+			</div>
+
+			<div class="inputPair">
+				<label for="c2">c2 </label>
+				<input name="checkbox" id="c2" type="checkbox" />
+			</div>
+		</fieldset>
+		
+		
+		<div class="inputSet inputPair set-submit">
+			<input type="submit" name="submit" id="submit" />
+			<input type="reset" name="reset" id="reset" />
+		</div>
+		
+		
+	
+	</form> 
+
+	
+</body>
+</html>
