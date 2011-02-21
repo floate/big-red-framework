@@ -531,7 +531,66 @@ SOUPGIANT.base = function() {
 		});
 	}
 
+	function formHightlight($forms){
+		if ($forms == NUL) {
+			return;
+		}
+		$forms = $($forms);
+		
+		$forms.each(function(){
+			var form = this;
+			$(':input:not([type="submit"])', form).each(function(){
+				var $input = $(this),
+					$parentSet = $input.closest('div.inputSet, div.form-field');
+					
+				$input.focus(function(){
+					$parentSet.addClass('form-highlight');					
+				});
+				
+				$input.blur(function(){
+					$parentSet.removeClass('form-highlight');					
+				});
+				
+				
+			});
+		});
+	}
 
+	function setupFormValidation($forms){
+		if (($forms == NUL) || (typeof $().validate != 'function')) {
+			return;
+		}
+		
+		$forms = $($forms);
+		
+		$forms.each(function(){
+			var $form = $(this);
+			
+			function placeError($error, $element) {
+				var placeTag = 'label', 
+					$place;
+					
+				if ( $element.is('input[type=radio],input[type=checkbox]') ) {
+					placeTag = 'legend';
+				}
+				$place = $element.closest('.inputSet').find(placeTag);
+
+				$error.appendTo($place);
+			}
+			
+			
+			$form.validate({
+				errorElement: "span",
+				errorPlacement: placeError
+			});
+			$(':input.required', $form).each(function(){
+				$(this).rules("add",{
+			    	required: true
+				});	
+			});
+		});
+		
+	}
 	/**
 	*
 	*  Javascript trim, ltrim, rtrim
@@ -563,7 +622,9 @@ SOUPGIANT.base = function() {
 		displayLoginForm:displayLoginForm,
 		compactForm:compactForm,
 		createLoginForm:createLoginForm,
-		closeLoginForm:closeLoginForm
+		closeLoginForm:closeLoginForm,
+		formHightlight:formHightlight,
+		setupFormValidation:setupFormValidation
 		
 	};
 }();
