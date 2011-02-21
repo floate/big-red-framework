@@ -31,6 +31,11 @@ function soup_setupParentThemeClass(){
 	     * PHP 5 Constructor
 	     */		
 		function __construct(){
+			$this->parent__construct();
+			$this->child__construct();
+		}
+			
+		function parent__construct() {
 			$this->postAlt = 0;
 			$this->searchFormID = 0;
 			$this->definePaths();
@@ -61,8 +66,16 @@ function soup_setupParentThemeClass(){
 
 			add_action('wp_head', array(&$this, 'setHeaderTags'));
 			
+			/* formidable filters */
+			add_filter('frm_custom_html', array(&$this, 'formidableHtml'), 10, 2);
+			add_filter('get_frm_stylesheet', '');
+			
 			
 			$this->betterFormShortcodes();
+		}
+		
+		function child__construct() {
+			/* intended to be overridden in child theme */
 		}
 		
 		function defineMinimised() {
@@ -85,7 +98,7 @@ function soup_setupParentThemeClass(){
 				,'soup-base'
 				// ,'prettyPhoto'
 				// ,'hashchange'
-				// ,'form-validation'
+				,'form-validation'
 				// ,'modernizr'
 				);
 		}
@@ -1524,7 +1537,35 @@ function soup_setupParentThemeClass(){
 		}
 		/* === // Grunion Contact Form === */
 	
-		
+		function formidableHtml($html, $type) {
+			switch ($type) {
+				case 'checkbox':
+				case 'radio':
+				case 'scale':
+					$wrapper = 'fieldset';
+					$label = 'legend';
+					$for = '';
+					$set = 'inputSet set-' . $type . ' ';
+					$pair = 'inputPair ';
+					break;
+				default: 
+					$wrapper = 'div';
+					$label = 'label';
+					$for = 'for="field_[key]" ';
+					$set = 'inputSet inputPair set-' . $type . ' ';
+					$pair = '';
+			}
+			$html = <<<DEFAULT_HTML
+				<{$wrapper} id="frm_field_[id]_container" class="{$set}form-field [required_class] [error_class]">
+			    	<{$label} {$for}class="frm_pos_[label_position]">[field_name]
+			        	<span class="frm_required">[required_label]</span>
+			    	</{$label}>
+			    	[input]
+			    	[if description]<div class="frm_description">[description]</div>[/if description]
+				</{$wrapper}>
+DEFAULT_HTML;
+			return $html;
+		}
 	}
 
 
