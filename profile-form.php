@@ -30,31 +30,31 @@ $GLOBALS['profileuser'] = $profileuser = get_user_to_edit( $current_user->ID );
 		<fieldset>
 			<legend><?php _e( 'Name', $theme_my_login->textdomain ) ?></legend>
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-text">
 				<label for="user_login"><?php _e( 'Username', $theme_my_login->textdomain ); ?> (<?php _e( 'Your username cannot be changed.', $theme_my_login->textdomain ); ?>)</label>
-				<input type="text" name="user_login" id="user_login" value="<?php echo esc_attr( $profileuser->user_login ); ?>" disabled="disabled" class="regular-text input-text" /> <span class="description"></span>
+				<input type="text" name="user_login" id="user_login" value="<?php echo esc_attr( $profileuser->user_login ); ?>" disabled="disabled" class="text" /> <span class="description"></span>
 			</div>
 
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-text">
 				<label for="first_name"><?php _e( 'First name', $theme_my_login->textdomain ) ?></label>
 				<input type="text" name="first_name" id="first_name" 
-					value="<?php echo esc_attr( $profileuser->first_name ) ?>" class="regular-text input-text" />
+					value="<?php echo esc_attr( $profileuser->first_name ) ?>" class="text" />
 			</div>
 
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-text">
 				<label for="last_name"><?php _e( 'Last name', $theme_my_login->textdomain ) ?></label>
 				<input type="text" name="last_name" id="last_name" 
-					value="<?php echo esc_attr( $profileuser->last_name ) ?>" class="regular-text input-text" />
+					value="<?php echo esc_attr( $profileuser->last_name ) ?>" class="text" />
 			</div>
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-text">
 				<label for="nickname"><?php _e( 'Nickname', $theme_my_login->textdomain ); ?> <?php _e( '(required)', $theme_my_login->textdomain ); ?></label>
-				<input type="text" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ) ?>" class="regular-text input-text required" />
+				<input type="text" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ) ?>" class="text required" required="required" />
 			</div>
 			
-			<div class="inputPair">
+			<div class="inputPair inputSet set-select">
 				<label for="display_name"><?php _e( 'Display name publicly as', $theme_my_login->textdomain ) ?></label>
 				<select name="display_name" id="display_name">
 				<?php
@@ -89,22 +89,22 @@ $GLOBALS['profileuser'] = $profileuser = get_user_to_edit( $current_user->ID );
 
 			<legend><?php _e( 'Contact Info', $theme_my_login->textdomain ) ?></legend>
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-email">
 				<label for="email"><?php _e( 'E-mail', $theme_my_login->textdomain ); ?> <?php _e( '(required)', $theme_my_login->textdomain ); ?></label>
-				<input type="text" name="email" id="email" value="<?php echo esc_attr( $profileuser->user_email ) ?>" class="regular-text input-text required" />
+				<input type="email" name="email" id="email" value="<?php echo esc_attr( $profileuser->user_email ) ?>" class="email required" required="required" />
 			</div>
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-url">
 				<label for="url"><?php _e( 'Website', $theme_my_login->textdomain ) ?></label>
-				<input type="url" name="url" id="url" value="<?php echo esc_attr( $profileuser->user_url ) ?>" class="regular-text code input-text" />
+				<input type="url" name="url" id="url" value="<?php echo esc_attr( $profileuser->user_url ) ?>" class="url" />
 			</div>
 
 			<?php if ( function_exists( '_wp_get_user_contactmethods' ) ) :
 				foreach ( _wp_get_user_contactmethods() as $name => $desc ) {
 			?>
-			<div class="inputPair">
+			<div class="inputPair inputSet set-text">
 				<label for="<?php echo $name; ?>"><?php echo apply_filters( 'user_'.$name.'_label', $desc ); ?></label>
-				<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_attr( $profileuser->$name ) ?>" class="regular-text input-text" />
+				<input type="text" name="<?php echo $name; ?>" id="<?php echo $name; ?>" value="<?php echo esc_attr( $profileuser->$name ) ?>" class="text" />
 			</div>
 			<?php
 				}
@@ -116,7 +116,7 @@ $GLOBALS['profileuser'] = $profileuser = get_user_to_edit( $current_user->ID );
 		<fieldset>
 			<legend><?php _e( 'About Yourself', $theme_my_login->textdomain ); ?></legend>
 
-			<div class="inputPair">
+			<div class="inputPair inputSet set-textarea">
 				<label for="description"><?php _e( 'Biographical Info', $theme_my_login->textdomain ); ?></label>
 				<textarea name="description" id="description" rows="5" cols="30"><?php echo esc_html( $profileuser->description ); ?></textarea>
 			</div>
@@ -133,14 +133,14 @@ $GLOBALS['profileuser'] = $profileuser = get_user_to_edit( $current_user->ID );
 				<p class="description indicator-hint"><?php _e( 'Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! " ? $ % ^ &amp; ).', $theme_my_login->textdomain ); ?></p>
 
 			
-			<div class="inputPair">
+			<div class="inputPair inputSet set-password">
 				<label for="pass1"><?php _e( 'New Password', $theme_my_login->textdomain ); ?></label>
-				<input type="password" name="pass1" id="pass1" class="input-text" size="16" value="" autocomplete="off" />
+				<input type="password" name="pass1" id="pass1" class="password" size="16" value="" autocomplete="off" />
 			</div>
 			
-			<div class="inputPair">
+			<div class="inputPair inputSet set-password">
 				<label for="pass2">Confirm Password</label>
-				<input type="password" name="pass2" id="pass2" class="input-text" size="16" value="" autocomplete="off" />
+				<input type="password" name="pass2" id="pass2" class="password" size="16" value="" autocomplete="off" />
 			</div>
 			
 			<div id="pass-strength-result"><?php _e( 'Strength indicator', $theme_my_login->textdomain ); ?></div>
@@ -173,9 +173,9 @@ $GLOBALS['profileuser'] = $profileuser = get_user_to_edit( $current_user->ID );
 			</table>
 		<?php } ?>
 
-		<p class="submit">
+		<div class="set-submit inputPair inputSet">
 			<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( $current_user->ID ); ?>" />
 			<input type="submit" class="submit" value="<?php esc_attr_e( 'Update Profile', $theme_my_login->textdomain ); ?>" name="submit" />
-		</p>
+		</div>
 	</form>
 </div>
