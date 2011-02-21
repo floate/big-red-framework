@@ -20,6 +20,6 @@ while ( have_posts() ) : the_post();
 	
 		</div>
 		<!-- //#contentA -->
-	</section></div>
+	</article></div>
 	<!-- //#contentHeadA -->
 <?php endwhile; ?>
