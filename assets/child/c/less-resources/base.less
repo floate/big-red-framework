@@ -161,20 +161,36 @@ label, legend {
 
 /* setting a consistent width, 160px; 
    control of type=file still not possible */
-input[type=text],input[type=password],textarea{
-	width:12.25em;
-	*width:11.9em;
+	input.text,
+	textarea,
+	input.email,
+	input.url,
+	input.number,
+	input.phone,
+	input.date,
+	input.tag {
+	width:240px;
 }
 
 
 /* added by Soupgiant */
-input[type=submit],
+form .set-submit input,
+#comment-form-submit,
+.frm_forms p.submit input,
+input.radio,
+input.checkbox,
+button,
+select {
+	cursor: pointer;
+}
+
+/*input[type=submit],
 input[type=reset],
 input[type=radio],
 input[type=checkbox],
 button {
 	cursor: pointer;
-}
+}*/
 
 /* added by Soupgiant - WordPress defaults */
 
@@ -267,8 +283,9 @@ dl.gallery-item,dd.gallery-caption {
 }
 
 /* *****************
-HTML5 Element styles - added by Soupgiant 
+HTML5 Element styles & other block elements - added by Soupgiant 
 ****************** */
+#siteDetails, 
 section, article, header, footer,nav,aside,hgroup {
 	display: block;
 }
