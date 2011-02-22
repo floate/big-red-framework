@@ -541,7 +541,11 @@ SOUPGIANT.base = function() {
 			var form = this;
 			$(':input:not([type="submit"])', form).each(function(){
 				var $input = $(this),
-					$parentSet = $input.closest('div.inputSet, div.form-field');
+					$parentSet = $input.closest('div.inputSet, fieldset.inputSet, div.form-field');
+				
+				$input.filter(':radio,:checkbox').click(function(){
+					$(this).focus();
+				});
 					
 				$input.focus(function(){
 					$parentSet.addClass('form-highlight');					
@@ -580,6 +584,14 @@ SOUPGIANT.base = function() {
 			
 			
 			$form.validate({
+				validateDelegate: function() { },
+				onsubmit: true,
+	            onkeydown: false,
+	            onkeyup: false,
+	            onfocusin: false,
+	            onfocusout: false,
+	            onclick: false,
+				
 				errorElement: "span",
 				errorPlacement: placeError
 			});

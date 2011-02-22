@@ -4,6 +4,9 @@
 	<title>Forms</title>
 
 <link rel="stylesheet" href="all/all.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<style>
+body {width: 600px; margin: 0 auto;}
+</style>
 
 
 </head>
@@ -16,28 +19,28 @@
 		
 		<div class="inputSet inputPair set-text">
 			<label for="text">Text Input </label>
-			<input name="text" id="text" type="text" />
+			<input name="text" id="text" type="text" class="required text" />
 		</div>
 		
 		
 		<div class="inputSet inputPair set-textarea">
 			<label for="textarea">Textarea Input </label>
-			<textarea name="textarea" id="textarea" /></textarea>
+			<textarea name="textarea" id="textarea" class="required" /></textarea>
 		</div>
 		
 		<div class="inputSet inputPair set-email">
 			<label for="email">email Input </label>
-			<input name="email" id="email" type="email" />
+			<input name="email" id="email" type="email" class="required email" />
 		</div>
 		
 		<div class="inputSet inputPair set-url">
 			<label for="url">url Input </label>
-			<input name="url" id="url" type="url" />
+			<input name="url" id="url" type="url" class="required url" />
 		</div>
 		
 		<div class="inputSet inputPair set-select">
 			<label for="select">select Input </label>
-			<select name="select" id="select">
+			<select name="select" id="select" class="required">
 				<option>Value One</option>
 				<option>Value Two</option>
 				<option>Value Three</option>
@@ -49,12 +52,12 @@
 			<legend>Radio Set</legend>
 			<div class="inputPair">
 				<label for="r1">r1 </label>
-				<input name="radio" id="r1" type="radio" />
+				<input name="radio" id="r1" type="radio" class="required" />
 			</div>
 
 			<div class="inputPair">
 				<label for="r2">r2 </label>
-				<input name="radio" id="r2" type="radio" />
+				<input name="radio" id="r2" type="radio" class="required" />
 			</div>
 		</fieldset>
 		
@@ -63,12 +66,12 @@
 			<legend>checkbox Set</legend>
 			<div class="inputPair">
 				<label for="c1">c1 </label>
-				<input name="checkbox" id="c1" type="checkbox" />
+				<input name="checkbox" id="c1" type="checkbox" class="required" />
 			</div>
 
 			<div class="inputPair">
 				<label for="c2">c2 </label>
-				<input name="checkbox" id="c2" type="checkbox" />
+				<input name="checkbox" id="c2" type="checkbox" class="required" />
 			</div>
 		</fieldset>
 		
@@ -81,7 +84,23 @@
 		
 	
 	</form> 
+	<script type='text/javascript'>
+	/* <![CDATA[ */
+	var SOUPGIANT_wpURLS = {
+		register: "http://aier.int.pwcc.cc/members/login/?action=register",
+		regoEnabled: "n",
+		lostpassword: "http://aier.int.pwcc.cc/members/login/?action=lostpassword&amp;redirect_to=http://aier.int.pwcc.cc/members/login/?action=profile",
+		loginsubmit: "http://aier.int.pwcc.cc/members/login/",
+		currentURL: "http://aier.int.pwcc.cc/members/login/?action=profile",
+		styleSheet: "http://aier.int.pwcc.cc/wp-content/themes/aier"
+	};
+	/* ]]> */
+	</script>
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type='text/javascript' src='http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.js'></script> 
+	<script src="../../parent/j/base.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../j/custom.js" type="text/javascript" charset="utf-8"></script>
 	
 </body>
 </html>

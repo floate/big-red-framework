@@ -222,11 +222,207 @@ li ol, li ul, li dl {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* added by soupgiant
+/* added by soupgiant */
+dl dd {
+  /*providing spacing for definition terms*/
 
-/*
-ol li {
-	/*giving OL's LIs generated numbers*//* ****************
+  margin-left: 1em;
+}
+th, td {
+  /*borders and padding to make the table readable*/
+
+  border: 1px solid #000;
+  padding: .5em;
+  vertical-align: top;
+}
+th {
+  /*distinguishing table headers from data cells*/
+
+  font-weight: bold;
+  text-align: center;
+  vertical-align: bottom;
+}
+tbody th {
+  text-align: left;
+  vertical-align: top;
+}
+caption {
+  /*coordinated margin to match cell's padding*/
+
+  margin-bottom: .5em;
+  font-style: italic;
+  /*centered so it doesn't blend in to other content*/
+
+  /* text-align:center; /* removed by Soupgiant */
+
+}
+p,
+fieldset,
+table,
+pre {
+  /*so things don't run into each other*/
+
+  margin: 0 0 1em;
+}
+legend {
+  display: block;
+  float: left;
+  width: 100%;
+}
+label, legend {
+  display: block;
+  font-weight: bold;
+  /* added by Soupgiant */
+
+}
+.set-select label {
+  display: inline;
+}
+.set-radio label, .set-checkbox label {
+  display: inline;
+  font-weight: normal;
+}
+.inputSet {
+  margin: 1em 0 0;
+  padding: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+}
+.form-highlight {
+  border-color: #ccc;
+  background: #FFF2CC;
+}
+.js input.text,
+.js textarea,
+.js input.email,
+.js input.url,
+.js select,
+.js input.number,
+.js input.phone,
+.js input.date,
+.js input.tag {
+  outline: none;
+  border: 1px solid #999;
+}
+.inputSet span.error {
+  color: #900;
+}
+.inputSet input.error, .inputSet textarea.error, .inputSet select.error {
+  border-color: #900;
+}
+/* setting a consistent width, 160px; 
+   control of type=file still not possible */
+input[type=text], input[type=password], textarea {
+  width: 12.25em;
+  *width: 11.9em;
+}
+/* added by Soupgiant */
+input[type=submit],
+input[type=reset],
+input[type=radio],
+input[type=checkbox],
+button {
+  cursor: pointer;
+}
+/* added by Soupgiant - WordPress defaults */
+/* ***************
+SITE NAME AND PAGE NAME
+*************** */
+#siteName {
+  /* set h1, p to identical style */
+
+  font-weight: bold;
+  font-size: 138.5%;
+  margin: 0;
+}
+#pageName {
+  /* set h1, h2 to identical style */
+
+  /* font-weight: bold; /* N/A - on both anyway */
+
+  /* margin: 1em 0;  /* N/A - on both anyway */
+
+  font-size: 123.1%;
+}
+/* ***************
+STANDARD WORDPRESS STYLES
+*************** */
+/* both images and divs (images with captions) */
+/* divs (images with captions) only */
+.wp-caption {
+  /* default suggested in codex */
+
+  background-color: #f3f3f3;
+  text-align: center;
+  padding-top: 4px;
+  margin: 1px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.wp-caption img {
+  /* default suggested in codex */
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.wp-caption p.wp-caption-text {
+  font-size: 85%;
+  /* approx 11px at standard font size */
+
+  padding: 0 4px 5px;
+  margin: 0;
+}
+.alignleft {
+  /* default suggested in codex */
+
+  float: left;
+}
+.alignright {
+  /* default suggested in codex */
+
+  float: right;
+}
+.aligncenter {
+  /* default suggested in codex */
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* galleries */
+dl.gallery-item, dd.gallery-caption {
+  margin: 0;
+}
+.entry-content {
+  overflow: hidden;
+  /* enclose floated elements */
+
+}
+.more-link {
+  /*	display more links as blocks */
+
+  display: block;
+  margin: 1em 0;
+  /* force margin on these */
+
+}
+/* *****************
+HTML5 Element styles - added by Soupgiant 
+****************** */
+section,
+article,
+header,
+footer,
+nav,
+aside,
+hgroup {
+  display: block;
+}
+/* ****************
  * LARGE SCREENS  *
  **************** */
 /* Desktops and laptops ----------- */

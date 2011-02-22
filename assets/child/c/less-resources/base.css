@@ -10,136 +10,267 @@ build: 56
 /*In minimized files, *//*! credits of reused code can be found by removing '-min' from the url. */
 /*
 Soupgiant alterations
- - remove reset of list-style
- - remove heading sizes, font-weight - all done in base
- - remove font weight on strong, headings, th
- - remove italics on em
- - remove margin/paddign reset on headings, p (m in base, p identical x browser)
- - remove caption, th text-align - in base
+ - remove definitions of list-style (not reset)
+ - removed margins on nested lists - new rule
+ - remove font weight on strong, headings (not reset)
+ - remove italics on em (not reset)
+ - remove font-weight & alignment settings on th - identical accross browsers
+ - remove caption alignment, identical in all browsers
 
- - added HTML5 elements to margin, padding reset
- - added set float:none on aside, could default to left and right in some browsers.
+
+ - added pointer cursor on submit, buttons, radio, checkboxes
+ - added WordPress defaults
+ - added HTML5 element styles as blocks
+ - added #pageName to h2
+ - added #siteName
 */
-/*
-	TODO will need to remove settings on HTML since we can't namespace it.
-	TODO with the prefix, should I group by selector or property for weight savings?
-*/
-/* #### Constants #### */
-/* #### CSS3 Functions #### */
-@media all {
-  html {
-    color: /*	Copyright (c) 2010, Yahoo! Inc. All rights reserved.	Code licensed under the BSD License:	http://developer.yahoo.com/yui/license.html	version: 3.1.2	build: 56	(minor alterations by Soupgiant)	*/ #000000;
-    background: #ffffff;
-  }
-  body,
-  div,
-  dl,
-  dt,
-  dd,
-  ul,
-  ol,
-  li,
-  pre,
-  code,
-  form,
-  fieldset,
-  legend,
-  input,
-  textarea,
-  blockquote,
-  th,
-  td,
-  section,
-  article,
-  header,
-  footer,
-  nav,
-  aside,
-  hgroup {
-    /*h1,
-  	h2,
-  	h3,
-  	h4,
-  	h5,
-  	h6, 
-  	p /* removed by soupgiant */
-  
-    margin: 0;
-    padding: 0;
-  }
-  table {
-    border-collapse: collapse;
-    border-spacing: 0;
-  }
-  fieldset, img {
-    border: 0;
-  }
-  /*
-  	TODO think about hanlding inheritence differently, maybe letting IE6 fail a bit...
-  */
-  address,
-  caption,
-  cite,
-  code,
-  dfn,
-  var {
-    /* em,
-  	strong, /* removed by soupgiant */
-  
-    /* th, /* removed by soupgiant */
-  
-    font-style: normal;
-    font-weight: normal;
-  }
-  /*
-  	TODO Figure out where this list-style rule is best set. Hedger has a request to investigate.
-  */
-  /*li {
-  	list-style:none;
-  } /* removed by Soupgiant */
-  /* caption,
-  th {
-  	text-align:left;
-  } /* removed by Soupgiant */
-  /*
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-  	font-size:100%;
-  	font-weight:normal;
-  } /* removed by Soupgiant */
-  q:before, q:after {
-    content: '';
-  }
-  abbr, acronym {
-    border: 0;
-    font-variant: normal;
-  }
-  /* to preserve line-height and selector appearance */
-  sup {
-    vertical-align: text-top;
-  }
-  sub {
-    vertical-align: text-bottom;
-  }
-  input, textarea, select {
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-  }
-  /*to enable resizing for IE*/
-  input, textarea, select {
-    *font-size: 100%;
-  }
-  /*because legend doesn't inherit in IE */
-  legend {
-    color: #000;
-  }
-  aside {
-    float: none;
-    clear: none;
-  }
+/* base.css, part of YUI's CSS Foundation */
+h1 {
+  /*18px via YUI Fonts CSS foundation*/
+
+  font-size: 138.5%;
+}
+h2, #pageName {
+  /*16px via YUI Fonts CSS foundation*/
+
+  font-size: 123.1%;
+}
+h3 {
+  /*14px via YUI Fonts CSS foundation*/
+
+  font-size: 108%;
+}
+h1, h2, h3 {
+  /* top & bottom margin based on font size */
+
+  margin: 1em 0;
+}
+h4, h5, h6 {
+  font-size: 100%;
+  margin: 1em 0 0;
+}
+abbr, acronym {
+  /*indicating to users that more info is available */
+
+  border-bottom: 1px dotted #000;
+  cursor: help;
+}
+blockquote,
+ul,
+ol,
+dl {
+  /*giving blockquotes and lists room to breath*/
+
+  margin: 1em;
+}
+ol, ul, dl {
+  /*bringing lists on to the page with breathing room */
+
+  margin-left: 2em;
+}
+li ol, li ul, li dl {
+  /* nested lists don't need top/bottom margins */
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* added by soupgiant */
+dl dd {
+  /*providing spacing for definition terms*/
+
+  margin-left: 1em;
+}
+th, td {
+  /*borders and padding to make the table readable*/
+
+  border: 1px solid #000;
+  padding: .5em;
+  vertical-align: top;
+}
+th {
+  /*distinguishing table headers from data cells*/
+
+  font-weight: bold;
+  text-align: center;
+  vertical-align: bottom;
+}
+tbody th {
+  text-align: left;
+  vertical-align: top;
+}
+caption {
+  /*coordinated margin to match cell's padding*/
+
+  margin-bottom: .5em;
+  font-style: italic;
+  /*centered so it doesn't blend in to other content*/
+
+  /* text-align:center; /* removed by Soupgiant */
+
+}
+p,
+fieldset,
+table,
+pre {
+  /*so things don't run into each other*/
+
+  margin: 0 0 1em;
+}
+legend {
+  display: block;
+  float: left;
+  width: 100%;
+}
+label, legend {
+  display: block;
+  font-weight: bold;
+  /* added by Soupgiant */
+
+}
+.set-select label {
+  display: inline;
+}
+.set-radio label, .set-checkbox label {
+  display: inline;
+  font-weight: normal;
+}
+.inputSet {
+  margin: 1em 0 0;
+  padding: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+}
+.form-highlight {
+  border-color: #ccc;
+  background: #FFF2CC;
+}
+.js input.text,
+.js textarea,
+.js input.email,
+.js input.url,
+.js select,
+.js input.number,
+.js input.phone,
+.js input.date,
+.js input.tag {
+  outline: none;
+  border: 1px solid #999;
+}
+.inputSet span.error {
+  color: #900;
+}
+.inputSet input.error, .inputSet textarea.error, .inputSet select.error {
+  border-color: #900;
+}
+/* setting a consistent width, 160px; 
+   control of type=file still not possible */
+input[type=text], input[type=password], textarea {
+  width: 12.25em;
+  *width: 11.9em;
+}
+/* added by Soupgiant */
+input[type=submit],
+input[type=reset],
+input[type=radio],
+input[type=checkbox],
+button {
+  cursor: pointer;
+}
+/* added by Soupgiant - WordPress defaults */
+/* ***************
+SITE NAME AND PAGE NAME
+*************** */
+#siteName {
+  /* set h1, p to identical style */
+
+  font-weight: bold;
+  font-size: 138.5%;
+  margin: 0;
+}
+#pageName {
+  /* set h1, h2 to identical style */
+
+  /* font-weight: bold; /* N/A - on both anyway */
+
+  /* margin: 1em 0;  /* N/A - on both anyway */
+
+  font-size: 123.1%;
+}
+/* ***************
+STANDARD WORDPRESS STYLES
+*************** */
+/* both images and divs (images with captions) */
+/* divs (images with captions) only */
+.wp-caption {
+  /* default suggested in codex */
+
+  background-color: #f3f3f3;
+  text-align: center;
+  padding-top: 4px;
+  margin: 1px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 3px;
+  -khtml-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.wp-caption img {
+  /* default suggested in codex */
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.wp-caption p.wp-caption-text {
+  font-size: 85%;
+  /* approx 11px at standard font size */
+
+  padding: 0 4px 5px;
+  margin: 0;
+}
+.alignleft {
+  /* default suggested in codex */
+
+  float: left;
+}
+.alignright {
+  /* default suggested in codex */
+
+  float: right;
+}
+.aligncenter {
+  /* default suggested in codex */
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* galleries */
+dl.gallery-item, dd.gallery-caption {
+  margin: 0;
+}
+.entry-content {
+  overflow: hidden;
+  /* enclose floated elements */
+
+}
+.more-link {
+  /*	display more links as blocks */
+
+  display: block;
+  margin: 1em 0;
+  /* force margin on these */
+
+}
+/* *****************
+HTML5 Element styles - added by Soupgiant 
+****************** */
+section,
+article,
+header,
+footer,
+nav,
+aside,
+hgroup {
+  display: block;
 }
