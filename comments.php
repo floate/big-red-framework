@@ -80,8 +80,8 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 		
 		$commentFields = array(
 			'author' => "<div class='inputPair inputSet set-text comment-form-author'>\n" .
-						"<label for='comment-form-author'>" . __('Name') . 
-						( $req ? " <span class='required'>*</span>" : "" ) . "</label>\n" .
+						"<label for='comment-form-author'> " . __('Name') . 
+						( $req ? " <span class='required'>*</span>" : "" ) . " </label>\n" .
 						"<input type='text' id='comment-form-author' name='author' value='" .
 						esc_attr( $commenter['comment_author'] ) . "' size='30' class='" .
 						"text" . ($req ? " required' $aria_req required='required" : "") . 
@@ -89,8 +89,8 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 
 
 			'email' => "<div class='inputPair inputSet set-email comment-form-email'>\n" .
-						"<label for='comment-form-email'>" . __('Email') . 
-						( $req ? " <span class='required'>*</span>" : "" ) . "</label>\n" .
+						"<label for='comment-form-email'> " . __('Email') . 
+						( $req ? " <span class='required'>*</span>" : "" ) . " </label>\n" .
 						"<input type='email' id='comment-form-email' name='email' value='" .
 						esc_attr( $commenter['comment_author_email'] ) . "' size='30' class='" .
 						"email" . ($req ? " required' $aria_req required='required" : "") . 
@@ -98,7 +98,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 
 
 			'url' => "<div class='inputPair inputSet set-url comment-form-url'>\n" .
-						"<label for='comment-form-url'>" . __('Website') . "</label>\n" .
+						"<label for='comment-form-url'> " . __('Website') . " </label>\n" .
 						"<input type='url' id='comment-form-url' name='url' value='" .
 						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
 						"class='url' /> </div>"
@@ -113,8 +113,8 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						sprintf( __( 'You may use these <abbr>HTML</abbr> tags and attributes: %s' ), ' <code>' .
 						allowed_tags() . '</code>' ) . '</p>',
 				'comment_field' => "<div class='inputPair inputSet set-textarea comment-form-comment'>\n" .
-							"<label for='comment-form-comment'>" . _x( 'Comment', 'noun' ) . 
-							" <span class='required'>*</span></label>\n" .
+							"<label for='comment-form-comment'> " . _x( 'Comment', 'noun' ) . 
+							" <span class='required'>*</span> </label>\n" .
 							"<textarea id='comment-form-comment' name='comment' " .
 							"cols='45' rows='8' class='required' $aria_req required='required'>" . 
 							"</textarea> </div>",

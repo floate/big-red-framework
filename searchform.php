@@ -13,7 +13,7 @@ $soup_safeIds = $soup->searchFormID();
 			</label>
 			<input type="text" name="s" id="s-<?php echo $soup_safeIds; ?>" class="text required" aria-required="true" />
 		</div>
-		<div class="inputPair submit">
+		<div class="inputPair inputSet set-submit">
 			<input type="submit" value="Search" class="search-submit" />
 		</div>
 	</form>
