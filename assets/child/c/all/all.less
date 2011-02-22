@@ -1,13 +1,41 @@
 
-@import '../all/vars_fns.less';
 @import '../less-resources/reset.less';
 @import '../less-resources/base.less';
+@media all { //helps with minimising
+
+#NoteAboutThisFile {
+	-soupgiant-note: e('/* This file has */');
+	/* not */
+	-soupgiant-note-2: e('/* been minimised.  */');
+	/*In minimized files, */
+	-soupgiant-note-3: e('/*! credits of reused code can be found by replacing .css with .less in the url */');
+}
+
+body {
+	/* credit due: http://articles.sitepoint.com/article/eight-definitive-font-stacks/2 */
+	font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#pageWrap {
+	margin: 0 auto;
+	width: 960px;
+}
 
 
 
+} //@media all
 /* ****************
  * LARGE SCREENS  *
  **************** */
+/* 
+
+Credit due for media queries
+Author: Andy Clarke
+URL: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries
+
+License: Creative Commons CC Zero Declaration. No Rights Reserved.
+
+*/
 
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {

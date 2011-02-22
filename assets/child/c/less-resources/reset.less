@@ -34,8 +34,15 @@ Soupgiant alterations
 @media all { //helps with minimising
 
 
+#NoteAboutThisFile {
+	-soupgiant-note: e('/* This file has */');
+	/* not */
+	-soupgiant-note-2: e('/* been minimised.  */');
+	/*In minimized files, */
+	-soupgiant-note-3: e('/*! credits of reused code can be found by replacing .css with .less in the url */');
+}
+
 html {
-	comment: e('/*	Copyright (c) 2010, Yahoo! Inc. All rights reserved.	Code licensed under the BSD License:	http://developer.yahoo.com/yui/license.html	version: 3.1.2	build: 56	(minor alterations by Soupgiant)	*/');
 	color: @resetcolor;
 	background: @resetbackground;
 }
@@ -155,7 +162,7 @@ select {
 }
 /*because legend doesn't inherit in IE */
 legend {
-	color:#000;
+	color:@resetcolor;
 }
 aside {
 	float: none;

@@ -43,7 +43,7 @@ h3 {
 h1, h2, h3 {
   /* top & bottom margin based on font size */
 
-  margin: 1em 0;
+  margin: 1em 0 0;
 }
 h4, h5, h6 {
   font-size: 100%;
@@ -61,7 +61,7 @@ ol,
 dl {
   /*giving blockquotes and lists room to breath*/
 
-  margin: 1em;
+  margin: 1em 1em 0;
 }
 ol, ul, dl {
   /*bringing lists on to the page with breathing room */
@@ -114,7 +114,7 @@ table,
 pre {
   /*so things don't run into each other*/
 
-  margin: 0 0 1em;
+  margin: 1em 0 0;
 }
 legend {
   display: block;
@@ -164,18 +164,34 @@ label, legend {
 }
 /* setting a consistent width, 160px; 
    control of type=file still not possible */
-input[type=text], input[type=password], textarea {
-  width: 12.25em;
-  *width: 11.9em;
+input.text,
+textarea,
+input.email,
+input.url,
+input.number,
+input.phone,
+input.date,
+input.tag {
+  width: 240px;
 }
 /* added by Soupgiant */
-input[type=submit],
+form .set-submit input,
+#comment-form-submit,
+.frm_forms p.submit input,
+input.radio,
+input.checkbox,
+input.scale,
+button,
+select {
+  cursor: pointer;
+}
+/*input[type=submit],
 input[type=reset],
 input[type=radio],
 input[type=checkbox],
 button {
-  cursor: pointer;
-}
+	cursor: pointer;
+}*/
 /* added by Soupgiant - WordPress defaults */
 /* ***************
 SITE NAME AND PAGE NAME
@@ -195,6 +211,22 @@ SITE NAME AND PAGE NAME
   /* margin: 1em 0;  /* N/A - on both anyway */
 
   font-size: 123.1%;
+}
+#skipLinks a {
+  display: block;
+  margin: 0 auto;
+  padding: .25em 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background: #333;
+  position: fixed;
+  top: 0;
+  left: -999999em;
+  left: 0;
+}
+#skipLinks a:focus {
+  left: 0;
 }
 /* ***************
 STANDARD WORDPRESS STYLES
@@ -258,13 +290,14 @@ dl.gallery-item, dd.gallery-caption {
   /*	display more links as blocks */
 
   display: block;
-  margin: 1em 0;
+  margin: 1em 0 0;
   /* force margin on these */
 
 }
 /* *****************
-HTML5 Element styles - added by Soupgiant 
+HTML5 Element styles & other block elements - added by Soupgiant 
 ****************** */
+#siteDetails,
 section,
 article,
 header,

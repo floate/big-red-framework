@@ -26,6 +26,19 @@ Soupgiant alterations
  - added #siteName
 */
 /* base.css, part of YUI's CSS Foundation */
+@media all { //helps with minimising
+
+
+#NoteAboutThisFile {
+	-soupgiant-note: e('/* This file has */');
+	/* not */
+	-soupgiant-note-2: e('/* been minimised.  */');
+	/*In minimized files, */
+	-soupgiant-note-3: e('/*! credits of reused code can be found by replacing .css with .less in the url */');
+}
+
+
+
 h1 {
 	/*18px via YUI Fonts CSS foundation*/
 	font-size:138.5%;  
@@ -40,7 +53,7 @@ h3 {
 }
 h1,h2,h3 {
 	/* top & bottom margin based on font size */
-	margin:1em 0;
+	margin:1em 0 0;
 }
 h4,h5,h6 {
 	font-size: 100%;
@@ -53,7 +66,7 @@ abbr,acronym {
 } 
 blockquote,ul,ol,dl {
 	/*giving blockquotes and lists room to breath*/
-	margin:1em;
+	margin:1em 1em 0;
 }
 ol,ul,dl {
 	/*bringing lists on to the page with breathing room */
@@ -97,7 +110,7 @@ caption {
 }
 p,fieldset,table,pre {
 	/*so things don't run into each other*/
-	margin: 0 0 1em;
+	margin: 1em 0 0;
 }
 
 legend {
@@ -142,6 +155,8 @@ label, legend {
 		input.number,
 		input.phone,
 		input.date,
+		input.time,
+		input.image,
 		input.tag {
 			outline: none;
 			border: 1px solid #999;
@@ -168,6 +183,8 @@ label, legend {
 	input.number,
 	input.phone,
 	input.date,
+	input.time,
+	input.image,
 	input.tag {
 	width:240px;
 }
@@ -179,6 +196,7 @@ form .set-submit input,
 .frm_forms p.submit input,
 input.radio,
 input.checkbox,
+input.scale,
 button,
 select {
 	cursor: pointer;
@@ -213,6 +231,25 @@ SITE NAME AND PAGE NAME
 	font-size: 123.1%;
 }
 
+#skipLinks a {
+	display: block;
+	margin: 0 auto;
+	padding: .25em 0;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	background: #333;
+	.box-shadow(0px 4px 4px rgba(0,0,0,.3));
+	
+	position: fixed;
+	top:0;
+	left: -999999em;
+/*	left: 0;*/
+	
+	&:focus {
+		left: 0;
+	}
+}
 
 /* ***************
 STANDARD WORDPRESS STYLES
@@ -279,7 +316,7 @@ dl.gallery-item,dd.gallery-caption {
 .more-link {
 /*	display more links as blocks */
 	display: block;
-	margin: 1em 0; /* force margin on these */
+	margin: 1em 0 0; /* force margin on these */
 }
 
 /* *****************
@@ -290,3 +327,5 @@ section, article, header, footer,nav,aside,hgroup {
 	display: block;
 }
 
+
+} //@media all
