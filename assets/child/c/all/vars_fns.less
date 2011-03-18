@@ -32,10 +32,23 @@ background-color: rgba(@red, @blue, @green, @opacity);
 }
 
 .gradient(@start, @end) {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", @start, @end));
+   -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d, endColorstr=%d)", @start, @end);
   background-color: @start;
   background-image: -moz-linear-gradient(top, @start, @end);
   background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, @start),color-stop(1, @end));
   background-image: linear-gradient(top, @start, @end);
-/* IE's filter & -ms-filter need to be added manully */
+
 }
 
+.background-size-cover(@file) {
+	background-image: url(@file);
+	filter: e(%("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='%s',sizingMethod='scale')", @file));
+    -ms-filter: %("progid:DXImageTransform.Microsoft.AlphaImageLoader(src='%s',sizingMethod='scale')", @file);
+
+	-webkit-background-size: cover;
+	   -moz-background-size: cover;
+	     -o-background-size: cover;
+	        background-size: cover;
+	
+}
