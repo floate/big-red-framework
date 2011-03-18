@@ -56,6 +56,8 @@ function soup_setupParentThemeClass(){
 			add_filter('script_loader_src', array(&$this, 'removeVersionQstring'));
 			add_filter('style_loader_src', array(&$this, 'removeVersionQstring'));
 			
+			add_action('wp_footer', array(&$this, 'inlineFooterJs'));
+			
 			/* class filters */
 			add_filter('body_class', array(&$this, 'bodyClass'),1, 2);
 			add_filter('post_class', array(&$this, 'postClass'),5, 3);
@@ -1122,6 +1124,14 @@ function soup_setupParentThemeClass(){
 						$classes[] = 'posttag-' . sanitize_html_class($tag->slug);
 					}
 				}
+				
+				if (function_exists('get_terms')) {
+					$post_taxonomies = get_taxonomies(array('_builtin' => false));
+					$post_terms = get_terms($post_taxonomies);
+					foreach ($post_terms as $term) {
+						$classes[] = 'postterm-' . sanitize_html_class($term->taxonomy . '-' . $term->slug);
+					}
+				}
 			}
 			elseif ( is_page() ) {
 				$pageID = $wp_query->post->ID;
@@ -1199,6 +1209,12 @@ function soup_setupParentThemeClass(){
 				echo $outputJs;
 			}
 		}
+
+		function jsString($string){
+			//takes a string and converts it for output to Javascript (escaped chars, etc)
+		    return strtr($string, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/', ';'=>'\\;'));
+		}
+
 
 		function commentTemplate($comment, $args, $depth) {
 			$GLOBALS['comment'] = $comment;
