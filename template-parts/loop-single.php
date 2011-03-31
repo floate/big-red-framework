@@ -4,7 +4,13 @@ while ( have_posts() ) : the_post(); ?>
 <div id="contentHeadA" <?php post_class('article'); ?> role="main"><article>
 	<div id="contentHead"><header>
 		<h1 id="pageName" class="entry-title">
-			<?php the_title()?>
+			<?php 
+			$the_title = the_title('','',false);
+			if (!$the_title) {
+				$the_title = 'Untitled post #' . $post->ID;
+			}
+			echo $the_title;
+			?>
 		</h1>
 		<p class="entry-meta">
 			Posted on 
@@ -15,6 +21,17 @@ while ( have_posts() ) : the_post(); ?>
 			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>
 
 		</p>
+		
+		<?php if (current_theme_supports( 'post-thumbnails' )) : ?>
+			<p class="entry-thumbnail">
+				<?php echo get_the_post_thumbnail( $post->ID,  'post-thumbnail', array(
+					'alt' => '',
+					'title' => ''
+				) ); ?>
+			</p>
+		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
+		?>
+		
 	</header></div>			
 
 	<div id="contentA">

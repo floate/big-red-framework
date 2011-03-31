@@ -19,6 +19,8 @@ function soup_setupParentThemeClass(){
 		public $siteNameTag;
 		public $pageNameTag;
 		public $searchFormID;
+		public $content_width;
+		
 		
 		
 		
@@ -126,6 +128,7 @@ function soup_setupParentThemeClass(){
 			$options['admin_bar'] = false; //show admin_bar. (default: false)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
 			$options['remove_capital_P_dangit'] = true; //remove capital_P_dangit filters (default: true)
+			$options['content_width'] = 0; //defaults to 800
 			
 			
 			/* theme options*/
@@ -323,6 +326,13 @@ function soup_setupParentThemeClass(){
 					remove_filter( $filter, 'capital_P_dangit', 11 );
 				remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 			}
+			
+			if  ( ($options['content_width'] != false) && (is_numeric($options['content_width'])) )  {
+				$this->content_width = $options['content_width'];
+			}
+			else {
+				$this->content_width = $options['content_width'] = 800;
+			}
 
 			if ( ($options['thumbnails'] === true) OR (is_array($options['thumbnails'])) ) {
 				if ( function_exists( 'add_theme_support' ) ) {
@@ -445,6 +455,7 @@ function soup_setupParentThemeClass(){
 			$child   = &$this->child;
 			$prot    = is_ssl() ? 'https' : 'http';
 			global $wp_scripts,$wp_styles;
+			$pce = $pje = $cce = $cje = '';
 			if ($parent['cssMin']) {
 				$pce = '-min';
 			}
@@ -636,6 +647,7 @@ function soup_setupParentThemeClass(){
 			$parent  = &$this->parent;
 			$child   = &$this->child;
 			$prot    = is_ssl() ? 'https' : 'http';
+			$pce = $pje = $cce = $cje = '';
 			global $wp_scripts,$wp_styles;
 			if ($parent['cssMin']) {
 				$pce = '-min';
@@ -788,15 +800,12 @@ function soup_setupParentThemeClass(){
 		function selectivizr() {
 			$options = &$this->options;
 			$parent  = &$this->parent;
+			$result = $pjs = "";
 			if ($this->parent['jsMin'] == true) {
 				$pjs = '-min';
 			}
-			else {
-				$pjs = '';
-			}
 			
 			if ($options['js-selectivizr'] !== false) :
-				$result = "";
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
 				$result .= $parent['js'];
@@ -1136,7 +1145,6 @@ function soup_setupParentThemeClass(){
 			elseif ( is_page() ) {
 				$pageID = $wp_query->post->ID;
 				$pageSlug = $wp_query->post->post_name;
-				$page_children = wp_list_pages("child_of=$pageID&echo=0");
 				$post = get_page($pageID);
 				
 				$classes[] = 'pageslug-' . sanitize_html_class($pageSlug);
@@ -1404,7 +1412,7 @@ function soup_setupParentThemeClass(){
 			if ( !isset( $comment_content ) )
 				$comment_content = '';
 			else
-				$comment_content = wp_specialchars( $comment_content );
+				$comment_content = esc_html( $comment_content );
 
 
 			$r = "<div id='contact-form-$id'>\n";
@@ -1590,18 +1598,19 @@ DEFAULT_HTML;
 
 $soup = null;
 function soup_initialiseSoupObject(){
-	global $soup;
+	global $soup,$content_width;
 	// now need to initiate the soup object
 	if (class_exists('SoupTheme')) {
 		$soup = new SoupTheme();
+		$content_width = $soup->content_width; //required to be global.
 	}
 	else if (class_exists('SoupThemeParent')){
 		$soup = new SoupThemeParent();
+		$content_width = $soup->content_width; //required to be global.
 	}
 	// else let it break
 
 } //	function soup_initialiseSoupObject()
-
 
 /* 
 	need to reverse the order the function.php files usually run in

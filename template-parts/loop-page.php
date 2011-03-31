@@ -5,8 +5,25 @@ while ( have_posts() ) : the_post();
 <div id="contentHeadA" <?php post_class('article'); ?>><article>
 	<div id="contentHead"><header>
 		<h1 id="pageName" class="entry-title">
-			<?php the_title()?>
+			<?php 
+			$the_title = the_title('','',false);
+			if (!$the_title) {
+				$the_title = 'Untitled page #' . $post->ID;
+			}
+			echo $the_title;
+			?>
 		</h1>
+		
+		<?php if (current_theme_supports( 'post-thumbnails' )) : ?>
+			<p class="entry-thumbnail">
+				<?php echo get_the_post_thumbnail( $post->ID,  'post-thumbnail', array(
+					'alt' => '',
+					'title' => ''
+				) ); ?>
+			</p>
+		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
+		?>
+		
 	</header></div>			
 
 	<div id="contentA">
@@ -17,6 +34,10 @@ while ( have_posts() ) : the_post();
 			?>
 		</section></div>
 		<?php edit_post_link('Edit', '<div class="footer"><footer><p class="entry-meta">', '</p></footer></div>'); ?>
+	
+	<?php comments_template(); ?>
+
+	
 	
 		</div>
 		<!-- //#contentA -->

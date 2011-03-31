@@ -7,10 +7,16 @@ while ( have_posts() ) : the_post();
 <div id="post-<?php the_ID() ?>" <?php post_class('article'); ?>><article>
 
 	<div class="header"><header>
-		<?php if (is_home()) : ?>
-		<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title()?></a></h2>
+		<?php 
+		$the_title = the_title('','',false);
+		if (!$the_title) {
+			$the_title = 'Untitled post #' . $post->ID;
+		}
+		if (is_home()) : 
+		?>
+		<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php echo $the_title; ?></a></h2>
 		<?php else : ?>
-		<h3 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title()?></a></h3>
+		<h3 class="entry-title"><a href="<?php the_permalink();?>"><?php echo $the_title; ?></a></h3>
 		<?php endif; ?>
 		
 		<p class="entry-meta">
@@ -22,6 +28,17 @@ while ( have_posts() ) : the_post();
 			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>
 			
 		</p>
+		
+		<?php if (current_theme_supports( 'post-thumbnails' )) : ?>
+			<p class="entry-thumbnail">
+				<?php echo get_the_post_thumbnail( $post->ID,  'post-thumbnail', array(
+					'alt' => '',
+					'title' => ''
+				) ); ?>
+			</p>
+		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
+		?>
+		
 	</header></div>
 
 	<div class="entry-content section"><section>
