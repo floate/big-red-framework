@@ -5,6 +5,7 @@ while ( have_posts() ) : the_post(); ?>
 	<div id="contentHead"><header>
 		<h1 id="pageName" class="entry-title">
 			<?php 
+			$metadata = wp_get_attachment_metadata();
 			$the_title = the_title('','',false);
 			if (!$the_title) {
 				$the_title = 'Untitled post #' . $post->ID;
@@ -18,20 +19,15 @@ while ( have_posts() ) : the_post(); ?>
 				<?php the_time(get_option('date_format')); ?>
 			</time></span> 
 
-			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>
+			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>.
 
+
+			<?php if ( wp_attachment_is_image() ) : ?>
+			Full size image is <a href="<?php echo wp_get_attachment_url(); ?>"><?php echo $metadata['width']; ?> &times; <?php echo $metadata['height']; ?></a>.
+			<?php endif; // ( wp_attachment_is_image() ) : 
+			?>
 		</p>
-		
-		<?php if (current_theme_supports( 'post-thumbnails' )) : ?>
-			<p class="entry-thumbnail">
-				<?php echo get_the_post_thumbnail( $post->ID,  'post-thumbnail', array(
-					'alt' => '',
-					'title' => ''
-				) ); ?>
-			</p>
-		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
-		?>
-		
+				
 	</header></div>			
 
 	<div id="contentA">
