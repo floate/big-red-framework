@@ -18,7 +18,7 @@ while ( have_posts() ) : the_post(); ?>
 				<?php the_time(get_option('date_format')); ?>
 			</time></span> 
 
-			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>
+			by <span class="author vcard"><a class="url fn n" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>" title="View all posts by <?php the_author(); ?>"><?php the_author(); ?></a></span>.
 
 		</p>
 		
