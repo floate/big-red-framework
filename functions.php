@@ -112,22 +112,22 @@ function soup_setupParentThemeClass(){
 			$options = &$this->options;
 			
 			//meta tags in header
-			$options['feed_links'] = false; // sitewide and comments feed links. (default: false)
-			$options['feed_links_extra'] = false; // archive, post/page comments, etc feed links. (default: false)
-			$options['rsd_link'] = false; // desktop editors use this. (default: false)
-			$options['wlwmanifest_link'] = false; //windows live writer uses this. (default: false)
+			$options['feed_links'] = true; // sitewide and comments feed links. (default: false)
+			$options['feed_links_extra'] = true; // archive, post/page comments, etc feed links. (default: false)
+			$options['rsd_link'] = true; // desktop editors use this. (default: false)
+			$options['wlwmanifest_link'] = true; //windows live writer uses this. (default: false)
 			$options['index_rel_link'] = true; // rel tag linking to home_url(). (default: true)
-			$options['parent_post_rel_link'] = false; //rel tag link to parent page. (default: false)
-			$options['start_post_rel_link'] = false; //rel tag linking to first ever post. (default: false)
-			$options['adjacent_posts_rel_link_wp_head'] = false; //next/prev posts. (default: false)
+			$options['parent_post_rel_link'] = true; //rel tag link to parent page. (default: false)
+			$options['start_post_rel_link'] = true; //rel tag linking to first ever post. (default: false)
+			$options['adjacent_posts_rel_link_wp_head'] = true; //next/prev posts. (default: false)
 			$options['locale_stylesheet'] = false; //localised stylesheet tag - ltr, rtl. (default: false)
-			$options['wp_generator'] = false; //generator meta tag, site & feeds. (default: false)
+			$options['wp_generator'] = true; //generator meta tag, site & feeds. (default: false)
 			$options['wp_shortlink_wp_head'] = true; //show shortlink tag. (default: true)
 						
 			//general options
-			$options['admin_bar'] = false; //show admin_bar. (default: false)
+			$options['admin_bar'] = true; //show admin_bar. (default: false)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
-			$options['remove_capital_P_dangit'] = true; //remove capital_P_dangit filters (default: true)
+			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: true)
 			$options['content_width'] = 0; //defaults to 800
 			
 			
@@ -259,46 +259,59 @@ function soup_setupParentThemeClass(){
 			$options = &$this->options;
 
 			//meta tags in header
-			if ( (function_exists('add_theme_support')) AND ($options['feed_links'] == true) ) {
+			
+			if ( (function_exists('add_theme_support')) AND 
+				 ( ($options['feed_links'] == true) OR (!isset($options['feed_links'])) ) ) {
+				//default - add links
 				add_theme_support( 'automatic-feed-links' );
 			}
 			elseif (function_exists('remove_theme_support')) {
 				remove_theme_support( 'automatic-feed-links' );
 			}
 			
-			if ($options['feed_links_extra'] != true) {
+			if ( (isset($options['feed_links_extra'])) AND ($options['feed_links_extra'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'feed_links_extra', 3 );
 			}
 			
-			if ($options['rsd_link'] != true) {
+			if ( (isset($options['rsd_link'])) AND ($options['rsd_link'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'rsd_link');
 			}
 			
-			if ($options['wlwmanifest_link'] != true) {
+			if ( (isset($options['wlwmanifest_link'])) AND ($options['wlwmanifest_link'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'rsd_link');
 			}
 			
-			if ($options['index_rel_link'] === false) {
+			if ( (isset($options['index_rel_link'])) AND ($options['index_rel_link'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'index_rel_link');
 			}
 			
-			if ($options['parent_post_rel_link'] != true) {
+			if ( (isset($options['parent_post_rel_link'])) AND ($options['parent_post_rel_link'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'parent_post_rel_link', 10, 0);
 			}
 			
-			if ($options['start_post_rel_link'] != true) {
+			if ( (isset($options['start_post_rel_link'])) AND ($options['start_post_rel_link'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'start_post_rel_link', 10, 0);
 			}
 
-			if ($options['start_post_rel_link'] != true) {
+			if ( (isset($options['adjacent_posts_rel_link_wp_head'])) AND 
+			  ($options['adjacent_posts_rel_link_wp_head'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 			}
 			
-			if ($options['locale_stylesheet'] != true) {
+			if ( (isset($options['locale_stylesheet'])) AND ($options['locale_stylesheet'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'locale_stylesheet');
 			}
 			
-			if ($options['wp_generator'] != true) {
+			if ( (isset($options['wp_generator'])) AND ($options['wp_generator'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'wp_generator');
 				$feeds = array( 
 					'rss2_head', 
@@ -315,11 +328,14 @@ function soup_setupParentThemeClass(){
 				
 			}
 			
-			if ($options['wp_shortlink_wp_head'] === false) {
+			if ( (isset($options['wp_shortlink_wp_head'])) AND ($options['wp_shortlink_wp_head'] == false) ) {
+				//default: do not remove
 				remove_action( 'wp_head', 'wp_shortlink_wp_head');
 			}
 			
-			if ($options['admin_bar'] != true) {
+			
+			if ( (isset($options['admin_bar'])) AND ($options['admin_bar'] == false) ) {
+				//default: do not remove
 				//source: http://yoast.com/disable-wp-admin-bar/
 				
 				/* Disable the Admin Bar. */
@@ -328,21 +344,24 @@ function soup_setupParentThemeClass(){
 				/* Remove the Admin Bar preference in user profile */
 				remove_action( 'personal_options', '_admin_bar_preferences' );
 			}
+			
+			//for customised admin bar CSS, see css registrations.
 
-			if ($options['remove_capital_P_dangit'] !== false) {
+			if ( (isset($options['remove_capital_P_dangit'])) AND ($options['remove_capital_P_dangit'] == true) ) {
+				//default: do not remove
 				foreach ( array( 'the_content', 'the_title' ) as $filter )
 					remove_filter( $filter, 'capital_P_dangit', 11 );
 				remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 			}
-			
-			if  ( ($options['content_width'] != false) && (is_int($options['content_width'])) )  {
+						
+			if  ( is_int($options['content_width']) AND ($options['content_width'] > 0) )  {
 				$this->content_width = $options['content_width'];
 			}
 			else {
 				$this->content_width = $options['content_width'] = 800;
 			}
 
-			if ( ($options['thumbnails'] === true) OR (is_array($options['thumbnails'])) ) {
+			if ($options['thumbnails'] == true)  {
 				if ( function_exists( 'add_theme_support' ) ) {
 					add_theme_support( 'post-thumbnails' );
 				}	
@@ -355,9 +374,8 @@ function soup_setupParentThemeClass(){
 			if (!is_int($options['attachment_page_img_height']) OR ($options['attachment_page_img_width'] < 1)) {
 				$options['attachment_page_img_height'] = 600;
 			}
-
 			
-			if ( ($options['post-formats'] != false) OR (is_array($options['thumbnails'])) ) {
+			if ( ($options['post-formats'] == true) OR (is_array($options['thumbnails'])) ) {
 				if ( function_exists( 'add_theme_support' ) ) {
 					if (!is_array($options['thumbnails'])) {
 						$options['thumbnails'] = array(
@@ -371,8 +389,14 @@ function soup_setupParentThemeClass(){
 				}
 			}
 
+			if (!isset($options['page-comments-enabled'])) {
+				$options['page-comments-enabled'] = true;
+			}
+
 			add_action('wp_head', array(&$this, 'meta_tags')); //sets options meta_tags
-			 
+
+			//handheld media query in css registration
+		 
 			$this->registerSidebars(); //sets up sidebar options
 			 
 			$this->registerMenus(); //sets up menus
@@ -383,23 +407,20 @@ function soup_setupParentThemeClass(){
 			
 			add_action('wp_footer', array(&$this, 'belatedpng'), 50); //sets up belated png js
 			
-			if (($options['editor-css'] !== false) AND (function_exists('add_editor_style')) ) {
+			if (($options['editor-css'] == true) AND (function_exists('add_editor_style')) ) {
 				add_editor_style("assets/child/c/all/editor-style.css");
 			}
 			
-			if (is_array($this->options['editor-classes']) !== false) {
+			if (is_array($this->options['editor-classes']) == true) {
 				add_filter('mce_buttons_2', array(&$this, 'editorButtons'));
 				add_filter('tiny_mce_before_init', array(&$this, 'editorEnglishClasses'));
 			}
 
-			if ($options['editor-fake-heading-levels'] === false) {
+			if ( (isset($options['editor-fake-heading-levels'])) AND ($options['editor-fake-heading-levels'] == true) ) {
+				//default: do not fake
 				add_filter('tiny_mce_before_init', array(&$this, 'editorHeadings'));
 			}
-			
-			if (!isset($options['page-comments-enabled'])) {
-				$options['page-comments-enabled'] = true;
-			}
-			
+						
 			
 		}
 
@@ -502,7 +523,8 @@ function soup_setupParentThemeClass(){
 			
 			
 			
-			if ($options['custom_admin_bar_css'] == true) {
+			if ( (isset($options['custom_admin_bar_css'])) AND ($options['custom_admin_bar_css'] == true) ) {
+				//default: do not customise
 				wp_deregister_style('admin-bar');
 				wp_register_style(
 					'admin-bar',
@@ -775,7 +797,7 @@ function soup_setupParentThemeClass(){
 			
 			$result = "";
 			
-			if ($options['favicon'] !== false) {
+			if ($options['favicon'] !== false) { 
 				$result .= '<link rel="shortcut icon" type="image/x-icon" href="';
 				$result .= $this->child['img'];
 				$result .= '/favicon.ico" />' . "\n";
@@ -838,6 +860,7 @@ function soup_setupParentThemeClass(){
 		
 		function registerSidebars() {
 			$options = &$this->options;
+			
 			if ( function_exists('register_sidebar') ) {
 			
 				if ($options['widget-header'] !== false) {
@@ -1243,7 +1266,6 @@ function soup_setupParentThemeClass(){
 			//takes a string and converts it for output to Javascript (escaped chars, etc)
 		    return strtr($string, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/', ';'=>'\\;'));
 		}
-
 
 		function commentTemplate($comment, $args, $depth) {
 			$GLOBALS['comment'] = $comment;
