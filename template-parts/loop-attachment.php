@@ -37,7 +37,7 @@ while ( have_posts() ) : the_post(); ?>
 
 			<div class="entry-attachment">
 			<?php 
-			//pretty much line for line from twentyten
+			//adapted from 20ten
 			if ( wp_attachment_is_image() ) :
 				$attachments = array_values( get_children( array( 
 					'post_parent' => $post->post_parent, 
@@ -51,30 +51,52 @@ while ( have_posts() ) : the_post(); ?>
 					if ( $attachment->ID == $post->ID )
 						break;
 				}
-				$k++;
 				
 				// If there is more than 1 image attachment in a gallery
 				if ( count( $attachments ) > 1 ) {
-					if ( isset( $attachments[ $k ] ) )
+					if ( isset( $attachments[ $k+1 ] ) ) {
 						// get the URL of the next image attachment
-						$next_attachment_url = get_attachment_link( $attachments[ $k ]->ID );
-					else
-						// or get the URL of the first image attachment
-						$next_attachment_url = get_attachment_link( $attachments[ 0 ]->ID );
-				} 
-				else {
-				// or, if there's only 1 image attachment, get the URL of the image
-				$next_attachment_url = wp_get_attachment_url();
+						$next_attachment_link = '<a href="';
+						$next_attachment_link .= get_attachment_link( $attachments[ $k+1 ]->ID );
+						$next_attachment_link .= '" title="';
+						$next_attachment_link .= esc_attr( get_the_title($attachments[ $k+1 ]->ID) );
+						$next_attachment_link .= '"><span class="direction">Next image </span> ';
+						$next_attachment_link .= '<span class="title">';
+						$next_attachment_link .= esc_attr( get_the_title($attachments[ $k+1 ]->ID) );
+						$next_attachment_link .= '</span></a>';
+					}
+					if ( isset( $attachments[ $k-1 ] ) ) {
+						// get the URL of the prev image attachment
+						$prev_attachment_link = '<a href="';
+						$prev_attachment_link .= get_attachment_link( $attachments[ $k-1 ]->ID );
+						$prev_attachment_link .= '" title="';
+						$prev_attachment_link .= esc_attr( get_the_title($attachments[ $k-1 ]->ID) );
+						$prev_attachment_link .= '"><span class="direction">Previous image </span> ';
+						$prev_attachment_link .= '<span class="title">';
+						$prev_attachment_link .= esc_attr( get_the_title($attachments[ $k-1 ]->ID) );
+						$prev_attachment_link .= '</span></a>';
+					}
+				}
+				
+				
+				$attachment_width = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_width']);
+				$attachment_height = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_height']);
+				
+				if ( ($metadata['width'] > $attachment_width) OR ($metadata['height'] > $attachment_height) ) {
+					$zoom_attachment_link = '<a href="' . wp_get_attachment_url() . '" title="';
+					$zoom_attachment_link .= esc_attr( get_the_title() ) . '" rel="attachment">';
+					
+					$zoom_attachment_link_close = '</a>';
 				}
 			?>
 			<p class="attachment">
-				<a href="<?php echo $next_attachment_url; ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php
-					$attachment_width = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_width']);
-					$attachment_height = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_height']);
-					
+				<?php
+					echo $zoom_attachment_link;
 					echo wp_get_attachment_image( $post->ID, array( $attachment_width, $attachment_height ) ); 
+					echo $zoom_attachment_link_close;
 					// filterable image width with, essentially, no limit for image height.
-				?></a></p>
+				?>
+				</p>
 				
 				<div class="entry-caption"><?php if ( !empty( $post->post_excerpt ) ) the_excerpt(); ?></div>
 				
@@ -82,10 +104,7 @@ while ( have_posts() ) : the_post(); ?>
 				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
 
 
-				<div id="nav-below" class="navigation">
-					<div class="nav-previous"><?php previous_image_link( false ); ?></div>
-					<div class="nav-next"><?php next_image_link( false ); ?></div>
-				</div><!-- #nav-below -->
+				
 			<?php else : ?>
 				<a href="<?php echo wp_get_attachment_url(); ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php echo basename( get_permalink() ); ?></a>
 			<?php endif; ?>
@@ -94,10 +113,19 @@ while ( have_posts() ) : the_post(); ?>
 
 		</section></div>
 		<div class="footer"><footer>
-			<p class="entry-meta">Posted in <span class="cat-links"><?php the_category(', '); ?></span> &bull; 
+			<p class="entry-meta">
 			<?php 
-				edit_post_link('Edit', '', ' &bull; ');  
-				the_tags('<span class="tag-links">Tagged: ', ', ', '</span> &bull; '); 
+			if ( ! empty( $post->post_parent ) ) : 
+				?>
+				Part of <span class="entry-parent"><a href="<?php echo get_permalink( $post->post_parent ); ?>" title="<?php echo esc_attr( get_the_title( $post->post_parent ) ); ?>" rel="parent"><?php
+					/* translators: %s - title of parent post */
+					echo esc_attr( get_the_title( $post->post_parent ) );
+				?></a></span> &bull;
+				<?php
+			endif; 
+			
+			edit_post_link('Edit', '', ' &bull; ');  
+			the_tags('<span class="tag-links">Tagged: ', ', ', '</span> &bull; '); 
 			?>
 			<span class="comments-link">
 				<?php
@@ -116,8 +144,8 @@ while ( have_posts() ) : the_post(); ?>
 			</p>
 		</footer></div>
 		<div id="page-nav" class="page-nav nav"><nav>
-			<div class="page-nav-older"><?php previous_post_link('%link','<span class="direction">Previous post </span> <span class="title">%title</span>') ?></div>
-			<div class="page-nav-newer"><?php next_post_link('%link', '<span class="direction">Next post </span> <span class="title">%title</span>') ?></div>
+			<div class="page-nav-older"><?php echo $prev_attachment_link; ?></div>
+			<div class="page-nav-newer"><?php echo $next_attachment_link; ?></div>
 		</nav></div>
 		<!-- //#page-nav -->
 		
