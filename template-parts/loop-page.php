@@ -35,7 +35,11 @@ while ( have_posts() ) : the_post();
 		</section></div>
 		<?php edit_post_link('Edit', '<div class="footer"><footer><p class="entry-meta">', '</p></footer></div>'); ?>
 	
-	<?php comments_template(); ?>
+	<?php 
+	if ($soup->options['page-comments-enabled'] == true) {
+		comments_template(); 
+	}
+	?>
 
 	
 	

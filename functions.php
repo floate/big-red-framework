@@ -133,11 +133,16 @@ function soup_setupParentThemeClass(){
 			
 			/* theme options*/
 			$options['thumbnails'] = false; //post thumbnails (default: false. true/false)
+			$options['attachment_page_img_width'] = 600; //defaults to 600
+			$options['attachment_page_img_height'] = 600; //defaults to 600
 			$options['post-formats'] = false;// (default: false, true = all, array = selected types)
 			$options['favicon'] = true; //show favicon meta tags in header (default:true)
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
-			$this->options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
+			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
+			$options['page-comments-enabled'] = true; //default: true 
+
+
 
 			//widget areas. true/false or string. If string that will be the areas english name
 			$options['widget-header'] = true;
@@ -175,6 +180,9 @@ function soup_setupParentThemeClass(){
 				// add_image_size( '590', 590, 9999 ); // 590 image size
 				// add_image_size( '950', 950, 9999 ); // 950 image size
 			}
+			
+			// config image size to be displayed in attachment-loop
+			
 		}
 
 		function registerMoreCssJs() {
@@ -327,7 +335,7 @@ function soup_setupParentThemeClass(){
 				remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 			}
 			
-			if  ( ($options['content_width'] != false) && (is_numeric($options['content_width'])) )  {
+			if  ( ($options['content_width'] != false) && (is_int($options['content_width'])) )  {
 				$this->content_width = $options['content_width'];
 			}
 			else {
@@ -339,6 +347,15 @@ function soup_setupParentThemeClass(){
 					add_theme_support( 'post-thumbnails' );
 				}	
 			}
+			
+			if (!is_int($options['attachment_page_img_width']) OR ($options['attachment_page_img_width'] < 1)) {
+				$options['attachment_page_img_width'] = 600;
+			}
+
+			if (!is_int($options['attachment_page_img_height']) OR ($options['attachment_page_img_width'] < 1)) {
+				$options['attachment_page_img_height'] = 600;
+			}
+
 			
 			if ( ($options['post-formats'] != false) OR (is_array($options['thumbnails'])) ) {
 				if ( function_exists( 'add_theme_support' ) ) {
@@ -775,6 +792,10 @@ function soup_setupParentThemeClass(){
 				$result .= '<meta http-equiv="X-UA-Compatible" content="';
 				$result .= $options['X-UA-Compatible'];
 				$result .= '" />' . "\n";
+			}
+			
+			if (!isset($options['page-comments-enabled']) {
+				$options['page-comments-enabled'] = true;
 			}
 			
 			
