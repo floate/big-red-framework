@@ -46,7 +46,7 @@ while ( have_posts() ) : the_post();
 	</section></div>
 
 	<div class="footer"><footer>
-		<p class="entry-meta">Posted in <span class="cat-links"><?php the_category(', '); ?></span> &bull; 
+		<p class="entry-meta">Category: <span class="cat-links"><?php the_category(', '); ?></span> &bull; 
 		<?php 
 		edit_post_link('Edit', '', ' &bull; '); 
 		the_tags('<span class="tag-links">Tagged: ', ', ', '</span> &bull; '); 
