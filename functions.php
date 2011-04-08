@@ -392,9 +392,14 @@ function soup_setupParentThemeClass(){
 				add_filter('tiny_mce_before_init', array(&$this, 'editorEnglishClasses'));
 			}
 
-			if ($this->options['editor-fake-heading-levels'] === false) {
+			if ($options['editor-fake-heading-levels'] === false) {
 				add_filter('tiny_mce_before_init', array(&$this, 'editorHeadings'));
 			}
+			
+			if (!isset($options['page-comments-enabled'])) {
+				$options['page-comments-enabled'] = true;
+			}
+			
 			
 		}
 
@@ -792,12 +797,7 @@ function soup_setupParentThemeClass(){
 				$result .= '<meta http-equiv="X-UA-Compatible" content="';
 				$result .= $options['X-UA-Compatible'];
 				$result .= '" />' . "\n";
-			}
-			
-			if (!isset($options['page-comments-enabled']) {
-				$options['page-comments-enabled'] = true;
-			}
-			
+			}			
 			
 			echo $result;
 			return;		
