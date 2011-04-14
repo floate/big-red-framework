@@ -1,8 +1,8 @@
 <?php 
 global $soup;
 while ( have_posts() ) : the_post(); ?>
-<div id="contentHeadA" <?php post_class('article'); ?> role="main"><article>
-	<div id="contentHead"><header>
+<div id="contentHeadA" <?php post_class('article'); ?> role="main">
+	<div id="contentHead" class="header">
 		<h1 id="pageName" class="entry-title">
 			<?php 
 			$metadata = wp_get_attachment_metadata();
@@ -28,10 +28,10 @@ while ( have_posts() ) : the_post(); ?>
 			?>
 		</p>
 				
-	</header></div>			
+	</div>			
 
 	<div id="contentA">
-		<div class="entry-content section"><section>
+		<div class="entry-content section">
 
 
 
@@ -111,8 +111,8 @@ while ( have_posts() ) : the_post(); ?>
 		</div><!-- .entry-attachment -->
 
 
-		</section></div>
-		<div class="footer"><footer>
+		</div>
+		<div class="footer">
 			<p class="entry-meta">
 			<?php 
 			if ( ! empty( $post->post_parent ) ) : 
@@ -142,11 +142,11 @@ while ( have_posts() ) : the_post(); ?>
 				?>
 			</span>
 			</p>
-		</footer></div>
-		<div id="page-nav" class="page-nav nav"><nav>
+		</div>
+		<div id="page-nav" class="page-nav nav">
 			<div class="page-nav-older"><?php echo $prev_attachment_link; ?></div>
 			<div class="page-nav-newer"><?php echo $next_attachment_link; ?></div>
-		</nav></div>
+		</div>
 		<!-- //#page-nav -->
 		
 		
@@ -154,6 +154,6 @@ while ( have_posts() ) : the_post(); ?>
 	
 		</div>
 		<!-- //#contentA -->
-	</section></div>
+	</div>
 	<!-- //#contentHeadA -->
 <?php endwhile; ?>

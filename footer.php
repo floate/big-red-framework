@@ -1,6 +1,6 @@
 <?php global $soup; ?>
-<div id="footer"><footer>
-	<div id="footNavWrap" class="nav" role="navigation"><nav>
+<div id="footer" class="footer">
+	<div id="footNavWrap" class="nav" role="navigation">
 		<ul id="footNav">
 		<?php
 			if (function_exists('wp_nav_menu')) {
@@ -22,7 +22,7 @@
 			
 		?>
 		</ul>
-	</nav></div>
+	</div>
 	
 	<div id="footWidgets" role="complementary"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer') ) {
@@ -41,7 +41,7 @@
 
 
 
-</footer></div>
+</div>
 <!-- //#footer -->
 </div> 
 <!-- //#pageWrap -->

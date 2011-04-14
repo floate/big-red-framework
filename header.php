@@ -10,12 +10,12 @@
 		
 </head>
 <body>
-<div id="skipLinks"><nav>
+<div id="skipLinks" class="nav">
 	<a href="#content">Skip to Content</a>
-</nav></div>
+</div>
 
 <div id="pageWrap">
-<div id="header" role="banner"><header>
+<div id="header" role="banner" class="header">
 
 	<a href="<?php echo home_url(); ?>" id="siteDetails">
 	<<?php echo $soup->siteNameTag; ?> id="siteName"><span></span><?php bloginfo('name'); ?></<?php echo $soup->siteNameTag; ?>>
@@ -31,7 +31,7 @@
 	<!-- //#headerWidgets -->
 	
 
-	<div id="navWrap" class="nav" role="navigation"><nav>
+	<div id="navWrap" class="nav" role="navigation">
 		<ul id="nav">
 			<?php
 				if (function_exists('wp_nav_menu')) {
@@ -53,8 +53,8 @@
 
 			?>
 		</ul>		
-	</nav></div>
+	</div>
 
 	
-</header></div>
+</div>
 <!--//#header -->

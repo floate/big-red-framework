@@ -1,8 +1,8 @@
 <?php 
 global $soup;
 while ( have_posts() ) : the_post(); ?>
-<div id="contentHeadA" <?php post_class('article'); ?> role="main"><article>
-	<div id="contentHead"><header>
+<div id="contentHeadA" <?php post_class('article'); ?> role="main">
+	<div id="contentHead" class="header">
 		<h1 id="pageName" class="entry-title">
 			<?php 
 			$the_title = the_title('','',false);
@@ -32,16 +32,16 @@ while ( have_posts() ) : the_post(); ?>
 		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
 		?>
 		
-	</header></div>			
+	</div>			
 
 	<div id="contentA">
-		<div class="entry-content section"><section>
+		<div class="entry-content section">
 			<?php 
 				the_content('Continue reading "'.the_title('', '', false).'" &raquo;');
 				wp_link_pages('before=<div id="post-nav" class="page-nav post-nav nav">Pages:&after=</div>'); 
 			?>
-		</section></div>
-		<div class="footer"><footer>
+		</div>
+		<div class="footer">
 			<p class="entry-meta">Category: <span class="cat-links"><?php the_category(', '); ?></span> &bull; 
 			<?php 
 				edit_post_link('Edit', '', ' &bull; ');  
@@ -62,11 +62,11 @@ while ( have_posts() ) : the_post(); ?>
 				?>
 			</span>
 			</p>
-		</footer></div>
-		<div id="page-nav" class="page-nav nav"><nav>
+		</div>
+		<div id="page-nav" class="page-nav nav">
 			<div class="page-nav-older"><?php previous_post_link('%link','<span class="direction">Previous post </span> <span class="title">%title</span>') ?></div>
 			<div class="page-nav-newer"><?php next_post_link('%link', '<span class="direction">Next post </span> <span class="title">%title</span>') ?></div>
-		</nav></div>
+		</div>
 		<!-- //#page-nav -->
 		
 		
@@ -74,6 +74,6 @@ while ( have_posts() ) : the_post(); ?>
 	
 		</div>
 		<!-- //#contentA -->
-	</section></div>
+	</div>
 	<!-- //#contentHeadA -->
 <?php endwhile; ?>

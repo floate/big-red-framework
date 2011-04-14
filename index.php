@@ -5,7 +5,7 @@ get_header();
 
 
 	<div id="content">
-		<div id="contentHeadA" class="section" role="main"><section>
+		<div id="contentHeadA" class="section" role="main">
 
 			<div id="contentA" class="hfeed">
 
@@ -20,7 +20,7 @@ get_header();
 			
 			</div>
 			<!-- //#contentA -->
-		</section></div>
+		</div>
 		<!-- //#contentHeadA -->
 		<?php get_sidebar('a'); ?>
 	</div><!-- //#content -->

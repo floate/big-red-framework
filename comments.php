@@ -3,7 +3,7 @@ global $soup;
 if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	die ( 'Please do not load this page directly. Thanks.' );
 ?>
-<div id="comments" class="section"><section>
+<div id="comments" class="section">
 	<?php
 	if ( post_password_required() ) : ?>
 		<div class="nopassword">This post is protected. Enter the password to view any comments.</div>
@@ -73,7 +73,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	
 	
 	
-	<div class="section"><section>
+	<div class="section">
 		<?php 
 		$req = get_option( 'require_name_email' );
 		$aria_req = ( $req ? " aria-required='true'" : '' );
@@ -129,7 +129,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			$soup->loginForm();
 		endif;
 		?>
-	</section></div>
+	</div>
 	
 	
-</section></div>
+</div>

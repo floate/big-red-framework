@@ -2,8 +2,8 @@
 global $soup;
 while ( have_posts() ) : the_post(); 
 ?>
-<div id="contentHeadA" <?php post_class('article'); ?>><article>
-	<div id="contentHead"><header>
+<div id="contentHeadA" <?php post_class('article'); ?>>
+	<div id="contentHead" class="header">
 		<h1 id="pageName" class="entry-title">
 			<?php 
 			$the_title = the_title('','',false);
@@ -24,16 +24,16 @@ while ( have_posts() ) : the_post();
 		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
 		?>
 		
-	</header></div>			
+	</div>			
 
 	<div id="contentA">
-		<div class="entry-content section"><section>
+		<div class="entry-content section">
 			<?php 
 				the_content('Continue reading "'.the_title('', '', false).'" &raquo;');
 				wp_link_pages('before=<div id="post-nav" class="page-nav post-nav nav">Pages:&after=</div>'); 
 			?>
-		</section></div>
-		<?php edit_post_link('Edit', '<div class="footer"><footer><p class="entry-meta">', '</p></footer></div>'); ?>
+		</div>
+		<?php edit_post_link('Edit', '<div class="footer"><p class="entry-meta">', '</p></div>'); ?>
 	
 	<?php 
 	if ($soup->options['page-comments-enabled'] == true) {
@@ -45,6 +45,6 @@ while ( have_posts() ) : the_post();
 	
 		</div>
 		<!-- //#contentA -->
-	</article></div>
+	</div>
 	<!-- //#contentHeadA -->
 <?php endwhile; ?>

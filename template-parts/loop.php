@@ -4,9 +4,9 @@ while ( have_posts() ) : the_post();
 ?>
 
 
-<div id="post-<?php the_ID() ?>" <?php post_class('article'); ?>><article>
+<div id="post-<?php the_ID() ?>" <?php post_class('article'); ?>>
 
-	<div class="header"><header>
+	<div class="header">
 		<?php 
 		$the_title = the_title('','',false);
 		if (!$the_title) {
@@ -39,13 +39,13 @@ while ( have_posts() ) : the_post();
 		<?php endif; //(current_theme_supports( 'post-thumbnails' )) : 
 		?>
 		
-	</header></div>
+	</div>
 
-	<div class="entry-content section"><section>
+	<div class="entry-content section">
 		<?php the_content('Continue reading "'.the_title('', '', false).'" &raquo;'); ?>
-	</section></div>
+	</div>
 
-	<div class="footer"><footer>
+	<div class="footer">
 		<p class="entry-meta">Category: <span class="cat-links"><?php the_category(', '); ?></span> &bull; 
 		<?php 
 		edit_post_link('Edit', '', ' &bull; '); 
@@ -66,8 +66,8 @@ while ( have_posts() ) : the_post();
 			?>
 		</span>
 		</p>
-	</footer></div>
-</article></div>
+	</div>
+</div>
 <!-- //#post-<?php the_ID() ?> -->
 
 <?php

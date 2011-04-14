@@ -5,16 +5,16 @@ get_header();
 
 
 	<div id="content">
-		<div id="contentHeadA" class="section" role="main"><section>
+		<div id="contentHeadA" class="section" role="main">
 		
-			<div id="contentHead" class="header"><header>
+			<div id="contentHead" class="header">
 				<h1 id="pageName">
 				Author Archives: <span><?php 
 				the_post();
 				echo $authordata->display_name;
 				?></span>
 				</h1>
-			</header></div>
+			</div>
 
 			<div id="contentA" class="hfeed">
 			
@@ -46,7 +46,7 @@ get_header();
 			
 			</div>
 			<!-- //#contentA -->
-		</section></div>
+		</div>
 		<!-- //#contentHeadA -->
 		<?php get_sidebar('a'); ?>
 	</div><!-- //#content -->

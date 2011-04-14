@@ -5,13 +5,13 @@ get_header();
 
 
 	<div id="content">
-		<div id="contentHeadA" class="section" role="main"><section>
+		<div id="contentHeadA" class="section" role="main">
 		
-			<div id="contentHead" class="header"><header>
+			<div id="contentHead" class="header">
 				<h1 id="pageName">
 					File Not Found
 				</h1>
-			</header></div>
+			</div>
 
 			<div id="contentA">
 
@@ -31,7 +31,7 @@ get_header();
 			
 			</div>
 			<!-- //#contentA -->
-		</section></div>
+		</div>
 		<!-- //#contentHeadA -->
 		<?php get_sidebar('a'); ?>
 	</div><!-- //#content -->

@@ -5,15 +5,15 @@ get_header();
 
 
 	<div id="content">
-		<div id="contentHeadA" class="section" role="main"><section>
+		<div id="contentHeadA" class="section" role="main">
 		
 		<?php if ( have_posts() ) : ?>
 
-			<div id="contentHead" class="header"><header>
+			<div id="contentHead" class="header">
 				<h1 id="pageName">
 				Results for <span><?php the_search_query() ?></span>
 				</h1>
-			</header></div>
+			</div>
 
 			<div id="contentA" class="hfeed">
 
@@ -30,11 +30,11 @@ get_header();
 			<!-- //#contentA -->
 		<?php else : //if ( have_posts() ) : ?>
 
-			<div id="contentHead" class="header"><header>
+			<div id="contentHead" class="header">
 				<h1>
 				No result for <span><?php the_search_query() ?></span>
 				</h1>
-			</header></div>
+			</div>
 
 			<div id="contentA">
 
@@ -53,7 +53,7 @@ get_header();
 						
 			</div>
 			<!-- //#contentA -->
-		</section></div>
+		</div>
 		<!-- //#contentHeadA -->
 		<?php endif; //if ( have_posts() ) : ?>
 		<?php get_sidebar('a'); ?>

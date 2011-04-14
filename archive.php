@@ -5,9 +5,9 @@ get_header();
 
 
 	<div id="content">
-		<div id="contentHeadA" class="section" role="main"><section>
+		<div id="contentHeadA" class="section" role="main">
 		
-			<div id="contentHead" class="header"><header>
+			<div id="contentHead" class="header">
 				<h1 id="pageName">
 				<?php if ( is_day() ) : ?>
 					Daily Archives: <span><?php the_time(get_option('date_format')); ?></span>
@@ -21,7 +21,7 @@ get_header();
 					Blog Archives
 				<?php endif; ?>				
 				</h1>
-			</header></div>
+			</div>
 
 			<div id="contentA" class="hfeed">
 
@@ -36,7 +36,7 @@ get_header();
 			
 			</div>
 			<!-- //#contentA -->
-		</section></div>
+		</div>
 		<!-- //#contentHeadA -->
 		<?php get_sidebar('a'); ?>
 	</div><!-- //#content -->
