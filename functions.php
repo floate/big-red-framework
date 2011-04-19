@@ -537,9 +537,9 @@ function soup_setupParentThemeClass(){
 			/* all media type */
 			wp_register_style(
 				'prettyPhoto',
-				$parent['css'] . "/prettyPhoto$pce.css",
+				$parent['js'] . "/prettyPhoto_compressed_3.1.2/css/prettyPhoto.css",
 				null,
-				'3.0.1'
+				'3.1.2'
 				);
 		
 			wp_register_style(
@@ -738,9 +738,9 @@ function soup_setupParentThemeClass(){
 		
 			wp_register_script(
 				'prettyPhoto',
-				$this->parent['js'] . "/jq.prettyphoto$pje.js",
+				$parent['js'] . "/prettyPhoto_compressed_3.1.2/js/jquery.prettyPhoto.css",
 				array('jquery'),
-				'3.0.1',
+				'3.1.2',
 				true
 			);
 	

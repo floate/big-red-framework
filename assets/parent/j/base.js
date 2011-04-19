@@ -24,12 +24,12 @@ SOUPGIANT.base = function() {
 	$(function(){
 		$body = $('body');
 		$html = $('html');
-		$html.removeClass('nojs').addClass('js');
+		$body.removeClass('nojs').addClass('js');
 		
 	});
 	
 	$WIN.ready(function(){
-		$html.removeClass('nojswin').addClass('jswin');
+		$body.removeClass('nojswin').addClass('jswin');
 	});
 	
 	function skipLinks($skip, focusClass){
