@@ -1,6 +1,6 @@
 <?php global $soup; ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php body_class(); ?>>
+<html <?php language_attributes(); ?>>
 <head>
 	<meta charset=<?php bloginfo('charset'); ?>>
 	<title><?php wp_title("|", true, 'right'); ?></title>
@@ -9,7 +9,7 @@
 	<?php wp_head(); ?>
 		
 </head>
-<body>
+<body <?php body_class(); ?>>
 <div id="skipLinks" class="nav">
 	<a href="#content">Skip to Content</a>
 </div>
