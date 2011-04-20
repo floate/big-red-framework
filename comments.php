@@ -55,7 +55,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			endif; //if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) 
 		endif; // REFERENCE: if ( $comment_count > 0 ) 
 		
-		if ( $ping_count > 0 ) :
+		if ( ($ping_count > 0) && ($soup->options['trackbacks-enabled'] == true) ) :
 			?>
 			<h2>Links to This Page</h2>
 
@@ -68,7 +68,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			<!-- //#trackbacksList -->
 
 			<?php 
-		endif; // REFERENCE: if ( $ping_count > 0 ) 
+		endif; // REFERENCE: if ( $ping_count > 0 ) ...
 
 	endif; // REFERENCE: if ( have_comments() ) :	
 	?>

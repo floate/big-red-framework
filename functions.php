@@ -141,6 +141,8 @@ function soup_setupParentThemeClass(){
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
 			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
 			$options['page-comments-enabled'] = true; //default: true 
+			$options['trackbacks-enabled'] = true; //default: true;
+			
 
 
 
@@ -391,6 +393,10 @@ function soup_setupParentThemeClass(){
 
 			if (!isset($options['page-comments-enabled'])) {
 				$options['page-comments-enabled'] = true;
+			}
+
+			if (!isset($options['trackbacks-enabled'])) {
+				$options['trackbacks-enabled'] = true;
 			}
 
 			add_action('wp_head', array(&$this, 'meta_tags')); //sets options meta_tags
