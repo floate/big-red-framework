@@ -63,11 +63,18 @@ while ( have_posts() ) : the_post(); ?>
 			</span>
 			</p>
 		</div>
-		<div id="page-nav" class="page-nav nav">
-			<div class="page-nav-older"><?php previous_post_link('%link','<span class="direction">Previous post </span> <span class="title">%title</span>') ?></div>
-			<div class="page-nav-newer"><?php next_post_link('%link', '<span class="direction">Next post </span> <span class="title">%title</span>') ?></div>
-		</div>
-		<!-- //#page-nav -->
+		
+		<?php
+		if ((get_adjacent_post(false, '', true) != '') || (get_adjacent_post(false, '', false) != '')) :
+		?>
+			<div id="page-nav" class="page-nav nav">
+				<div class="page-nav-older"><?php previous_post_link('%link','<span class="direction">Previous post </span> <span class="title">%title</span>') ?></div>
+				<div class="page-nav-newer"><?php next_post_link('%link', '<span class="direction">Next post </span> <span class="title">%title</span>') ?></div>
+			</div>
+			<!-- //#page-nav -->
+		<?php
+		endif;
+		?>
 		
 		
 		<?php comments_template(); ?>
