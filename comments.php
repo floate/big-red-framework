@@ -45,12 +45,14 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			</ol>
 			<!-- //#comments-list -->
 			
-			<div id="comment-nav" class="page-nav nav">
-				<div class="page-nav-older"><?php previous_comments_link('Older comments') ?></div>
-				<div class="page-nav-newer"><?php next_comments_link('Newer comments') ?></div>
-			</div>
-			<!-- //#comment-nav -->
+			<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : ?>
+				<div id="comment-nav" class="page-nav nav">
+					<div class="page-nav-older"><?php previous_comments_link('Older comments') ?></div>
+					<div class="page-nav-newer"><?php next_comments_link('Newer comments') ?></div>
+				</div>
+				<!-- //#comment-nav -->
 			<?php 
+			endif; //if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) 
 		endif; // REFERENCE: if ( $comment_count > 0 ) 
 		
 		if ( $ping_count > 0 ) :
