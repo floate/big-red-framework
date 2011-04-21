@@ -38,7 +38,7 @@ while ( have_posts() ) : the_post(); ?>
 		<div class="entry-content section">
 			<?php 
 				the_content('Continue reading "'.the_title('', '', false).'" &raquo;');
-				wp_link_pages('before=<div id="post-nav" class="page-nav post-nav nav">Pages:&after=</div>'); 
+				wp_link_pages('before=<div id="post-nav" class="page-nav post-nav nav">Pages:&after=</div>&link_before=<span>&link_after=</span>'); 
 			?>
 		</div>
 		<div class="footer">
