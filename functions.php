@@ -140,7 +140,7 @@ function soup_setupParentThemeClass(){
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
 			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
-			$options['page-comments-enabled'] = true; //default: true 
+			$options['page-comments-enabled'] = false; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
 			
 
@@ -174,6 +174,16 @@ function soup_setupParentThemeClass(){
 				set_post_thumbnail_size( 150, 150, true ); // 150x150 size
 			}
 			if ( function_exists( 'add_image_size' ) ) {
+				
+				//set one for the attachment page
+				add_image_size(
+					$this->options['attachment_page_img_width']
+					. 'x' .
+					$this->options['attachment_page_img_height'],
+					$this->options['attachment_page_img_width'],
+					$this->options['attachment_page_img_height']
+				);
+				
 				// add_image_size( '150x150', 150, 150, true); // 150x150 image size
 				// add_image_size( '270x150', 270, 150, true ); // 270x150 image size
 				// add_image_size( '310x150', 310, 150, true ); // 310x150 image size
@@ -394,10 +404,19 @@ function soup_setupParentThemeClass(){
 			if (!isset($options['page-comments-enabled'])) {
 				$options['page-comments-enabled'] = true;
 			}
+			
+			if ($options['page-comments-enabled'] == false) {
+				add_filter( 'comments_open', array(&$this, 'pageCommentsDisabled'), 10, 2 );
+			}
 
 			if (!isset($options['trackbacks-enabled'])) {
 				$options['trackbacks-enabled'] = true;
 			}
+			
+			if ($options['trackbacks-enabled'] == false) {
+				add_filter( 'pings_open', '__return_false' );
+			}
+				
 
 			add_action('wp_head', array(&$this, 'meta_tags')); //sets options meta_tags
 
@@ -1258,9 +1277,11 @@ function soup_setupParentThemeClass(){
 		function inlineFooterJs(){
 			$showJs = false;
 			$outputJs = '<script>var SOUPGIANT=SOUPGIANT||{};';
-			foreach ($this->inlineFooterJSarray as $js) {
-				$showJs = true;
-				$outputJs .= $js;
+			if (is_array($this->inlineFooterJSarray)) {
+				foreach ($this->inlineFooterJSarray as $js) {
+					$showJs = true;
+					$outputJs .= $js;
+				}
 			}
 			$outputJs .= '</script>';
 			if ($showJs) {
@@ -1338,7 +1359,14 @@ function soup_setupParentThemeClass(){
 				<?php
 		}
 
-
+		function pageCommentsDisabled($open,$post_id) {
+			if (get_post_type($post_id) == 'page') {
+				$open = false;
+			}
+			return $open;
+		}
+		
+		
 		/* === Grunion Contact Form === 
 		   fix up front end code output by
 		   this plugin by replacing shortcodes
