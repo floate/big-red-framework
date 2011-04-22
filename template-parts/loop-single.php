@@ -49,7 +49,7 @@ while ( have_posts() ) : the_post(); ?>
 			?>
 			<span class="comments-link">
 				<?php
-					if (('open' == $post->comment_status) || (get_comments_number() > 0)) {
+					if (comments_open() || (get_comments_number() > 0)) {
 						echo '<a href="';
 						comments_link();
 						echo '">';
