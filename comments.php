@@ -127,8 +127,8 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			
 			
 		<?php
-		if ( get_option('comment_registration') && !$user_ID ) :
-			$soup->loginForm();
+		if ( get_option('comment_registration') && !$user_ID && comments_open() ) :
+			wp_login_form();
 		endif;
 		?>
 	</div>
