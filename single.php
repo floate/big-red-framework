@@ -1,17 +1,17 @@
 <?php
 global $soup;
 get_header();
+
+if (is_attachment() {
+	$templateSubPart = 'attachment';
+}
+else {
+	$templateSubPart = 'single';
+}
 ?>
 
 <div id="content">
-	<?php 
-		if (is_attachment() {
-			$templateSubPart = 'attachment';
-		}
-		else {
-			$templateSubPart = 'single';
-		}
-	
+	<?php 	
 		get_template_part( 'template-parts/loop', $templateSubPart ); 
 		get_sidebar('a'); 
 	?>
