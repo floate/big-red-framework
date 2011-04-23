@@ -100,8 +100,7 @@ while ( have_posts() ) : the_post(); ?>
 				
 				<div class="entry-caption"><?php if ( !empty( $post->post_excerpt ) ) the_excerpt(); ?></div>
 				
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) ); ?>
-				<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
+				<?php wp_link_pages('before=<div id="post-nav" class="page-nav post-nav nav">Pages:&after=</div>&link_before=<span>&link_after=</span>');  ?>
 
 
 				
