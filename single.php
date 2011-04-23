@@ -2,7 +2,7 @@
 global $soup;
 get_header();
 
-if (is_attachment() {
+if (is_attachment()) {
 	$templateSubPart = 'attachment';
 }
 else {
