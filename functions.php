@@ -128,10 +128,10 @@ function soup_setupParentThemeClass(){
 			$options['admin_bar'] = true; //show admin_bar. (default: false)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
 			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: true)
-			$options['content_width'] = 0; //defaults to 800
 			
 			
 			/* theme options*/
+			$options['content_width'] = 0; //defaults to 800
 			$options['thumbnails'] = false; //post thumbnails (default: false. true/false)
 			$options['attachment_page_img_width'] = 600; //defaults to 600
 			$options['attachment_page_img_height'] = 600; //defaults to 600
@@ -162,8 +162,9 @@ function soup_setupParentThemeClass(){
 			$options['js-selectivizr'] = false; //selectivizr - prevents using CDN for CSS
 			$options['ddbelatedpng'] = true; //alpha transparency support for IE6 (default: true)
 
+			//visual editor options
 			$options['editor-css'] = true; //custom css for editor (default: true, loads from all css folder if true)
-			$options['editor-classes'] = false; //classes in editor style dropdown (default: false/multi dimentional array)
+			$options['editor-classes'] = false; //classes in editor style dropdown (default: false/array)
 			$options['editor-fake-heading-levels'] = true; //fake editor header level to keep html accessible (default:true)
 
 		}
