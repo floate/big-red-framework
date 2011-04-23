@@ -14,7 +14,7 @@ function soup_setupChildThemeClass() {
 		function child__construct() {
 			/* intended to be overridden in child theme */
 		}
-
+		
 		function defineMinimised() {
 			/* intended to be overridden in child theme */
 			$this->parent['cssMin'] = false;
@@ -45,31 +45,39 @@ function soup_setupChildThemeClass() {
 			$options = &$this->options;
 			
 			//meta tags in header
-			$options['feed_links'] = false; // sitewide and comments feed links. (default: false)
-			$options['feed_links_extra'] = false; // archive, post/page comments, etc feed links. (default: false)
-			$options['rsd_link'] = false; // desktop editors use this. (default: false)
-			$options['wlwmanifest_link'] = false; //windows live writer uses this. (default: false)
+			$options['feed_links'] = true; // sitewide and comments feed links. (default: false)
+			$options['feed_links_extra'] = true; // archive, post/page comments, etc feed links. (default: false)
+			$options['rsd_link'] = true; // desktop editors use this. (default: false)
+			$options['wlwmanifest_link'] = true; //windows live writer uses this. (default: false)
 			$options['index_rel_link'] = true; // rel tag linking to home_url(). (default: true)
-			$options['parent_post_rel_link'] = false; //rel tag link to parent page. (default: false)
-			$options['start_post_rel_link'] = false; //rel tag linking to first ever post. (default: false)
-			$options['adjacent_posts_rel_link_wp_head'] = false; //next/prev posts. (default: false)
+			$options['parent_post_rel_link'] = true; //rel tag link to parent page. (default: false)
+			$options['start_post_rel_link'] = true; //rel tag linking to first ever post. (default: false)
+			$options['adjacent_posts_rel_link_wp_head'] = true; //next/prev posts. (default: false)
 			$options['locale_stylesheet'] = false; //localised stylesheet tag - ltr, rtl. (default: false)
-			$options['wp_generator'] = false; //generator meta tag, site & feeds. (default: false)
+			$options['wp_generator'] = true; //generator meta tag, site & feeds. (default: false)
 			$options['wp_shortlink_wp_head'] = true; //show shortlink tag. (default: true)
 						
 			//general options
-			$options['admin_bar'] = false; //show admin_bar. (default: false)
+			$options['admin_bar'] = true; //show admin_bar. (default: false)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
-			$options['remove_capital_P_dangit'] = true; //remove capital_P_dangit filters (default: true)
+			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: true)
+			$options['content_width'] = 0; //defaults to 800
 			
 			
 			/* theme options*/
 			$options['thumbnails'] = false; //post thumbnails (default: false. true/false)
+			$options['attachment_page_img_width'] = 600; //defaults to 600
+			$options['attachment_page_img_height'] = 600; //defaults to 600
 			$options['post-formats'] = false;// (default: false, true = all, array = selected types)
 			$options['favicon'] = true; //show favicon meta tags in header (default:true)
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
-			$this->options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
+			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
+			$options['page-comments-enabled'] = false; //default: true 
+			$options['trackbacks-enabled'] = true; //default: true;
+			
+
+
 
 			//widget areas. true/false or string. If string that will be the areas english name
 			$options['widget-header'] = true;
@@ -99,6 +107,16 @@ function soup_setupChildThemeClass() {
 				set_post_thumbnail_size( 150, 150, true ); // 150x150 size
 			}
 			if ( function_exists( 'add_image_size' ) ) {
+				
+				//set one for the attachment page
+				add_image_size(
+					$this->options['attachment_page_img_width']
+					. 'x' .
+					$this->options['attachment_page_img_height'],
+					$this->options['attachment_page_img_width'],
+					$this->options['attachment_page_img_height']
+				);
+				
 				// add_image_size( '150x150', 150, 150, true); // 150x150 image size
 				// add_image_size( '270x150', 270, 150, true ); // 270x150 image size
 				// add_image_size( '310x150', 310, 150, true ); // 310x150 image size
@@ -107,6 +125,9 @@ function soup_setupChildThemeClass() {
 				// add_image_size( '590', 590, 9999 ); // 590 image size
 				// add_image_size( '950', 950, 9999 ); // 950 image size
 			}
+			
+			// config image size to be displayed in attachment-loop
+			
 		}
 
 		function registerMoreCssJs() {
@@ -150,6 +171,7 @@ function soup_setupChildThemeClass() {
 				wp_enqueue_script('custom');
 			}
 		}
+		
 	}
 
 } // function soup_setupChildThemeClass() 
