@@ -103,7 +103,9 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						"<label for='comment-form-url'> " . __('Website') . " </label>\n" .
 						"<input type='url' id='comment-form-url' name='url' value='" .
 						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
-						"class='url' /> </div>"
+						"class='url' /> </div>",
+						
+			'comment_notes_after' => ''
 
 		);
 		
