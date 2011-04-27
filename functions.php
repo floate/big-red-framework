@@ -265,7 +265,7 @@ function soup_setupParentThemeClass(){
 		function defineParentVersions() {
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110419';
-			$parent['jsVer']  = '20110419';
+			$parent['jsVer']  = '20110427';
 		}
 				
 		function setupOptions() {
