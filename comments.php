@@ -103,19 +103,14 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						"<label for='comment-form-url'> " . __('Website') . " </label>\n" .
 						"<input type='url' id='comment-form-url' name='url' value='" .
 						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
-						"class='url' /> </div>",
-						
-			'comment_notes_after' => ''
-
+						"class='url' /> </div>"
 		);
 		
 		
 		
 		comment_form(array(
 			'fields' => apply_filters('comment_form_default_fields', $commentFields),
-				'comment_notes_after'  => '<p class="form-allowed-tags">' . 
-						sprintf( __( 'You may use these <abbr>HTML</abbr> tags and attributes: %s' ), ' <code>' .
-						allowed_tags() . '</code>' ) . '</p>',
+				'comment_notes_after'  => '',
 				'comment_field' => "<div class='inputPair inputSet set-textarea comment-form-comment'>\n" .
 							"<label for='comment-form-comment'> " . _x( 'Comment', 'noun' ) . 
 							" <span class='required'>*</span> </label>\n" .
