@@ -37,7 +37,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 				?>
 			</h2>
 			
-			<ol id="commentsList" class="commentsList">
+			<ol id="commentsList" class="commentsList <?php if (get_option('show_avatars') == 1) { echo 'show_avatars'; } else {echo 'no_avatars';}?>">
 				<?php wp_list_comments(array(
 					'type'=> 'comment',
 					'callback' => array($soup,'commentTemplate')
