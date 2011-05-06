@@ -45,16 +45,16 @@ function soup_setupChildThemeClass() {
 			$options = &$this->options;
 			
 			//meta tags in header
-			$options['feed_links'] = true; // sitewide and comments feed links. (default: false)
-			$options['feed_links_extra'] = true; // archive, post/page comments, etc feed links. (default: false)
-			$options['rsd_link'] = true; // desktop editors use this. (default: false)
-			$options['wlwmanifest_link'] = true; //windows live writer uses this. (default: false)
+			$options['feed_links'] = true; // sitewide and comments feed links. (default: true)
+			$options['feed_links_extra'] = true; // archive, post/page comments, etc feed links. (default: true)
+			$options['rsd_link'] = true; // desktop editors use this. (default: true)
+			$options['wlwmanifest_link'] = true; //windows live writer uses this. (default: true)
 			$options['index_rel_link'] = true; // rel tag linking to home_url(). (default: true)
-			$options['parent_post_rel_link'] = true; //rel tag link to parent page. (default: false)
-			$options['start_post_rel_link'] = true; //rel tag linking to first ever post. (default: false)
-			$options['adjacent_posts_rel_link_wp_head'] = true; //next/prev posts. (default: false)
+			$options['parent_post_rel_link'] = true; //rel tag link to parent page. (default: true)
+			$options['start_post_rel_link'] = true; //rel tag linking to first ever post. (default: true)
+			$options['adjacent_posts_rel_link_wp_head'] = true; //next/prev posts. (default: true)
 			$options['locale_stylesheet'] = false; //localised stylesheet tag - ltr, rtl. (default: false)
-			$options['wp_generator'] = true; //generator meta tag, site & feeds. (default: false)
+			$options['wp_generator'] = true; //generator meta tag, site & feeds. (default: true)
 			$options['wp_shortlink_wp_head'] = true; //show shortlink tag. (default: true)
 						
 			//general options
@@ -64,7 +64,7 @@ function soup_setupChildThemeClass() {
 			
 			
 			/* theme options*/
-			$options['content_width'] = 0; //defaults to 800
+			$options['content_width'] = 800; //defaults to 800
 			$options['thumbnails'] = false; //post thumbnails (default: false. true/false)
 			$options['attachment_page_img_width'] = 600; //defaults to 600
 			$options['attachment_page_img_height'] = 600; //defaults to 600
@@ -73,7 +73,7 @@ function soup_setupChildThemeClass() {
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
 			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
-			$options['page-comments-enabled'] = false; //default: true 
+			$options['page-comments-enabled'] = true; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
 			
 
@@ -91,7 +91,7 @@ function soup_setupChildThemeClass() {
 			
 			// javascript options (these js files can't be queued with conditional comments)
 			// currently setup in header.php, need to find a cleaner way.
-			$options['js-html5-shiv'] = true; //remy sharp's html5 shiv
+			$options['js-html5-shiv'] = false; //remy sharp's html5 shiv
 			$options['js-selectivizr'] = false; //selectivizr - prevents using CDN for CSS
 			$options['ddbelatedpng'] = true; //alpha transparency support for IE6 (default: true)
 
