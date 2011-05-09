@@ -265,7 +265,7 @@ function soup_setupParentThemeClass(){
 		function defineParentVersions() {
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110419';
-			$parent['jsVer']  = '20110427';
+			$parent['jsVer']  = '20110506';
 		}
 				
 		function setupOptions() {
@@ -429,7 +429,7 @@ function soup_setupParentThemeClass(){
 			
 			add_action('wp_head', array(&$this, 'html5shiv'), 1); //sets options html5shiv
 
-			add_action('wp_head', array(&$this, 'selectivizr'), 9); //sets options selectivizr
+			add_action('wp_footer', array(&$this, 'selectivizr'), 9); //sets options selectivizr
 			
 			add_action('wp_footer', array(&$this, 'belatedpng'), 50); //sets up belated png js
 			
