@@ -32,15 +32,15 @@ SOUPGIANT.base = function() {
 		$body.removeClass('nojswin').addClass('jswin');
 	});
 	
-	function skipLinks($skip, focusClass){
-		if ($skip == NUL) {
-			$skip = '#skipLinks a';
+	function skipLinks($links, focusClass){
+		if ($links == NUL) {
+			$links = '#skipLinks a';
 		}
-		$skip = $($skip);
+		$links = $($links);
 		if (focusClass == NUL) {
 			focusClass = 'focus';
 		}
-		$skip.each(function() {
+		$links.each(function() {
 			var $a = $(this);
 			
 			$a.focus(function() {
@@ -55,7 +55,7 @@ SOUPGIANT.base = function() {
 	
 	function nav($nav, hoverClass, focusClass){
 		if ($nav == NUL) {
-			$nav = $('div.nav5');
+			$nav = $('div.nav');
 		}
 		$nav = $($nav);
 		if (hoverClass == NUL) {
@@ -574,7 +574,7 @@ SOUPGIANT.base = function() {
 				var placeTag = 'label', 
 					$place;
 					
-				if ( $element.is('input[type=radio],input[type=checkbox]') ) {
+				if ( $element.is('input[type="radio"],input[type="checkbox"]') ) {
 					placeTag = 'legend';
 				}
 				$place = $element.closest('.inputSet').find(placeTag);
