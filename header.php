@@ -1,6 +1,14 @@
 <?php global $soup; ?>
 <!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<!--[if lt IE 7]> <html class="ie ie6 lte9 lte8 lte7" <?php language_attributes(); ?>> <![endif]--> 
+<!--[if (IE 7)&!(IEMobile)]> <html class="ie ie7 lte9 lte8 lte7" <?php language_attributes(); ?>> <![endif]--> 
+<!--[if (IE 7)&(IEMobile)]> <html class="iem ie7m lte9m lte8m lte7m" <?php language_attributes(); ?>> <![endif]-->
+<!--[if (IE 8)&!(IEMobile)]> <html class="ie ie8 lte9 lte8" <?php language_attributes(); ?>> <![endif]--> 
+<!--[if (IE 9)&!(IEMobile)]> <html class="ie ie9 lte9" <?php language_attributes(); ?>> <![endif]--> 
+<!--[if (IE 9)&(IEMobile)]> <html class="iem ie9m lte9m" <?php language_attributes(); ?>> <![endif]-->
+<!--[if (gt IE 9)&!(IEMobile)]> <html class="ie" <?php language_attributes(); ?>> <![endif]--> 
+<!--[if (gt IE 9)&(IEMobile)]> <html class="iem" <?php language_attributes(); ?>> <![endif]-->
+<!--[if !IE]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 	<meta charset=<?php bloginfo('charset'); ?>>
 	<title><?php wp_title("|", true, 'right'); ?></title>
