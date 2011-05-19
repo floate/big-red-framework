@@ -12,7 +12,6 @@
 <head>
 	<meta charset=<?php bloginfo('charset'); ?>>
 	<title><?php wp_title("|", true, 'right'); ?></title>
-	<!--[if IE]><![endif]-->
 	
 	<?php wp_head(); ?>
 		
