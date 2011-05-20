@@ -17,6 +17,7 @@
 		
 </head>
 <body <?php body_class(); ?>>
+<script>(function(H){H.className=H.className.replace(/\bnojs\b/,'js')})(document.body)</script>
 <div id="skipLinks" class="nav">
 	<a href="#content">Skip to Content</a>
 </div>
