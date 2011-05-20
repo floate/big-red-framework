@@ -1,1 +1,511 @@
-@media all{#NoteAboutThisFile{-soupgiant-note:/* This file has */;-soupgiant-note-2:/* been minimised. */;-soupgiant-note-3:/*! credits of reused code can be found by replacing .css with .less in the url */;} html{color:#000000;background:#ffffff;} body,div,dl,dt,dd,ul,ol,li,pre,code,form,fieldset,legend,input,textarea,blockquote,th,td,section,article,header,footer,nav,aside,hgroup{margin:0;padding:0;} table{border-collapse:collapse;border-spacing:0;} fieldset,img{border:0;} address,caption,cite,code,dfn,var{font-style:normal;font-weight:normal;} q:before,q:after{content:'';} abbr,acronym{border:0;font-variant:normal;} sup{vertical-align:text-top;} sub{vertical-align:text-bottom;} input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;} input,textarea,select{*font-size:100%;} legend{color:#000000;} aside{float:none;clear:none;} body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;} select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;} table{font-size:inherit;font:100%;} pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}}@media all{#NoteAboutThisFile{-soupgiant-note:/* This file has */;-soupgiant-note-2:/* been minimised. */;-soupgiant-note-3:/*! credits of reused code can be found by replacing .css with .less in the url */;} h1{font-size:138.5%;} h2,#pageName{font-size:123.1%;} h3{font-size:108%;} h1,h2,h3{margin:1em 0 0;} h4,h5,h6{font-size:100%;margin:1em 0 0;} abbr,acronym{border-bottom:1px dotted #000;cursor:help;} blockquote,ul,ol,dl{margin:1em 1em 0;} ol,ul,dl{margin-left:2em;} li ol,li ul,li dl{margin-top:0;margin-bottom:0;} dl dd{margin-left:1em;} th,td{border:1px solid #000;padding:.5em;vertical-align:top;} th{font-weight:bold;text-align:center;vertical-align:bottom;} tbody th{text-align:left;vertical-align:top;} caption{margin-bottom:.5em;font-style:italic;} p,fieldset,table,pre{margin:1em 0 0;} legend{display:block;float:left;width:100%;} label,legend{display:block;font-weight:bold;} .set-select label{display:inline;} .set-radio label,.set-checkbox label{display:inline;font-weight:normal;} .inputSet{margin:1em 0 0;padding:10px;border:1px solid transparent;background:transparent;} .form-highlight{border-color:#ccc;background:#FFF2CC;} .js input.text,.js textarea,.js input.email,.js input.url,.js select,.js input.number,.js input.phone,.js input.date,.js input.time,.js input.image,.js input.tag{outline:none;border:1px solid #999;} .inputSet span.error{color:#900;} .inputSet input.error,.inputSet textarea.error,.inputSet select.error{border-color:#900;} input.text,textarea,input.email,input.url,input.number,input.phone,input.date,input.time,input.image,input.tag{width:240px;} form .set-submit input,#comment-form-submit,.frm_forms p.submit input,input.radio,input.checkbox,input.scale,button,select{cursor:pointer;} #siteName{font-weight:bold;font-size:138.5%;margin:0;} #pageName{font-size:123.1%;} #skipLinks a{display:block;margin:0 auto;padding:.25em 0;width:100%;text-align:center;color:#fff;background:#333;-moz-box-shadow:0px 4px 4px rgba(0, 0, 0, 0.3);-webkit-box-shadow:0px 4px 4px rgba(0, 0, 0, 0.3);-o-box-shadow:0px 4px 4px rgba(0, 0, 0, 0.3);box-shadow:0px 4px 4px rgba(0, 0, 0, 0.3);position:fixed;top:0;left:-999999em;}#skipLinks a:focus{left:0;} .wp-caption{background-color:#f3f3f3;text-align:center;padding-top:4px;margin:1px;border:1px solid #ccc;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;} .wp-caption img{margin:0;padding:0;border:0;} .wp-caption p.wp-caption-text{font-size:85%;padding:0 4px 5px;margin:0;} .alignleft{float:left;} .alignright{float:right;} .aligncenter{display:block;margin-left:auto;margin-right:auto;} dl.gallery-item,dd.gallery-caption{margin:0;} .entry-content{overflow:hidden;} .more-link{display:block;margin:1em 0 0;} #siteDetails,section,article,header,footer,nav,aside,hgroup{display:block;}}@media all{#NoteAboutThisFile{-soupgiant-note:/* This file has */;-soupgiant-note-2:/* been minimised. */;-soupgiant-note-3:/*! credits of reused code can be found by replacing .css with .less in the url */;} body{font-family:Frutiger,"Frutiger Linotype",Univers,Calibri,"Gill Sans","Gill Sans MT","Myriad Pro",Myriad,"DejaVu Sans Condensed","Liberation Sans","Nimbus Sans L",Tahoma,Geneva,"Helvetica Neue",Helvetica,Arial,sans-serif;} #pageWrap{margin:0 auto;width:960px;}}@media only screen and (min-width : 1224px){}@media only screen and (min-width : 1824px){}
+/* 
+
+1. Fonts
+2. Resetish
+3. Base
+4. Figures & Images
+5. Forms
+6. Tables
+7. Standard WP styles
+8. Framework styles
+9. Widgets
+*/
+
+
+
+/* ************** *
+ * 1. Fonts       *
+ * ************** */
+
+/*!
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.3.0
+build: 3167
+*/
+/**
+ * Percents could work for IE, but for backCompat purposes, we are using keywords.
+ * x-small is for IE6/7 quirks mode.
+ */
+body {
+	font:13px/1.5 arial,helvetica,clean,sans-serif;
+	*font-size:small; /* for IE */
+	*font:x-small; /* for IE in quirks mode */
+}
+
+/**
+ * Nudge down to get to 13px equivalent for these form elements
+ */ 
+select,
+input,
+button,
+textarea {
+	font:99% arial,helvetica,clean,sans-serif;
+}
+
+/**
+ * To help tables remember to inherit
+ */
+table {
+	font-size:inherit;
+	font:100%;
+}
+
+/**
+ * Bump up IE to get to 13px equivalent for these fixed-width elements
+ */
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family:monospace;
+	*font-size:108%;
+	line-height:100%;
+}
+
+/*! END BSD licensed Yahoo! code */
+
+
+/* ************** *
+ * 2. Resetish    *
+ * ************** */
+
+html, body,
+div, address,
+figure img,
+figure object,
+figure embed
+ {
+	margin: 0;
+	padding: 0;
+}
+
+h1,h2,h3,h4,h5,h6,
+p, ol, ul, dl, 
+blockquote, pre,
+table, .widget
+ {
+	margin: 1em 0 0;
+	padding: 0;
+}
+
+img {
+	boder: 0;
+}
+
+abbr[title], 
+acronym[title],
+dfn[title] { 
+	border-bottom : 1px dotted; 
+	cursor : help; 
+}
+
+/* html5 block elements */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	margin: 0;
+	padding: 0;
+	display : block;
+}
+
+/* ************** *
+ * 3. Base        *
+ * ************** */
+
+
+/* 3a. Headings */
+h1,h2,h3,h4,h5,h6 {
+	page-break-after: avoid;
+}
+
+h1 {
+	font-size:138.5%; /* 18px */
+}
+
+h2 {
+	font-size:123.1%; /* 16px */
+}
+
+h3 {
+	font-size:108%;  /* 14px */
+}
+
+h4,h5,h6 {
+	font-size: 100%; /* 13px */
+}
+
+/* 3b.Typography */
+
+/* p - see 2.*/
+
+ul, ol, dl {
+	margin-left: 1em;
+	padding-left: 1em;
+}
+
+	li ul, li ul, li dl {
+		/* nested lists don't need top margins */
+		margin-top: 0;
+	}
+	
+dd, blockquote {
+	margin-left: 1em;
+}
+
+address {
+	font-style: italic;
+}
+
+/* 3c. Links */
+
+a,
+a:link,
+a:visited {
+	color: #1670a4;
+	background: transparent;
+	text-decoration: underline;
+	
+	/* double ups required as multiple psuedo classes can apply at once */
+}
+
+	a:focus {
+		color: #fff;
+		background: #1670a4; 
+		text-decoration: none;
+	}
+
+	a:hover,
+	a:active {
+		color: #1670a4; 
+		background: transparent;
+		text-decoration: none;
+	}
+
+
+/* ******************* *
+ * 4. Figures & Images *
+ * ******************* */
+
+/* moved to WordPress styles below */
+
+/* ************** *
+ * 5. Forms       *
+ * ************** */
+
+.inputSet {
+	margin: 1em 0 0;
+	padding: 1em 1em 1em 0;
+/*	margin-top: 1em;*/
+	border: 1px solid transparent;
+	_border: 0;
+}
+
+label, legend {
+	font-weight: bold;
+	margin-left: 1em;
+}
+
+label {
+	display: block;
+}
+
+	.set-radio label, .set-checkbox label {
+		font-weight: normal;
+		display: inline;
+	}
+
+	.set-select label {
+		display: inline;
+	}
+
+
+
+fieldset.inputSet {
+	position: relative;
+	padding-top: 2.5em;
+}
+
+	legend {
+		margin: 0; 
+		padding: 0;
+	}
+
+	legend .in {
+		position: absolute;
+		left: 0;
+		margin-top: .5em;
+		margin-left: 1em;
+	}
+
+		.ie6 legend .in {
+			width: 100%;
+		}
+
+		.lte8 legend .in {
+			top: 0;
+		}
+
+.inputSet span.error {
+	color: #900;
+}
+
+
+input, textarea {
+	margin-left: 1em;
+}
+
+
+input.text,
+textarea,
+/*select,*/
+input.email,
+input.url,
+input.number,
+input.phone,
+input.date,
+input.time,
+input.image,
+input.tag {
+	width: 290px;
+	border: 1px solid #999;
+}
+
+	input.text:focus,
+	.inputSet textarea:focus, /* match 0,0,2,1 specificity of others */
+/*	select:focus,*/
+	input.email:focus,
+	input.url:focus,
+	input.number:focus,
+	input.phone:focus,
+	input.date:focus,
+	input.time:focus,
+	input.image:focus,
+	input.tag:focus {
+		outline: none;
+		border-color: #666;
+		background: #FFF2CC;
+	}
+
+
+label,
+input.button,
+select,
+.set-radio input,
+.set-checkbox input,
+.set-submit input,
+#comment-form-submit,
+.frm_forms p.submit input,
+input.scale { 
+	/* credit due: http://stuffandnonsense.co.uk/projects/320andup/ */
+	cursor : pointer; 
+}
+
+/* js enabled */
+
+
+.js .set-radio .inputPair,
+.js .set-checkbox .inputPair {
+	padding: 3px;
+	float:left;
+	clear: left;
+	margin-left: 1em;
+}
+
+	.js .set-radio .inputPair label,
+	.js .set-checkbox .inputPair label {
+		margin-left: 0;
+	}
+
+	.js .set-radio .form-highlight, 
+	.js .set-checkbox .form-highlight {
+		padding: 2px;
+		border: 1px dashed #000;
+	}
+
+
+.form-highlight {
+	background-color: #FFF2CC;
+	border-color: #666;
+}
+
+	.form-highlight input.text:focus,
+	.form-highlight textarea:focus, /* match 0,0,2,1 specificity of others */
+/*	.form-highlight select:focus,*/
+	.form-highlight input.email:focus,
+	.form-highlight input.url:focus,
+	.form-highlight input.number:focus,
+	.form-highlight input.phone:focus,
+	.form-highlight input.date:focus,
+	.form-highlight input.time:focus,
+	.form-highlight input.image:focus,
+	.form-highlight input.tag:focus {
+		background-color: #fff;
+	}
+
+
+.set-text input.error,
+.set-textarea textarea.error, /* match 0,0,2,1 specificity of others */
+/*.form-highlight select:focus,*/
+.set-email input.error,
+.set-url input.error,
+.set-number input.error,
+.set-phone input.error,
+.set-date input.error,
+.set-time input.error,
+.set-image input.error,
+.set-tag input.error {
+	border-color: #900;
+}
+
+
+
+/* ************** *
+ * 6. Tables      *
+ * ************** */
+
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+th,td {
+	border:1px solid #000;
+	padding:.5em;
+	vertical-align: top;
+}
+th {
+	/*distinguishing table headers from data cells*/
+	font-weight:bold;
+	text-align:left;
+	vertical-align: bottom;
+}
+
+	thead th {
+		text-align: center;
+		vertical-align: top;
+	}
+
+caption {
+	/*coordinated margin to match cell's padding*/
+	margin-bottom:.5em;
+	font-style: italic; 
+}
+
+/* ********************* *
+ * 7. Standard WP styles *
+ * ********************* */
+
+figure, .wp-caption {
+	background-color: #f3f3f3;
+	text-align: center;
+	padding-top: 4px;
+	margin: 1px;
+	border: 1px solid #ccc;
+		-moz-border-radius: 3px;
+		-khtml-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+}
+
+.wp-caption img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+figcaption, .wp-caption p.wp-caption-text {
+   font-size: 85%; /* approx 11px at standard font size */
+   padding: 0 4px 5px;
+   margin: 0;
+}
+
+
+.alignleft {
+	float: left;
+}
+
+.alignright {
+	float: right;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* galleries */
+dl.gallery-item,
+dd.gallery-caption {
+	margin: 0;
+	padding: 0;
+}
+
+.entry-content:after {
+	/* clearfix */
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+	.lte7 .entry-content {
+		zoom: 1;
+	}
+
+.more-link {
+/*	display more links as blocks */
+	display: block;
+	margin: 1em 0 0; /* force margin on these */
+}
+
+
+
+/* ********************* *
+ * 8. Framework styles *
+ * ********************* */
+
+#siteName {
+	/* reset h1 and p to same */
+	margin: 0;
+	font-weight: bold;
+	font-size:138.5%; /* 18px */
+}
+
+#pageName {
+	/* reset h1 & h2 to same */
+	font-size:123.1%; /* 16px */
+}
+
+#siteDetails {
+	display: block;
+}
+
+
+/* ************** *
+ * 9. Widgets     *
+ * ************** */
+
+
+/* specific widget styles */
+
+
+.textwidget > :first-child {
+	margin-top: 0;
+}
+
+/* generic widget style */
+
+.widget ul {
+	list-style: none;
+	margin:0;
+	padding-left: 0;
+}
+
+.widget ul ul {
+	margin-left: 1em;
+}
