@@ -587,7 +587,9 @@ SOUPGIANT.base = function() {
 				validateDelegate: function() { },
 				onsubmit: true,
 	            onkeydown: false,
+	            onkeyup: false,
 	            onfocusin: false,
+	            onfocusout: false,
 	            onclick: false,
 				
 				errorElement: "span",
