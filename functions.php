@@ -76,6 +76,7 @@ function soup_setupParentThemeClass(){
 			
 			
 			$this->betterFormShortcodes();
+			$this->httpHeaders();
 		}
 		
 		function child__construct() {
@@ -818,8 +819,24 @@ function soup_setupParentThemeClass(){
 			
 		}
 
-		function meta_tags(){
+		function httpHeaders(){
 			$options = &$this->options;
+			if (!is_admin()):
+
+			if ($options['X-UA-Compatible'] !== false) {
+				
+				if (!is_string($options['X-UA-Compatible'])) {
+					$options['X-UA-Compatible'] = 'IE=edge';
+				}
+				
+				header('X-UA-Compatible: ' . $options['X-UA-Compatible']);
+			}
+			
+			endif; //if (!is_admin()):			
+		}
+
+
+		function meta_tags(){
 			
 			$result = "";
 			
@@ -837,16 +854,7 @@ function soup_setupParentThemeClass(){
 				$result .= $this->child['img'];
 				$result .= '/apple-touch-icon.png" />' . "\n";
 			}
-		
-			if ($options['X-UA-Compatible'] !== false) {
-				if (!is_string($options['X-UA-Compatible'])) {
-					$options['X-UA-Compatible'] = 'IE=edge';
-				}
-				$result .= '<meta http-equiv="X-UA-Compatible" content="';
-				$result .= $options['X-UA-Compatible'];
-				$result .= '" />' . "\n";
-			}			
-			
+					
 			echo $result;
 			return;		
 		}
