@@ -42,7 +42,7 @@
 	<?php
 		if (function_exists('wp_nav_menu')) {
 			wp_nav_menu(array(
-					'menu' => 'header',
+					'theme_location' => 'header',
 					'container' => 'div',
 					'container_id' => 'navWrap',
 					'container_class' => 'nav',
