@@ -983,8 +983,6 @@ function soup_setupParentThemeClass(){
 			$menu = str_replace('current_page_item', 'on active current_page_item', $menu);
 			$menu = str_replace('current-page-ancestor', 'on active current-page-ancestor', $menu);
 			$menu = str_replace('current_page_parent', 'on active current_page_parent', $menu);
-			$menu = str_replace('</ul>', '', $menu);
-			$menu = preg_replace('(\<ul(/?[^\>]+)\>)', '',$menu);
 			return $menu;
 		}
 
@@ -1017,12 +1015,22 @@ function soup_setupParentThemeClass(){
 				'authors' => '', 
 				'sort_column' => 'menu_order, post_title',
 				'link_before' => '', 
-				'link_after' => ''
+				'link_after' => '',
+				'container' => 'div', 
+				'container_class' => 'nav',
+				'container_id' => '',
+				'menu_class' => '',
+				'menu_id' => ''
 			);
 
 			$r = wp_parse_args($args, $defaults);
 
 			$menu = '';
+			$menu .= '<' . $r['container'] . ' id="' . $r['container_id'] . '" class="' . $r['container_class'] . '">';
+			
+			if ($r['container'] != 'ul') {
+				$menu .= '<ul id="' . $r['menu_id'] . '" class="' . $r['menu_class'] . '">';
+			}
 
 			// Show Home in the menu
 			if ( isset($r['show_home']) && ! empty($r['show_home']) ) {
@@ -1053,6 +1061,12 @@ function soup_setupParentThemeClass(){
 			$menu = str_replace('current_page_item', 'on active current_page_item', $menu);
 			$menu = str_replace('current_page_ancestor', 'on active current_page_ancestor', $menu);
 
+			if ($r['container'] != 'ul') {
+				$menu .= '</ul>';
+			}
+			$menu .= '</' . $r['container'] . '/>';
+			
+			
 			if ( $r['echo'] )
 				echo $menu;
 			else

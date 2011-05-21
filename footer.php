@@ -1,13 +1,13 @@
 <?php global $soup; ?>
 <div id="footer" class="footer">
-	<div id="footNavWrap" class="nav" role="navigation">
-		<ul id="footNav">
+	<?php if ($soup->options['footer-menu']): ?>
 		<?php
 			if (function_exists('wp_nav_menu')) {
 				wp_nav_menu(array(
 						'menu' => 'footer',
-						'container' => 'ul',
+						'container' => 'div',
 						'container_id' => 'footNavWrap',
+						'container_class' => 'nav',
 						'menu_class' => '',
 						'menu_id' => 'footNav',
 						'depth' => 1,
@@ -21,8 +21,7 @@
 			}
 			
 		?>
-		</ul>
-	</div>
+	<?php endif; /* $soup->options['footer-menu']): */ ?>
 	
 	<div id="footWidgets" role="complementary"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer') ) {

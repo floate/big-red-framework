@@ -14,7 +14,7 @@
 	<title><?php wp_title("|", true, 'right'); ?></title>
 	
 	<?php wp_head(); ?>
-		
+	<meta name = "viewport" content = "user-scalable=no,initial-scale=1.0,maximum-scale=1.0,width=device-width">	
 </head>
 <body <?php body_class(); ?>>
 <script>(function(H){H.className=H.className.replace(/\bnojs\b/,'js')})(document.body)</script>
@@ -39,29 +39,26 @@
 	<!-- //#headerWidgets -->
 	
 
-	<div id="navWrap" class="nav" role="navigation">
-		<ul id="nav">
-			<?php
-				if (function_exists('wp_nav_menu')) {
-					wp_nav_menu(array(
-							'menu' => 'header',
-							'container' => 'ul',
-							'container_id' => 'navWrap',
-							'menu_class' => '',
-							'menu_id' => 'nav',
-							'depth' => 2,
-							'show_home' => 1,
-							'fallback_cb' => array(&$soup,'listPages')
+	<?php
+		if (function_exists('wp_nav_menu')) {
+			wp_nav_menu(array(
+					'menu' => 'header',
+					'container' => 'div',
+					'container_id' => 'navWrap',
+					'container_class' => 'nav',
+					'menu_class' => '',
+					'menu_id' => 'nav',
+					'depth' => 2,
+					'show_home' => 1,
+					'fallback_cb' => array(&$soup,'listPages')
 
-						));
-				}
-				else {
-					$soup->listPages();
-				}
+				));
+		}
+		else {
+			$soup->listPages();
+		}
 
-			?>
-		</ul>		
-	</div>
+	?>
 
 	
 </div>
