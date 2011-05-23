@@ -541,7 +541,7 @@ SOUPGIANT.base = function() {
 			var form = this;
 			$(':input:not([type="submit"])', form).each(function(){
 				var $input = $(this),
-					$parentSet = $input.closest('div.inputSet, fieldset.inputSet, div.form-field');
+					$parentSet = $input.closest('div.inputSet, fieldset.inputSet, div.form-field, div.mc_merge_var');
 				
 				$input.filter(':radio,:checkbox').click(function(){
 					$(this).focus();
