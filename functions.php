@@ -96,7 +96,7 @@ function soup_setupParentThemeClass(){
 			/* intended to be overridden in child theme */
 			$child = &$this->child;
 			$child['cssVer'] = '20110222';
-			$child['jsVer']  = '20110520';
+			$child['jsVer']  = '20110523';
 			
 			$child['jsDependencies'] = array(
 				'jquery'
