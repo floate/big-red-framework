@@ -1201,6 +1201,9 @@ function soup_setupParentThemeClass(){
 				$classes[] = 'all_blog';
 				$classes[] = 'list';
 			}
+			if (is_search()) {
+				$classes[] = 'list';
+			}
 			if (is_singular()) {
 				$classes[] = 'singular';
 			}
