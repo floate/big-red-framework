@@ -568,7 +568,51 @@ function soup_setupParentThemeClass(){
 				null,
 				'3.1.2'
 				);
+				
+				
+				
+			/* combined media types */
+			wp_register_style(
+				'soup-all-media',
+				$child['css'] . "/all-media/all-media$cce.css",
+				null,
+				$child['cssVer']
+				);
 		
+			wp_register_style(
+				'soup-all-media-ie6',
+				$child['css'] . "/all-media/all-media-ie6$cce.css",
+				array('soup-all-media'),
+				$child['cssVer']
+				);
+			$wp_styles->registered['soup-all-media-ie6']->extra['conditional'] = 'IE 6';
+	
+			wp_register_style(
+				'soup-all-media-ie7',
+				$child['css'] . "/all-media/all-media-ie7$cce.css",
+				array('soup-all-media'),
+				$child['cssVer']
+				);
+			$wp_styles->registered['soup-all-media-ie7']->extra['conditional'] = 'IE 7';
+	
+			wp_register_style(
+				'soup-all-media-ie8',
+				$child['css'] . "/all-media/all-media-ie8$cce.css",
+				array('soup-all-media'),
+				$child['cssVer']
+				);
+			$wp_styles->registered['soup-all-media-ie8']->extra['conditional'] = 'IE 8';
+	
+			wp_register_style(
+				'soup-all-media-ie9',
+				$child['css'] . "/all-media/all-media-ie9$cce.css",
+				array('soup-all-media'),
+				$child['cssVer']
+				);
+			$wp_styles->registered['soup-all-media-ie9']->extra['conditional'] = 'IE 9';
+			
+		
+			/* all media type */
 			wp_register_style(
 				'soup-all',
 				$child['css'] . "/all/all$cce.css",
@@ -669,45 +713,6 @@ function soup_setupParentThemeClass(){
 			$wp_styles->registered['soup-print-ie9']->extra['conditional'] = 'IE 9';
 
 
-			/* combined media types */
-			wp_register_style(
-				'soup-all-media',
-				$child['css'] . "/all-media/all-media$cce.css",
-				null,
-				$child['cssVer']
-				);
-		
-			wp_register_style(
-				'soup-all-media-ie6',
-				$child['css'] . "/all-media/all-media-ie6$cce.css",
-				array('soup-all-media'),
-				$child['cssVer']
-				);
-			$wp_styles->registered['soup-all-media-ie6']->extra['conditional'] = 'IE 6';
-	
-			wp_register_style(
-				'soup-all-media-ie7',
-				$child['css'] . "/all-media/all-media-ie7$cce.css",
-				array('soup-all-media'),
-				$child['cssVer']
-				);
-			$wp_styles->registered['soup-all-media-ie7']->extra['conditional'] = 'IE 7';
-	
-			wp_register_style(
-				'soup-all-media-ie8',
-				$child['css'] . "/all-media/all-media-ie8$cce.css",
-				array('soup-all-media'),
-				$child['cssVer']
-				);
-			$wp_styles->registered['soup-all-media-ie8']->extra['conditional'] = 'IE 8';
-	
-			wp_register_style(
-				'soup-all-media-ie9',
-				$child['css'] . "/all-media/all-media-ie9$cce.css",
-				array('soup-all-media'),
-				$child['cssVer']
-				);
-			$wp_styles->registered['soup-all-media-ie9']->extra['conditional'] = 'IE 9';
 
 
 		
