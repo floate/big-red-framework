@@ -756,7 +756,8 @@ function soup_setupParentThemeClass(){
 				'regoEnabled' => get_option('users_can_register') ? "y" : "n",
 				'lostpassword' => wp_lostpassword_url( site_url( $_SERVER['REQUEST_URI'] ) ),
 				'loginsubmit' => site_url( 'wp-login.php', 'login' ),
-				'currentURL' => site_url( $_SERVER['REQUEST_URI'] )
+				'currentURL' => site_url( $_SERVER['REQUEST_URI'] ),
+				'childAssets' => $child['assets']
 			));
 			
 			/* jQuery plugins */
