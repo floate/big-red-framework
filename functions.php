@@ -1478,6 +1478,7 @@ function soup_setupParentThemeClass(){
 
 			$r = "<div id='contact-form-$id'>\n";
 
+			/*
 			$errors = array();
 			if ( is_wp_error( $contact_form_errors ) && $errors = (array) $contact_form_errors->get_error_codes() ) {
 				$r .= "<div class='form-error'>\n<h3>" . __( 'Error!' ) . "</h3>\n<ul class='form-errors'>\n";
@@ -1485,6 +1486,7 @@ function soup_setupParentThemeClass(){
 					$r .= "\t<li class='form-error-message' style='color: red;'>$message</li>\n";
 				$r .= "</ul>\n</div>\n\n";
 			}
+			*/
 
 			$r .= "<form action='#contact-form-$id' method='post' class='contact-form commentsblock'>\n";
 			$r .= $body;
