@@ -266,7 +266,7 @@ function soup_setupParentThemeClass(){
 		function defineParentVersions() {
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110419';
-			$parent['jsVer']  = '20110506';
+			$parent['jsVer']  = '20110604';
 		}
 				
 		function setupOptions() {
@@ -757,7 +757,8 @@ function soup_setupParentThemeClass(){
 				'lostpassword' => wp_lostpassword_url( site_url( $_SERVER['REQUEST_URI'] ) ),
 				'loginsubmit' => site_url( 'wp-login.php', 'login' ),
 				'currentURL' => site_url( $_SERVER['REQUEST_URI'] ),
-				'childAssets' => $child['assets']
+				// 'childAssets' => $child['assets'],
+				'childCSS' => get_stylesheet_uri()
 			));
 			
 			/* jQuery plugins */

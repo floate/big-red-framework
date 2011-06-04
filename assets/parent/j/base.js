@@ -19,14 +19,16 @@ SOUPGIANT.base = function() {
 		FALS = false,
 		SG = SOUPGIANT,
 		i = 0,
-		loginFormPlaced = FALS;
-		
-	$(function(){
+		loginFormPlaced = FALS,
+		URLS = SOUPGIANT_wpURLS;
+
+	// $(function(){
 		$body = $('body');
 		$html = $('html');
 		$body.removeClass('nojs').addClass('js');
-		
-	});
+		//need to trick CDN plugins into replacing assets directory w/ cdn version
+		URLS.childAssets = URLS.childCSS.substring(0,URLS.childCSS.length - 10) + '/assets/child';
+	// });
 	
 	$WIN.ready(function(){
 		$body.removeClass('nojswin').addClass('jswin');
