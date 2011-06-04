@@ -1636,7 +1636,7 @@ function soup_setupParentThemeClass(){
 			- text
 			
 			*/
-			
+			$formErrors = $contact_form_errors->errors;
 			
 			$fieldClass = '';
 			switch ($field['type']) {
@@ -1762,7 +1762,12 @@ function soup_setupParentThemeClass(){
 					// $r .= "&nbsp;";
 					if (contact_form_is_error($field_id)) {
 						$r .= '<span htmlfor="grunion-'.esc_attr($field_id).'" generated="true" class="error">';
-						$r .= 'This field is required.';
+						if ($field['type'] == 'email') {
+							$r .= 'Please enter a valid email address';
+						}
+						else {
+							$r .= 'This field is required.';
+						}
 						$r .= '</span>';
 						$fieldClass .= ' error';
 					}				
