@@ -1663,7 +1663,7 @@ function soup_setupParentThemeClass(){
 				// input fields like name, email, url that require special validation or handling at POST
 				$r .= "\n<div class='inputPair text'>\n";
 				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t\t<input type='text' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
+				$r .= "\t\t<input type='text' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='text'/>\n";
 				$r .= "\t</div>\n";
 			}
 
