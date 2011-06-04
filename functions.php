@@ -714,8 +714,8 @@ function soup_setupParentThemeClass(){
 
 
 
-
-		
+			//use own form styles for grunion plugin
+			wp_deregister_style('grunion.css');
 		}
 
 		function registerJS() {
