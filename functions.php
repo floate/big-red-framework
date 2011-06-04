@@ -1614,59 +1614,179 @@ function soup_setupParentThemeClass(){
 				$field_value = $field['default'];
 			}
 
-			if ( $field['type'] == 'email' ) {
-				$r .= "\n<div class='inputPair email'>\n";
-				$r .= "\t\t<label for='".esc_attr($field_id)."' class='grunion-field-label ".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t\t<input type='email' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
-				$r .= "\t</div>\n";
-			} 
-			
-			elseif ( $field['type'] == 'url' ) {
-				$r .= "\n<div class='inputPair url'>\n";
-				$r .= "\t\t<label for='".esc_attr($field_id)."' class='grunion-field-label ".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t\t<input type='url' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
-				$r .= "\t</div>\n";
-			}
-			
-			elseif ( $field['type'] == 'textarea' ) {
-				$r .= "\n<div class='inputPair textarea'>\n";
-				$r .= "\t\t<label for='contact-form-comment-".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t\t<textarea name='".esc_attr($field_id)."' id='contact-form-comment-".esc_attr($field_id)."' rows='20'>".htmlspecialchars($field_value)."</textarea>\n";
-				$r .= "\t</div>\n";
-			} elseif ( $field['type'] == 'radio' ) {
-				$r .= "\t<fieldset class='radio'><legend class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</legend>\n";
-				foreach ( $field['options'] as $id => $option ) {
-					$r .= "<div class='inputPair radio-input'>\n";
-					$r .= "\t\t<input type='radio' name='".esc_attr($field_id)."' id='".esc_attr($field_id . '-' . $id)."' value='".esc_attr($option)."' class='".esc_attr($field['type'])."' ".( $option == $field_value ? "checked='checked' " : "")." />\n";
-		 			$r .= "\t\t<label for='".esc_attr($field_id . '-' . $id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>". htmlspecialchars( $option ) . "</label>\n";
-					$r .= "\t\t</div>\n";
-				}
-				$r .= "\t\t</fieldset>\n";
-			} elseif ( $field['type'] == 'checkbox' ) {
-				$r .= "\t<div class='inputPair checkbox'>\n";
-				$r .= "\t\t<input type='checkbox' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".__('Yes')."' class='".esc_attr($field['type'])."' ".( $field_value ? "checked='checked' " : "")." />\n";
-				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>\n";
-				$r .= "\t\t". htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t</div>\n";
-			} elseif ( $field['type'] == 'select' ) {
-				$r .= "\n<div class='inputPair select'>\n";
-				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span>'. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t<select name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='".esc_attr($field['type'])."'/>\n";
-				foreach ( $field['options'] as $option ) {
-					$r .= "\t\t<option".( $option == $field_value ? " selected='selected'" : "").">". htmlspecialchars($option)."</option>\n";
-				}
-				$r .= "\t</select>\n";
-				$r .= "\t</div>\n";
-			} else {
-				// default: text field
-				// note that any unknown types will produce a text input, so we can use arbitrary type names to handle
-				// input fields like name, email, url that require special validation or handling at POST
-				$r .= "\n<div class='inputPair text'>\n";
-				$r .= "\t\t<label for='".esc_attr($field_id)."' class='".esc_attr($field['type']) . ( contact_form_is_error($field_id) ? ' form-error' : '' ) . "'>" . htmlspecialchars( $field['label'] ) . ( $field['required'] ? ' <span> '. __("(required)") . '</span>' : '' ) . "</label>\n";
-				$r .= "\t\t<input type='text' name='".esc_attr($field_id)."' id='".esc_attr($field_id)."' value='".esc_attr($field_value)."' class='text'/>\n";
-				$r .= "\t</div>\n";
-			}
+			$field_value = wp_kses($field_value, array());
 
+			$field['label'] = html_entity_decode( $field['label'] );
+			$field['label'] = wp_kses( $field['label'], array() );
+			
+			//from here down, field type name can be treated as text
+			if ($field['type'] == 'name') {
+				$field['type'] = 'text';
+			}
+			
+			/* types
+			
+			- select -- done
+			- radio -- done
+			- textarea -- done
+
+			- checkbox
+
+			- url
+			- email
+			- text
+			
+			*/
+			
+			
+			$fieldClass = '';
+			switch ($field['type']) {
+				case 'textarea':
+					//massive exception here
+								
+					$r .= "\n";
+					$r .= '<div class="inputPair inputSet set-textarea">' . "\n";
+					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
+					$r .= htmlspecialchars( $field['label'] );
+					if ($field['required']) {
+						$r .= ' <span class="frm_required">*</span> ';
+					}
+					// $r .= "&nbsp;";
+					if (contact_form_is_error($field_id)) {
+						$r .= '<span htmlfor="grunion-'.esc_attr($field_id).'" generated="true" class="error">';
+						$r .= 'This field is required.';
+						$r .= '</span>';
+						$fieldClass .= ' error';
+					}				
+					$r .= '</label>' . "\n";
+					$r .= "\t" . '<textarea name="'.esc_attr($field_id).'" id="grunion-'.esc_attr($field_id).'" ';
+					if ($field['required']) {
+						$r .= 'required="required" ';
+						$fieldClass .= ' required';
+					}
+					$r .= 'class="' . trim($fieldClass) . '">'.htmlspecialchars($field_value).'</textarea>' . "\n";
+					$r .= '</div>' . "\n";
+				break; //textarea
+				
+				case 'select':
+					$r .= "\n";
+					$r .= '<div class="inputPair inputSet set-select">' . "\n";
+					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
+					$r .= htmlspecialchars( $field['label'] );
+					if ($field['required']) {
+						$r .= ' <span class="frm_required">*</span> ';
+					}
+					// $r .= "&nbsp;";
+					if (contact_form_is_error($field_id)) {
+						$r .= '<span htmlfor="grunion-'.esc_attr($field_id).'" generated="true" class="error">';
+						$r .= 'This field is required.';
+						$r .= '</span>';
+						$fieldClass .= ' error';
+					}				
+					$r .= '</label>' . "\n";
+					$r .= "\t" . '<select name="'.esc_attr($field_id).'" id="grunion-'.esc_attr($field_id).'" ';
+					if ($field['required']) {
+						$r .= 'required="required" ';
+						$fieldClass .= ' required';
+					}
+					$r .= 'class="' . trim($fieldClass) . '">' . "\n";
+					foreach ( $field['options'] as $option ) {
+						$option = html_entity_decode( $option );
+						$option = wp_kses( $option, array() );
+						$r .= "\t\t" . '<option'.( $option == $field_value ? ' selected="selected"' : '').'>';
+						$r .= esc_html( $option ) .'</option>' . "\n";
+					}
+					$r .= "\t" . '</select>' . "\n";
+					$r .= "</div>\n";
+				break; //select
+				
+				case 'radio':
+					$r .= "\n" . '<fieldset class="inputSet set-radio">' . "\n";
+					$r .= "\t" . '<legend>';
+					$r .= htmlspecialchars( $field['label'] );
+					if ($field['required']) {
+						$r .= ' <span class="frm_required">*</span> ';
+						$fieldClass .= ' required';
+					}
+					if (contact_form_is_error($field_id)) {
+						$r .= '<span htmlfor="grunion-'.esc_attr($field_id).'" generated="true" class="error">';
+						$r .= 'This field is required.';
+						$r .= '</span>';
+						$fieldClass .= ' error';
+					}				
+					$r .= '</legend>' . "\n";
+
+					
+					foreach ( $field['options'] as $oid => $option ) {
+						$r .= "\t<div class=\"inputPair\">\n";
+						$r .= "\t\t";
+						$r .= '<input type="radio" name="'.esc_attr($field_id).'" ';
+						$r .= 'id="grunion-'.esc_attr($field_id).'-'.esc_attr($oid).'" ';
+						$r .= 'value="'.esc_attr($option).'" ';
+						$r .= 'class="'.esc_attr($field['type']).'" ';
+						if ( $option == $field_value ) {
+							$r .= 'checked="checked" ';
+						}
+						$r .= '/>' . "\n";
+						
+						$r .= "\t\t";
+						$r .= '<label ';
+						$r .= 'for="grunion-'.esc_attr($field_id).'-'.esc_attr($oid).'" ';
+						$r .= '/>';
+						$r .= htmlspecialchars( $option );
+						$r .= '</label>';
+						
+						
+						$r .= "\n";
+						$r .= "\t</div>\n";
+					}
+					$r .= '</fieldset>' . "\n";
+				break; //radio
+				
+				default: 
+					/*
+						-text
+						-name
+						-url
+						-checkbox
+						-email
+					*/
+					
+					$r .= "\n";
+					$r .= '<div class="inputSet inputPair set-' . esc_attr($field['type']) . '">' . "\n";
+					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
+					$r .= htmlspecialchars( $field['label'] );
+					if ($field['required']) {
+						$r .= ' <span class="frm_required">*</span> ';
+						$fieldClass .= ' required';
+					}
+					// $r .= "&nbsp;";
+					if (contact_form_is_error($field_id)) {
+						$r .= '<span htmlfor="grunion-'.esc_attr($field_id).'" generated="true" class="error">';
+						$r .= 'This field is required.';
+						$r .= '</span>';
+						$fieldClass .= ' error';
+					}				
+					$r .= '</label>' . "\n";
+					$r .= "\t" . '<input name="'.esc_attr($field_id).'" ';
+					$r .= 'id="grunion-'.esc_attr($field_id).'" ';
+					$r .= 'type="'.esc_attr($field['type']).'" ';
+					$r .= 'class="'.esc_attr($field['type']) . $fieldClass . '" ';
+					if ($field['type'] == 'checkbox') {
+						$r .= 'value="'.__('Yes').'" ';
+						if ($field_value) {
+							$r .= 'checked="checked" ';
+						}
+					}
+					else {
+						$r .= 'value="'.esc_attr($field_value).'" ';
+					}					
+					$r .= '/>' . "\n";
+					$r .= '</div>';
+					$r .= "\n";
+			}
+			
+			
 			return $r;
 		}
 		/* === // Grunion Contact Form === */
@@ -1692,7 +1812,7 @@ function soup_setupParentThemeClass(){
 			$html = <<<DEFAULT_HTML
 				<{$wrapper} id="frm_field_[id]_container" class="{$set}form-field [required_class] [error_class]">
 			    	<{$label} {$for}class="frm_pos_[label_position]">[field_name]
-			        	<span class="frm_required">[required_label]</span>&nbsp;
+			        	<span class="frm_required">[required_label]</span>
 						[if error]<span htmlfor="field_[key]" generated="true" class="error">[error]</span>[/if error]
 			    	</{$label}>
 			    	[input]
