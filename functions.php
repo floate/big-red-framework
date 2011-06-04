@@ -1636,8 +1636,6 @@ function soup_setupParentThemeClass(){
 			- text
 			
 			*/
-			$formErrors = $contact_form_errors->errors;
-			
 			$fieldClass = '';
 			switch ($field['type']) {
 				case 'textarea':
