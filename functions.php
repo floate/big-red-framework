@@ -1441,10 +1441,12 @@ function soup_setupParentThemeClass(){
 				'widget' => 0 //This is not exposed to the user. Works with contact_form_widget_atts
 			), $atts ) );
 
+			 $widget = esc_attr( $widget );
+
 			if ( ( function_exists( 'faux_faux' ) && faux_faux() ) || is_feed() )
 				return '[contact-form]';
 
-			global $wp_query, $grunion_form, $contact_form_errors, $contact_form_values, $user_identity, $contact_form_last_id;
+			global $wp_query, $grunion_form, $contact_form_errors, $contact_form_values, $user_identity, $contact_form_last_id, $contact_form_message;
 
 			// used to store attributes, configuration etc for access by contact-field shortcodes
 			$grunion_form = new stdClass();
@@ -1480,20 +1482,17 @@ function soup_setupParentThemeClass(){
 			if ( is_wp_error( $contact_form_errors ) && $errors = (array) $contact_form_errors->get_error_codes() ) {
 				$r .= "<div class='form-error'>\n<h3>" . __( 'Error!' ) . "</h3>\n<ul class='form-errors'>\n";
 				foreach ( $contact_form_errors->get_error_messages() as $message )
-					$r .= "\t<li class='form-error-message' >$message</li>\n";
+					$r .= "\t<li class='form-error-message' style='color: red;'>$message</li>\n";
 				$r .= "</ul>\n</div>\n\n";
 			}
 
-
 			$r .= "<form action='#contact-form-$id' method='post' class='contact-form commentsblock'>\n";
-			$r .= '<div >';
 			$r .= $body;
-			$r .= "\t<p class='contact-submit'>\n";
+			$r .= "\t<p class='set-submit'>\n";
 			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' class='pushbutton-wide'/>\n";
 			$r .= "\t\t$nonce\n";
 			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
 			$r .= "\t</p>\n";
-			$r .= '</div>';
 			$r .= "</form>\n</div>";
 
 			// form wasn't submitted, just a GET
@@ -1522,7 +1521,7 @@ function soup_setupParentThemeClass(){
 			if ( !isset( $comment_content ) )
 				$comment_content = '';
 			else
-				$comment_content = esc_html( $comment_content );
+				$comment_content = wp_kses( $comment_content, array() );
 
 
 			$r = "<div id='contact-form-$id'>\n";
@@ -1531,11 +1530,11 @@ function soup_setupParentThemeClass(){
 			if ( is_wp_error( $contact_form_errors ) && $errors = (array) $contact_form_errors->get_error_codes() ) :
 				$r .= "<div class='form-error'>\n<h3>" . __( 'Error!' ) . "</h3>\n<p>\n";
 				foreach ( $contact_form_errors->get_error_messages() as $message )
-					$r .= "\t$message\n";
+					$r .= "\t$message<br />\n";
 				$r .= "</p>\n</div>\n\n";
 			else :
 				$r .= "<h3>" . __( 'Message Sent' ) . "</h3>\n\n";
-				$r .= wpautop( $comment_content ) . "</div>";
+				$r .= wp_kses($contact_form_message, array('br' => array(), 'blockquote' => array())) . "</div>";
 
 				// Reset for multiple contact forms. Hacky
 				$contact_form_values['comment_content'] = '';
