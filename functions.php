@@ -1201,9 +1201,6 @@ function soup_setupParentThemeClass(){
 		function bodyClass($classes, $class = null) {
 			global $wp_query, $current_user, $wpdb;
 
-			$classes[] = 'nojs';
-			$classes[] = 'nojswin'; 
-			
 			if (is_home() OR is_archive()) {
 				$classes[] = 'all_blog';
 				$classes[] = 'list';
@@ -1488,7 +1485,7 @@ function soup_setupParentThemeClass(){
 			}
 			*/
 
-			$r .= "<form action='#contact-form-$id' method='post' class='contact-form commentsblock'>\n";
+			$r .= "<form action='#contact-form-$id' method='post' class='grunion'>\n";
 			$r .= $body;
 			$r .= "\t<p class='set-submit'>\n";
 			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' class='pushbutton-wide'/>\n";
@@ -1797,6 +1794,20 @@ function soup_setupParentThemeClass(){
 	
 		function formidableHtml($html, $type) {
 			switch ($type) {
+				case 'divider':
+					$wrapper = 'div';
+					$label = 'h3';
+					$for = '';
+					$set = 'inputSet set-' . $type . ' ';
+					$pair = '';
+					break;
+				case 'html':
+					$wrapper = 'div';
+					$label = 'h4';
+					$for = '';
+					$set = '';
+					$pair = '';
+					break;
 				case 'checkbox':
 				case 'radio':
 				case 'scale':

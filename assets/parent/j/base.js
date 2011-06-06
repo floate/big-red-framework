@@ -25,13 +25,13 @@ SOUPGIANT.base = function() {
 	// $(function(){
 		$body = $('body');
 		$html = $('html');
-		$body.removeClass('nojs').addClass('js');
+		$html.removeClass('no-js').addClass('js');
 		//need to trick CDN plugins into replacing assets directory w/ cdn version
 		URLS.childAssets = URLS.childCSS.substring(0,URLS.childCSS.length - 10) + '/assets/child';
 	// });
 	
 	$WIN.ready(function(){
-		$body.removeClass('nojswin').addClass('jswin');
+		$html.removeClass('no-jswin').addClass('jswin');
 	});
 	
 	function skipLinks($links, focusClass){

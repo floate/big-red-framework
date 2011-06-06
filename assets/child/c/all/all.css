@@ -76,7 +76,8 @@ html, body,
 div, address,
 figure img,
 figure object,
-figure embed
+figure embed,
+fieldset
  {
 	margin: 0;
 	padding: 0;
@@ -85,7 +86,8 @@ figure embed
 h1,h2,h3,h4,h5,h6,
 p, ol, ul, dl, 
 blockquote, pre,
-table, .widget
+table, .widget,
+form, .inputSet
  {
 	margin: 1em 0 0;
 	padding: 0;
@@ -194,99 +196,117 @@ a:visited {
  * 5. Forms       *
  * ************** */
 
-.inputSet {
-	margin: 1em 0 0;
-	padding: 1em 1em 1em 0;
-/*	margin-top: 1em;*/
-	border: 1px solid transparent;
-	_border: 0;
+/* form styles inspired (heavily) by MIT licenced http://www.getskeleton.com/
+	- tidied up a few bits
+	- used % for font-sizes
+	- used ems for margins, padding
+	- changed a few colours to pass AAA in WCAG 2
+	- used classes instead of attribute selectors (reconsider, selectivzr exists)
+	- set up for comments form, grunion forms & formidable plugins.
+*/
+
+fieldset {
+	/* formidable wraps forms in a fieldset */
+	border: 0;
 }
 
-label, legend {
-	font-weight: bold;
-	margin-left: 1em;
-}
+input.text, 
+input.password, 
+input.url,
+input.email,
+input.number,
+input.time,
+input.image,
+input.phone,
+input.date,
+input.tag,
+textarea, 
+select {
+	color: #555;
+	background: #fff; 
+	margin: 0;
+	padding: .5em .25em;
+	
+	outline: none;
+	border: 1px solid #999;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
 
-label {
+	width: 280px;
+	max-width: 100%;
 	display: block;
 }
 
-	.set-radio label, .set-checkbox label {
-		font-weight: normal;
-		display: inline;
-	}
 
-	.set-select label {
-		display: inline;
-	}
-
-
-
-fieldset.inputSet {
-	position: relative;
-	padding-top: 2.5em;
+input.error, 
+textarea.error, 
+select.error {
+	border-color: #900;
 }
 
-	legend {
-		margin: 0; 
-		padding: 0;
-	}
 
-	legend .in {
-		position: absolute;
-		left: 0;
-		margin-top: .5em;
-		margin-left: 1em;
-	}
+select { 
+	padding: 0; 
+}
 
-		.ie6 legend .in {
-			width: 100%;
-		}
+input.text:focus, 
+input.password:focus, 
+input.url:focus,
+input.email:focus,
+input.number:focus,
+input.time:focus,
+input.image:focus,
+input.phone:focus,
+input.date:focus,
+input.tag:focus,
+textarea:focus {
+	color: #000;
+	background: #FFF2CC;
+	border: 1px solid #666;
+	-moz-box-shadow: 0 0 3px rgba(0,0,0,.2);
+	-webkit-box-shadow: 0 0 3px rgba(0,0,0,.2);
+	box-shadow:  0 0 3px rgba(0,0,0,.2); 
+}
 
-		.lte8 legend .in {
-			top: 0;
-		}
+textarea {
+	min-height: 8em;
+}
+
+label,
+legend { 
+	display: block;
+	font-weight: bold;
+}
+
+fieldset.inputSet label{
+	display: inline;
+	font-weight: normal;
+}
+
+.grunion .set-checkbox label {
+	display: inline;
+}
+
 
 .inputSet span.error {
 	color: #900;
 }
 
-
-input, textarea {
-	margin-left: 1em;
+.frm_description {
+	color: #444;
+	font-style: italic;
+	/* increase spacing b/w fields when there are instructions - improves clarity. */
+	margin-bottom: 2em;
 }
 
-
-input.text,
-textarea,
-/*select,*/
-input.email,
-input.url,
-input.number,
-input.phone,
-input.date,
-input.time,
-input.image,
-input.tag {
-	width: 290px;
-	border: 1px solid #999;
+.set-scale div {
+	text-align: center;
 }
 
-	input.text:focus,
-	.inputSet textarea:focus, /* match 0,0,2,1 specificity of others */
-/*	select:focus,*/
-	input.email:focus,
-	input.url:focus,
-	input.number:focus,
-	input.phone:focus,
-	input.date:focus,
-	input.time:focus,
-	input.image:focus,
-	input.tag:focus {
-		outline: none;
-		border-color: #666;
-		background: #FFF2CC;
-	}
+.set-scale .frm_description {
+	text-align: left;
+}
 
 
 label,
@@ -294,72 +314,270 @@ input.button,
 select,
 .set-radio input,
 .set-checkbox input,
+.form-submit input,
 .set-submit input,
-#comment-form-submit,
-.frm_forms p.submit input,
-input.scale { 
-	/* credit due: http://stuffandnonsense.co.uk/projects/320andup/ */
+button { 
 	cursor : pointer; 
 }
 
-/* js enabled */
+a.button, 
+input.button,
+.form-submit input,
+p.submit input,
+.set-submit input,
+button {
+	color: #333;
+
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cccccc)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #ffffff, #cccccc); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #ffffff, #cccccc); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #ffffff, #cccccc); /* IE10 */
+	background-image:      -o-linear-gradient(top, #ffffff, #cccccc); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #ffffff, #cccccc);
+	         filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#cccccc'); /* IE6–IE9 */
+
+	border: 1px solid;
+	border-color: #ccc #aaa #aaa #ccc;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+
+	font-size: 85%;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: 0 1px #fff;
+	line-height: 2em;
 
 
-.js .set-radio .inputPair,
-.js .set-checkbox .inputPair {
-	padding: 3px;
-	float:left;
-	clear: left;
-	margin-left: 1em;
+	padding: .4em 1em;
+	display: inline-block;
+
+	cursor: pointer;
+}
+  
+a.button:hover, 
+input.button:hover,
+.form-submit input:hover,
+.set-submit input:hover,
+p.submit input:hover,
+button:hover,
+
+a.button:focus, 
+input.button:focus,
+.form-submit input:focus,
+.set-submit input:focus,
+p.submit input:focus,
+button:focus
+ {
+	color: #000;
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#b2b2b2)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #ffffff, #b2b2b2); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #ffffff, #b2b2b2); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #ffffff, #b2b2b2); /* IE10 */
+	background-image:      -o-linear-gradient(top, #ffffff, #b2b2b2); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #ffffff, #b2b2b2);
+	         filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff', EndColorStr='#b2b2b2'); /* IE6–IE9 */
+
+
+	border-color: #aaa #888 #888 #aaa;
+}
+	  
+
+a.button:active, 
+input.button:active,
+.form-submit input:active,
+.set-submit input:active,
+p.submit input:active,
+button:active {
+
+	background-color: #eee;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#b2b2b2), to(#ffffff)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #b2b2b2, #ffffff); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #b2b2b2, #ffffff); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #b2b2b2, #ffffff); /* IE10 */
+	background-image:      -o-linear-gradient(top, #b2b2b2, #ffffff); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #b2b2b2, #ffffff);
+	          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#b2b2b2', EndColorStr='#ffffff'); /* IE6–IE9 */
+
+	border-color: #888 #aaa #aaa #888;
 }
 
-	.js .set-radio .inputPair label,
-	.js .set-checkbox .inputPair label {
-		margin-left: 0;
-	}
-
-	.js .set-radio .form-highlight, 
-	.js .set-checkbox .form-highlight {
-		padding: 2px;
-		border: 1px dashed #000;
-	}
 
 
-.form-highlight {
-	background-color: #FFF2CC;
-	border-color: #666;
+/*
+* jQuery UI CSS Framework
+* Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+*/
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/*
+* jQuery UI CSS Framework
+* Copyright (c) 2009 AUTHORS.txt (http://jqueryui.com/about)
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Helvetica,%20Arial,%20sans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=2px&bgColorHeader=dddddd&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=50&borderColorHeader=dddddd&fcHeader=444444&iconColorHeader=0073ea&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=dddddd&fcContent=444444&iconColorContent=ff0084&bgColorDefault=f6f6f6&bgTextureDefault=03_highlight_soft.png&bgImgOpacityDefault=100&borderColorDefault=dddddd&fcDefault=0073ea&iconColorDefault=666666&bgColorHover=0073ea&bgTextureHover=03_highlight_soft.png&bgImgOpacityHover=25&borderColorHover=0073ea&fcHover=ffffff&iconColorHover=ffffff&bgColorActive=ffffff&bgTextureActive=02_glass.png&bgImgOpacityActive=65&borderColorActive=dddddd&fcActive=ff0084&iconColorActive=454545&bgColorHighlight=ffffff&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=cccccc&fcHighlight=444444&iconColorHighlight=0073ea&bgColorError=ffffff&bgTextureError=01_flat.png&bgImgOpacityError=55&borderColorError=ff0084&fcError=222222&iconColorError=ff0084&bgColorOverlay=eeeeee&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=80&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=60&thicknessShadow=4px&offsetTopShadow=-4px&offsetLeftShadow=-4px&cornerRadiusShadow=0px
+*/
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Helvetica, Arial, sans-serif; font-size: 92.3%; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica, Arial, sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #dddddd; background: #ffffff url(../../i/jqui/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #444444; }
+.ui-widget-content a { color: #444444; }
+.ui-widget-header { border: 1px solid #dddddd; background: #dddddd url(../../i/jqui/ui-bg_highlight-soft_50_dddddd_1x100.png) 50% 50% repeat-x; color: #444444; font-weight: bold; }
+.ui-widget-header a { color: #444444; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #dddddd; background: #f6f6f6 url(../../i/jqui/ui-bg_highlight-soft_100_f6f6f6_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #0073ea; outline: none; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #0073ea; text-decoration: none; outline: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #0073ea; background: #0073ea url(../../i/jqui/ui-bg_highlight-soft_25_0073ea_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #ffffff; outline: none; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #ffffff; text-decoration: none; outline: none; }
+.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #dddddd; background: #ffffff url(../../i/jqui/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x; font-weight: bold; color: #ff0084; outline: none; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #ff0084; outline: none; text-decoration: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid #cccccc; background: #ffffff url(../../i/jqui/ui-bg_flat_55_ffffff_40x100.png) 50% 50% repeat-x; color: #444444; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a { color: #444444; }
+.ui-state-error, .ui-widget-content .ui-state-error {border: 1px solid #ff0084; background: #ffffff url(../../i/jqui/ui-bg_flat_55_ffffff_40x100.png) 50% 50% repeat-x; color: #222222; }
+.ui-state-error a, .ui-widget-content .ui-state-error a { color: #222222; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text { color: #222222; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { width: 16px; height: 16px; background-image: url(../../i/jqui/ui-icons_ff0084_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(../../i/jqui/ui-icons_0073ea_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(../../i/jqui/ui-icons_666666_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(../../i/jqui/ui-icons_ffffff_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(../../i/jqui/ui-icons_454545_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(../../i/jqui/ui-icons_0073ea_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(../../i/jqui/ui-icons_ff0084_256x240.png); }
+
+/* positioning */
+.ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.ui-icon-circle-triangle-n { background-position: -96px -192px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-tl { -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px; }
+.ui-corner-tr { -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px; }
+.ui-corner-bl { -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px; }
+.ui-corner-br { -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px; }
+.ui-corner-top { -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px; -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px; }
+.ui-corner-bottom { -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px; -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px; }
+.ui-corner-right {  -moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px; -moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px; }
+.ui-corner-left { -moz-border-radius-topleft: 2px; -webkit-border-top-left-radius: 2px; -moz-border-radius-bottomleft: 2px; -webkit-border-bottom-left-radius: 2px; }
+.ui-corner-all { -moz-border-radius: 2px; -webkit-border-radius: 2px; }
+
+/* Overlays */
+.ui-widget-overlay { background: #eeeeee url(../../i/jqui/ui-bg_flat_0_eeeeee_40x100.png) 50% 50% repeat-x; opacity: .80;filter:Alpha(Opacity=80); }
+.ui-widget-shadow { margin: -4px 0 0 -4px; padding: 4px; background: #aaaaaa url(../../i/jqui/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .60;filter:Alpha(Opacity=60); -moz-border-radius: 0px; -webkit-border-radius: 0px; }/* Datepicker
+----------------------------------*/
+.ui-datepicker { width: 17em; padding: .2em .2em 0; }
+.ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left:2px; }
+.ui-datepicker .ui-datepicker-next { right:2px; }
+.ui-datepicker .ui-datepicker-prev-hover { left:1px; }
+.ui-datepicker .ui-datepicker-next-hover { right:1px; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { float:left; font-size:1em; margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker .ui-datepicker-title select.ui-datepicker-year { float: right; }
+.ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
+.ui-datepicker td { border: 0; padding: 1px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi { width:auto; }
+.ui-datepicker-multi .ui-datepicker-group { float:left; }
+.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
+.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
+.ui-datepicker-row-break { clear:both; width:100%; }
+
+/* RTL support */
+.ui-datepicker-rtl { direction: rtl; }
+.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+.ie6 .ui-datepicker-cover {
+    display: none; /*sorry for IE5*/
+    display/**/: block; /*sorry for IE5*/
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 200px; /*must have*/
+    height: 200px; /*must have*/
 }
-
-	.form-highlight input.text:focus,
-	.form-highlight textarea:focus, /* match 0,0,2,1 specificity of others */
-/*	.form-highlight select:focus,*/
-	.form-highlight input.email:focus,
-	.form-highlight input.url:focus,
-	.form-highlight input.number:focus,
-	.form-highlight input.phone:focus,
-	.form-highlight input.date:focus,
-	.form-highlight input.time:focus,
-	.form-highlight input.image:focus,
-	.form-highlight input.tag:focus {
-		background-color: #fff;
-	}
-
-
-.set-text input.error,
-.set-textarea textarea.error, /* match 0,0,2,1 specificity of others */
-/*.form-highlight select:focus,*/
-.set-email input.error,
-.set-url input.error,
-.set-number input.error,
-.set-phone input.error,
-.set-date input.error,
-.set-time input.error,
-.set-image input.error,
-.set-tag input.error {
-	border-color: #900;
-}
-
-
 
 /* ************** *
  * 6. Tables      *
