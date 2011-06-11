@@ -1247,6 +1247,7 @@ function soup_setupParentThemeClass(){
 				$post = get_page($pageID);
 				
 				$classes[] = 'pageslug-' . sanitize_html_class($pageSlug);
+				$classes[] = 'pagetree-' . sanitize_html_class($pageSlug);
 				$classes[] = 'pagetree-' . sanitize_html_class($pageID);
 				
 				$tree = get_post_ancestors($post);
