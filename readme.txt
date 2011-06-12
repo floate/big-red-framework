@@ -32,6 +32,89 @@ I frequently use the plugin Theme My Login for bespoke client sites. Template fi
 	* user-panel.php
 
 
+========= CREATING A CHILD THEME =========
+
+1. Copy the files from the starter directory (assets/_starter) into the base folder of your child theme
+2. Create the sub-directory assets in your child theme
+3. Copy the framework’s assets/child/ directory into the assets directory of your child theme
+4. Update the theme information in your child themes style.css file
+
+========= SETTING YOUR THEME’S OPTIONS =========
+
+All of your theme’s options are set within the child theme’s functions.php. At the start of the project, you should ask your client what they want from their website and set the options as appropriate. 
+
+Options are set in the class’s defineOptions() function in the form $options[‘option_name’]
+
+== META TAGS ==
+These add and remove the meta tags WordPress adds to the <head> of your html, including feed links, parent pages, adjacent pages, etc. All of these are true by default except for the localised style sheet (rtl languages).
+
+•	feed_links (true) – the site’s rss feed (example.com/feed/) & rss comments feed (example.com/comments/feed/).
+•	feed_links_extra (true) – adds category rss feed (example.com/category/general/feed/), tags rss feed (example.com/tag/my-tag/feed/), per article comments feed (example.com/my-article/feed/) 
+•	rsd_link (true) – used by offline editors
+•	wlwmanifest_link (true) – used by Window’s Live Writer for offline editing
+•	index_rel_link – link to site’s home page (example.com)
+•	parent_post_rel_link – link to parent page (example.com/page/sub-page will link to example.com/page)
+•	start_post_rel_link – all posts link to the first ever post
+•	adjacent_posts_rel_link_wp_head – link with in posts & pages to the next & previous posts/pages
+•	locale_stylesheet – stylesheet for right to left languages
+•	wp_generator – displays the version of WordPress used by the blog. Here’s not the place for the security through obscurity argument, I just point you to Dion’s version detection tool -- http://bit.ly/wpVersion .
+•	wp_shortlink_wp_head – removes the shortlink reference (example.com/?p=432)
+
+
+== GENERAL OPTIONS ==
+These add or remove WordPress features commonly disabled on client sites. All the features default to the WordPress standard
+•	admin_bar – the much loved & much despised admin bar
+•	custom_admin_bar_css – allows you to customise the CSS for the admin bar to suit your client’s theme
+•	remove_capital_P_dangit – remove the filter to replace occurrences of Wordpress with the correct form WordPress. At Soupgiant we usually remove the filter as we’ve found it interferes with images name WordPress.jpg (capital W) or similar. <img src=”/files/WordPress.jpg”>
+
+== THEME OPTIONS ==
+
+A few generic options for use with your theme, this includes custom theme meta tags, enabling built in WordPress features such as post formats and thumbnails
+
+•	content_width – width of content throughout the site
+•	thumbnails – enable/disable post thumbnails
+•	attachment_page_img_width – maximum width of images to displayed on the attachments pages
+•	attachment_page_img_height - maximum height of images to displayed on the attachments pages
+•	post-formats – enable post formats
+	o	false: disabled
+	o	true: all formats enabled
+	o	array of post types – enable types in the array
+•	favicon – add a favicon meta tag, the favicon should be placed named /assets/child/i/favicon.ico
+•	favicon-apple – add an idevice icon meta tag, file should be named /assets/child/i/apple-touch-icon.png
+•	X-UA-Compatible – IE version meta tag to be added, defaults to IE=edge
+•	mobile-css-query – css media query used for loading the mobile stylesheet.
+•	page-comments-enabled – enables/disables comments on pages
+•	trackbacks-enabled – enables/disables trackbacks and pingbacks throughout the site
+
+== WIDGETS & NAVIGATION AREAS ==
+
+The framework includes 4 widget areas and 2 navigation areas. You can enable them by setting the options below to true, disable them by setting the option to false.
+If you wish to customise the human readable name from the default, you can enable the areas by setting them as a string & your string will be used as the readable name.
+•	widget-header – default readable name: Header
+•	widget-footer – default readable name: Footer
+•	widget-sidebar-a – default readable name: Sidebar A
+•	widget-sidebar-b – default readable name: Sidebar B
+•	header-menu – default readable name: Header
+•	footer-menu – default readable name: Footer
+
+== JAVASCRIPT OPTIONS ==
+
+Add conditional JavaScript files for various versions of IE. At the time of development, WordPress doesn’t support conditional tags for IE so these added to wp_head() as <script> html rather than using the wp_enqueue_script functions
+•	js-html5-shiv – add Remy Sharp’s html5 shiv for IE versions 8 and below
+•	js-selectivizr – add Selectivizr for IE versions 8 and below
+•	ddbelatedpng – add ddbelatedpng for IE6 to enable alpha transparency in png images
+
+== VISUAL EDITOR OPTIONS ==
+
+•	editor-css – use custom css for the visual editor, this is loaded from assets/child/c/all/editor-styles.css
+•	editor-classes – adds a class dropdown to the visual editor (in kitchen sink mode). Set this as an key => value array, with the key being the readable class, eg:
+array (
+	‘Readable Name Class One’ => ‘class1’,
+	‘Readable Name Class Two’ => ‘class2’
+);
+•	editor-fake-heading-levels – this fakes the heading levels in the editor so the client can select ‘Heading 1’ as the first level heading in both pages and posts & the appropriate <h#> tag will be added to the html. This keeps the heading levels accessible while, from the client’s perspective, the visual editor just works.
+
+
 ========= GLOBAL FUNCTIONS =========
 
 # bigRed_option()
@@ -116,7 +199,7 @@ This is where the child theme queues JavaScript files registered by the child th
 #function $soup->definePaths()
 This automatically defines the URLs containing the assets of both the parent and the child theme. They are stored in the array's $soup->parent[] and $soup->child[] respectively. Both arrays contains the keys:
 	* url => root directory of theme, eg /wp-content/themes/<theme>/
-	* assets => root directory of themes assets directory, /wp-content/themes/<theme>/<parent or child>/
+	* assets => root directory of themes assets directory, /wp-content/themes/<theme>/assets/<parent or child>/
 	* css => <assets dir>/c/
 	* js => <assets dir>/j/
 	* img => <assets dir>/i/
