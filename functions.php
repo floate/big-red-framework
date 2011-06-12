@@ -1884,22 +1884,28 @@ function bigRed_option($optionName = null, $default = true) {
 }
 endif; //if ( !function_exists('bigRed_option') ) :
 
-
+if ( !function_exists('bigRed_commentsTemplate') ) :
 function bigRed_commentsTemplate($comment, $args, $depth) {
 	global $soup;
 	return $soup->commentTemplate($comment, $args, $depth);
 }
+endif; //if ( !function_exists('bigRed_commentsTemplate') ) :
 
+if ( !function_exists('bigRed_pingTemplate') ) :
 function bigRed_pingTemplate($comment, $args, $depth) {
 	global $soup;
 	return $soup->pingTemplate($comment, $args, $depth);
 }
+endif; //if ( !function_exists('bigRed_pingTemplate') ) :
 
+if ( !function_exists('bigRed_listPages') ) :
 function bigRed_listPages($args) {
 	global $soup;
 	return $soup->listPages($args);
 }
+endif; //if ( !function_exists('bigRed_listPages') ) :
 
+if ( !function_exists('bigRed_fileData') ) :
 function bigRed_fileData($dataName = null, $echo = 'true', $dataTheme = 'child') {
 	global $soup;
 	if ($dataTheme == 'parent') {
@@ -1914,7 +1920,9 @@ function bigRed_fileData($dataName = null, $echo = 'true', $dataTheme = 'child')
 	}
 	return $fileData[$dataName];
 }
+endif; //if ( !function_exists('bigRed_fileData') ) :
 
+if ( !function_exists('bigRed_siteTag') ) :
 function bigRed_siteTag($echo = true) {
 	global $soup;
 	$siteTag = $soup->siteNameTag;
@@ -1924,7 +1932,9 @@ function bigRed_siteTag($echo = true) {
 	}
 	return $siteTag;
 }
+endif; //if ( !function_exists('bigRed_siteTag') ) :
 
+if ( !function_exists('bigRed_uniqueInputID') ) :
 function bigRed_uniqueInputID($echo = false){
 	global $soup;
 	
@@ -1935,7 +1945,9 @@ function bigRed_uniqueInputID($echo = false){
 	}
 	return $uniqueID;
 }
+endif; //if ( !function_exists('bigRed_uniqueInputID') ) :
 
+if ( !function_exists('bigRed_multiTagTitle') ) :
 function bigRed_multiTagTitle($echo = true){
 	global $soup;
 	
@@ -1946,6 +1958,7 @@ function bigRed_multiTagTitle($echo = true){
 	}
 	return $multiTagTitle;
 }
+endif; //if ( !function_exists('bigRed_multiTagTitle') ) :
 
 /* 
 	need to reverse the order the function.php files usually run in
