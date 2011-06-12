@@ -1915,6 +1915,16 @@ function bigRed_fileData($dataName = null, $echo = 'true', $dataTheme = 'child')
 	return $fileData[$dataName];
 }
 
+function bigRed_siteTag($echo = true) {
+	global $soup;
+	$siteTag = $soup->siteNameTag;
+
+	if ($echo == true) {
+		echo $siteTag;
+	}
+	return $siteTag;
+}
+
 /* 
 	need to reverse the order the function.php files usually run in
 	parent's function.php needs to run before child's

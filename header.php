@@ -26,7 +26,7 @@
 <div id="header" role="banner" class="header">
 
 	<a href="<?php echo home_url(); ?>" id="siteDetails">
-	<<?php echo $soup->siteNameTag; ?> id="siteName"><span></span><?php bloginfo('name'); ?></<?php echo $soup->siteNameTag; ?>>
+	<<?php bigRed_siteTag(); ?> id="siteName"><span></span><?php bloginfo('name'); ?></<?php bigRed_siteTag(); ?>>
 	<p id="siteDesc"><span></span><?php bloginfo('description'); ?></p>
 	</a>
 	
