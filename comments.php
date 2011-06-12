@@ -40,7 +40,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			<ol id="commentsList" class="commentsList <?php if (get_option('show_avatars') == 1) { echo 'show_avatars'; } else {echo 'no_avatars';}?>">
 				<?php wp_list_comments(array(
 					'type'=> 'comment',
-					'callback' => array($soup,'commentTemplate')
+					'callback' => 'bigRed_commentsTemplate'
 					)); ?>
 			</ol>
 			<!-- //#comments-list -->
@@ -62,7 +62,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			<ol id="trackbacksList" class="commentsList">
 		<?php wp_list_comments(array(
 			'type'=> 'pings',
-			'callback' => array($soup,'pingTemplate')
+			'callback' => 'bigRed_pingTemplate'
 			)); ?>
 			</ol>
 			<!-- //#trackbacksList -->

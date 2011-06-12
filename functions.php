@@ -1885,8 +1885,15 @@ function bigRed_option($optionName = null, $default = true) {
 endif; //if ( !function_exists('bigRed_option') ) :
 
 
+function bigRed_commentsTemplate($comment, $args, $depth) {
+	global $soup;
+	return $soup->commentTemplate($comment, $args, $depth);
+}
 
-
+function bigRed_pingTemplate($comment, $args, $depth) {
+	global $soup;
+	return $soup->pingTemplate($comment, $args, $depth);
+}
 
 
 /* 
