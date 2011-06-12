@@ -1900,6 +1900,20 @@ function bigRed_listPages($args) {
 	return $soup->listPages($args);
 }
 
+function bigRed_fileData($dataName = null, $echo = 'true', $dataTheme = 'child') {
+	global $soup;
+	if ($dataTheme == 'parent') {
+		$fileData = $soup->parent;		
+	}
+	else {
+		$fileData = $soup->child;		
+	}
+	
+	if ($echo == true) {
+		echo $fileData[$dataName];
+	}
+	return $fileData[$dataName];
+}
 
 /* 
 	need to reverse the order the function.php files usually run in
