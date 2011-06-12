@@ -1859,6 +1859,36 @@ function soup_initialiseSoupObject(){
 
 } //	function soup_initialiseSoupObject()
 
+
+/*
+ * The following function return data from/call functions in the $soup object for use
+ * from theme files, removes the need to have <?php global $soup; ?> at the start
+ * of every theme file. 
+ * 
+ * Not all functions in the soup object are listed below as most are filters/actions
+ * not used within the theme's other .php files
+ */
+
+if ( !function_exists('bigRed_option') ) :
+function bigRed_option($optionName = null, $default = true) {
+	global $soup;
+	
+	if ( ($optionName != null) && (isset($soup->options[$optionName])) ) {
+		$return = $soup->options[$optionName];
+	}
+	else {
+		$return = $default;
+	}
+	
+	return $return;
+}
+endif; //if ( !function_exists('bigRed_option') ) :
+
+
+
+
+
+
 /* 
 	need to reverse the order the function.php files usually run in
 	parent's function.php needs to run before child's
