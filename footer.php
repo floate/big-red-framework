@@ -12,12 +12,12 @@
 						'menu_id' => 'footNav',
 						'depth' => 1,
 						'show_home' => 1,
-						'fallback_cb' => array(&$soup,'listPages')
+						'fallback_cb' => 'bigRed_listPages'
 						
 					));
 			}
 			else {
-				$soup->listPages();
+				bigRed_listPages();
 			}
 			
 		?>

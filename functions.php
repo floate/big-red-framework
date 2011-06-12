@@ -1895,6 +1895,11 @@ function bigRed_pingTemplate($comment, $args, $depth) {
 	return $soup->pingTemplate($comment, $args, $depth);
 }
 
+function bigRed_listPages($args) {
+	global $soup;
+	return $soup->listPages($args);
+}
+
 
 /* 
 	need to reverse the order the function.php files usually run in
