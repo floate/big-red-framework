@@ -16,7 +16,7 @@ get_header();
 				<?php elseif ( is_year() ) : ?>
 					Annual Archives: <span><?php the_time('Y'); ?></span>
 				<?php elseif ( is_tag() ) : ?>
-					Tag Archives: <span><?php echo $soup->tagArchiveTitle(); ?></span>
+					Tag Archives: <span><?php bigRed_multiTagTitle(); ?></span>
 				<?php elseif ( isset($_GET['paged']) && !empty($_GET['paged']) ) : ?>
 					Blog Archives
 				<?php endif; ?>				

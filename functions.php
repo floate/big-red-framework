@@ -1936,6 +1936,17 @@ function bigRed_uniqueInputID($echo = false){
 	return $uniqueID;
 }
 
+function bigRed_multiTagTitle($echo = true){
+	global $soup;
+	
+	$multiTagTitle = $soup->tagArchiveTitle();
+	
+	if ($echo == true) {
+		echo $multiTagTitle;
+	}
+	return $multiTagTitle;
+}
+
 /* 
 	need to reverse the order the function.php files usually run in
 	parent's function.php needs to run before child's
