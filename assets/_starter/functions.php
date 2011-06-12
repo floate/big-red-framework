@@ -13,33 +13,8 @@ function soup_setupChildThemeClass() {
 
 		function child__construct() {
 			/* intended to be overridden in child theme */
-		}
+		}	
 		
-		function defineMinimised() {
-			/* intended to be overridden in child theme */
-			$this->parent['cssMin'] = false;
-			$this->child ['cssMin'] = false;
-
-			$this->parent['jsMin'] = false;
-			$this->child ['jsMin'] = false;
-		}
-		
-		function defineChildVersions() {
-			/* intended to be overridden in child theme */
-			$child = &$this->child;
-			$child['cssVer'] = '20110222';
-			$child['jsVer']  = '20110222';
-			
-			$child['jsDependencies'] = array(
-				'jquery'
-				,'soup-base'
-				// ,'prettyPhoto'
-				// ,'hashchange'
-				,'form-validation'
-				// ,'modernizr'
-				);
-		}
-
 		function defineOptions() {
 			/* intended to be overridden in child theme */
 			$options = &$this->options;
@@ -58,9 +33,9 @@ function soup_setupChildThemeClass() {
 			$options['wp_shortlink_wp_head'] = true; //show shortlink tag. (default: true)
 						
 			//general options
-			$options['admin_bar'] = true; //show admin_bar. (default: false)
+			$options['admin_bar'] = true; //show admin_bar. (default: true)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
-			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: true)
+			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: false)
 			
 			
 			/* theme options*/
@@ -100,6 +75,31 @@ function soup_setupChildThemeClass() {
 			$options['editor-classes'] = false; //classes in editor style dropdown (default: false/array)
 			$options['editor-fake-heading-levels'] = true; //fake editor header level to keep html accessible (default:true)
 
+		}
+
+		function defineMinimised() {
+			/* intended to be overridden in child theme */
+			$this->parent['cssMin'] = false;
+			$this->child ['cssMin'] = false;
+
+			$this->parent['jsMin'] = false;
+			$this->child ['jsMin'] = false;
+		}
+		
+		function defineChildVersions() {
+			/* intended to be overridden in child theme */
+			$child = &$this->child;
+			$child['cssVer'] = '20110606.01';
+			$child['jsVer']  = '20110606.01';
+			
+			$child['jsDependencies'] = array(
+				'jquery'
+				,'soup-base'
+				// ,'prettyPhoto'
+				// ,'hashchange'
+				,'form-validation'
+				// ,'modernizr'
+				);
 		}
 
 		function setImageSizes() {
@@ -172,7 +172,7 @@ function soup_setupChildThemeClass() {
 				wp_enqueue_script('custom');
 			}
 		}
-		
+			
 	}
 
 } // function soup_setupChildThemeClass() 
