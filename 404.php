@@ -16,13 +16,15 @@ get_header();
 
 			<p>Apologies, but we were unable to find what you were looking for. Perhaps  searching will help.</p>
 			
-			<form method="get" action="<?php echo home_url(); ?>" class="search-form search-404">
-				
-				<div class="inputPair">
-					<label for="s-404notfound" class="search-label">Search this Site</label>
-					<input type="text" name="s" id="s-404notfound" class="search-input" />
+			<form method="get" action="<?php echo home_url(); ?>" class="search-form">
+
+				<div class="inputPair inputSet set-text">
+					<label for="s-404notfound" class="search-label">
+						Search this Site
+					</label>
+					<input type="text" name="s" id="s-404notfound" class="text required" aria-required="true" />
 				</div>
-				<div class="inputPair">
+				<div class="submit">
 					<input type="submit" value="Search" class="search-submit" />
 				</div>
 			</form>
