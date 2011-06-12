@@ -1925,6 +1925,17 @@ function bigRed_siteTag($echo = true) {
 	return $siteTag;
 }
 
+function bigRed_uniqueInputID($echo = false){
+	global $soup;
+	
+	$uniqueID = $soup->searchFormID();
+	
+	if ($echo == true) {
+		echo $uniqueID;
+	}
+	return $uniqueID;
+}
+
 /* 
 	need to reverse the order the function.php files usually run in
 	parent's function.php needs to run before child's
