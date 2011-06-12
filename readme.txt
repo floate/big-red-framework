@@ -5,11 +5,60 @@ The theme is filter and action heavy to allow use of the standard WordPress func
 
 ========= ACCESSING FUNCTIONS =========
 
-To make over riding functions in the child themes slightly easier, functions in this theme are placed in classes which can be accessed through the object $soup. All PHP files except functions.php used by the theme & child themes must start with the line:
+To make over riding functions in the child themes slightly easier, functions in this theme are placed in classes which can be accessed through the object $soup. 
 
-<?php global $soup; ?>
+A majority of the functions in the $soup objects are called as filters or actions, as such they have no global counterpart. In part this is to lower the risk of function name clashes. Functions with a global counterpart are defined towards the bottom of the parent's functions.php in the name space bigRed_*
 
-========= FUNCTIONS =========
+The functions with a global counterpart are all pluggable to be easily overridden in the child theme's functions.php
+
+========= THE FUTURE =========
+
+One of the aims of the Big Red Framework is consistent html into the future. The aim is to keep bespoke client theme's consistent even as WordPress adds new features to the core. Whenever possible, new features affecting the html will be disabled by default in upgrades to the Big Red Framework. For example, had this framework been released prior to WordPress 3.1 the admin bar would be disabled by default.
+
+NEW FEATURES ARE A GOOD THING!
+The intention is to avoid breaking client sites, not to cripple WordPress. As a result, while a new feature will be turned off in the parent's themes functions.php, it may be enabled in the _starter/functions.php. 
+
+
+========= NON STANDARD THEME FUNCTIONS AND FILES =========
+
+The framework contains several non-standard features and files. These include functionality to enable consistent form output from a number of plugins. The form plugins filtered in this manner are for Grunion Contact Form and Formidable/Formidable Pro (I don't own Gravity forms so have been unable to filter this for consistency). 
+
+I frequently use the plugin Theme My Login for bespoke client sites. Template files for theme my login are included in addition to the standard WordPress template files. Theme My Login's files are:
+	* login-form.php
+	* register-form.php
+	* resetpass-form.php
+	* lostpassword-form.php
+	* profile-form.php
+	* user-panel.php
+
+
+========= GLOBAL FUNCTIONS =========
+
+# bigRed_option()
+Returns an option defined in the array $soup->options[]. These options are all set in $soup->defineOptions [see below], the function operates in a similar manner to the native WordPress function get_option()
+
+# bigRed_commentsTemplate()
+Callback used for the comments template, it passes the arguments to $soup->commentTemplate()
+
+# bigRed_pingTemplate()
+Callback used for the pings/trackbacks template, it passes the arguments to $soup->pingTemplate()
+
+# bigRed_listPages()
+Fallback function for displaying menus, it passes the arguments to $soup->listPages()
+
+# bigRed_fileData()
+Retrieves file and path data stored in the arrays $soup->child[] and $soup->parent, this includes path data, file editions and minimisation settings. To get the child themes image path, the call is bigRed_fileData('img'), to get the equivalent path for the parent theme is bigRed_fileData('img', 'parent').
+
+# bigRed_siteTag()
+Returns/echos the tag used for the site name, either a h1 (home page) or p (sub pages)
+
+# bigRed_uniqueInputID()
+Returns or echos the unique id needed for multiple search form instances on a single page. Passes calls to $soup->searchFormID()
+
+# bigRed_multiTagTitle()
+Returns or echos a title for tag pages displaying multiple tags using either the + or , operator in the URL. Passes calls to $soup->tagArchiveTitle()
+	
+========= $soup... FUNCTIONS =========
 
 
 # $soup->parent__construct()

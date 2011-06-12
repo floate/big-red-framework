@@ -126,9 +126,9 @@ function soup_setupParentThemeClass(){
 			$options['wp_shortlink_wp_head'] = true; //show shortlink tag. (default: true)
 						
 			//general options
-			$options['admin_bar'] = true; //show admin_bar. (default: false)
+			$options['admin_bar'] = true; //show admin_bar. (default: true)
 			$options['custom_admin_bar_css'] = false; //use custom css for the admin bar. (default: false)
-			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: true)
+			$options['remove_capital_P_dangit'] = false; //remove capital_P_dangit filters (default: false)
 			
 			
 			/* theme options*/
