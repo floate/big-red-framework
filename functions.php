@@ -83,31 +83,6 @@ function soup_setupParentThemeClass(){
 			/* intended to be overridden in child theme */
 		}
 		
-		function defineMinimised() {
-			/* intended to be overridden in child theme */
-			$this->parent['cssMin'] = false;
-			$this->child ['cssMin'] = false;
-
-			$this->parent['jsMin'] = false;
-			$this->child ['jsMin'] = false;
-		}
-		
-		function defineChildVersions() {
-			/* intended to be overridden in child theme */
-			$child = &$this->child;
-			$child['cssVer'] = '20110606.01';
-			$child['jsVer']  = '20110606.01';
-			
-			$child['jsDependencies'] = array(
-				'jquery'
-				,'soup-base'
-				// ,'prettyPhoto'
-				// ,'hashchange'
-				,'form-validation'
-				// ,'modernizr'
-				);
-		}
-
 		function defineOptions() {
 			/* intended to be overridden in child theme */
 			$options = &$this->options;
@@ -168,6 +143,31 @@ function soup_setupParentThemeClass(){
 			$options['editor-classes'] = false; //classes in editor style dropdown (default: false/array)
 			$options['editor-fake-heading-levels'] = true; //fake editor header level to keep html accessible (default:true)
 
+		}
+
+		function defineMinimised() {
+			/* intended to be overridden in child theme */
+			$this->parent['cssMin'] = false;
+			$this->child ['cssMin'] = false;
+
+			$this->parent['jsMin'] = false;
+			$this->child ['jsMin'] = false;
+		}
+		
+		function defineChildVersions() {
+			/* intended to be overridden in child theme */
+			$child = &$this->child;
+			$child['cssVer'] = '20110606.01';
+			$child['jsVer']  = '20110606.01';
+			
+			$child['jsDependencies'] = array(
+				'jquery'
+				,'soup-base'
+				// ,'prettyPhoto'
+				// ,'hashchange'
+				,'form-validation'
+				// ,'modernizr'
+				);
 		}
 
 		function setImageSizes() {
