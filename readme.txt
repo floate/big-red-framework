@@ -1,5 +1,8 @@
 The Big Red Framework is intended for web developers creating bespoke themes for their clients. It contains a ton of options for the developer to configure, without a messy options screen cluttering up the WordPress admin. This theme is intended for use with child themes.
 
+The theme is filter and action heavy to allow use of the standard WordPress function names while custom data is output/returned. 
+
+
 ========= ACCESSING FUNCTIONS =========
 
 To make over riding functions in the child themes slightly easier, functions in this theme are placed in classes which can be accessed through the object $soup. All PHP files except functions.php used by the theme & child themes must start with the line:

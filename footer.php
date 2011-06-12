@@ -1,6 +1,6 @@
 <?php global $soup; ?>
 <div id="footer" class="footer">
-	<?php if ($soup->options['footer-menu']): ?>
+	<?php if (bigRed_option('footer-menu', true)): ?>
 		<?php
 			if (function_exists('wp_nav_menu')) {
 				wp_nav_menu(array(
@@ -21,7 +21,7 @@
 			}
 			
 		?>
-	<?php endif; /* $soup->options['footer-menu']): */ ?>
+	<?php endif; /* bigRed_option('footer-menu', true) */ ?>
 	
 	<div id="footWidgets" role="complementary"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer') ) {

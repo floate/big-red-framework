@@ -79,8 +79,8 @@ while ( have_posts() ) : the_post(); ?>
 				}
 				
 				
-				$attachment_width = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_width']);
-				$attachment_height = apply_filters('soup_attachment_width', $soup->options['attachment_page_img_height']);
+				$attachment_width = apply_filters('soup_attachment_width', bigRed_option('attachment_page_img_width',600));
+				$attachment_height = apply_filters('soup_attachment_width', bigRed_option('attachment_page_img_width',600));
 				
 				if ( ($metadata['width'] > $attachment_width) OR ($metadata['height'] > $attachment_height) ) {
 					$zoom_attachment_link = '<a href="' . wp_get_attachment_url() . '" title="';
