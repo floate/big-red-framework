@@ -323,7 +323,7 @@ button {
 a.button, 
 input.button,
 .form-submit input,
-p.submit input,
+.submit input,
 .set-submit input,
 button {
 	color: #333;
