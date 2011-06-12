@@ -1,5 +1,4 @@
 <?php 
-global $soup;
 while ( have_posts() ) : the_post(); ?>
 <div id="contentHeadA" <?php post_class('article'); ?> role="main">
 	<div id="contentHead" class="header">

@@ -1,4 +1,3 @@
-<?php global $soup; ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]> <html class="ie ie6 lte9 lte8 lte7 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
 <!--[if (IE 7)&!(IEMobile)]> <html class="ie ie7 lte9 lte8 lte7 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 

@@ -1,5 +1,4 @@
 <?php
-global $soup;
 get_header();
 ?>
 

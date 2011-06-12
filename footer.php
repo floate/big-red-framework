@@ -1,4 +1,3 @@
-<?php global $soup; ?>
 <div id="footer" class="footer">
 	<?php if (bigRed_option('footer-menu', true)): ?>
 		<?php

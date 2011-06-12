@@ -1,7 +1,6 @@
 <?php
 //make sure id isn't specified twice on the same page
 //no need to seed since php 4.2.0
-global $soup;
 $bigRed_safeIds = bigRed_uniqueInputID();
 //  required="required" // doesn't work with jQuery.Validate
 ?>
