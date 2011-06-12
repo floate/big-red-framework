@@ -173,3 +173,40 @@ Filter run agains the post_class function. It adds numerous custom post tags, in
 	* author-<author-slug> for the post's author
 	* tag slug for each tag assigned to a post
 
+#function $soup->searchFormID()
+Appended to the search form input field (and associated label for=) to keep IDs unique when multiple search forms/widgets are included on one page.
+
+#function $soup->belatedpng()
+Outputs belated png script in the footer wrapped by IE=6 conditional tags.
+
+#function $soup->inlineFooterJs()
+Outputs any inline JavaScript into the footer of the page, inline JavaScript is used for slideshows and other JavaScript requiring information stored in the Database on a per post basis.
+
+#function $soup->jsString()
+Takes a PHP string and converts it to a string for output in JavaScript
+
+#function $soup->commentTemplate()
+-In many instances, this function will be overwritten by the child theme.
+Callback function used by wp_list_comments(array('type'=>'comment')) to format comment output
+
+#function $soup->pingTemplate()
+-In many instances, this function will be overwritten by the child theme.
+Callback function used by wp_list_comments(array('type'=>'pings')) to format ping/trackback output
+
+#function $soup->pageCommentsDisabled()
+If options are set to disable comments on all pages, this function filters comments_open to always return false if a page is been displayed.
+
+#function $soup->betterFormShortcodes()
+If the plugin Grunion Contact Form is active, this replaces the shortcodes used by the plugin to standardise the form output for styling by the theme.
+
+#function $soup->contact_form_shortcode()
+Output for [contact-form] shortcode used by Grunion Contact Form plugin
+
+#function $soup->contact_form_field()
+Output for [contact-field] shortcode used by Grunion Contact Form plugin
+
+#function $soup->contact_form_render_field()
+Renders fields for [contact-field] shortcode used by Grunion Contact Form plugin
+
+#function $soup->formidableHtml()
+Filter used on formidable plugin to standardise form output for styling by the theme
