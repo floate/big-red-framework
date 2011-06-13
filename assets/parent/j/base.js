@@ -165,7 +165,7 @@ SOUPGIANT.base = function() {
 		return className; //in case it's needed for later manipulation
 	}
 	
-	function createStyleRule(selector, declaration, media){
+	function createStyleRule(selector, rule, media){
 		/* ****
 		DESCRIPTION
 			Adds <style> to header of document, allowing media type targeting
@@ -175,7 +175,7 @@ SOUPGIANT.base = function() {
 				css selector
 				default: NULL/nil
 				
-			* declaration
+			* rule
 				css properties
 				default: NULL/nill
 				
@@ -188,39 +188,40 @@ SOUPGIANT.base = function() {
 
 		DEPENDENCIES: NULL/nil
 		
-		CREDIT
-		dynamicCSS.js v1.0 <http://www.bobbyvandersluis.com/articles/dynamicCSS.php> */
-		/*! Copyright 2005 Bobby van der Sluis */
-		/*! This software is licensed under the CC-GNU LGPL <http://creativecommons.org/licenses/LGPL/2.1/> *//*
+		CREDIT: http://rule52.com/2008/06/css-rule-page-load/
 		
 		changes
 		- added media to passed variables
 		
 		**** */
+		
+		// create a stylesheet
+		var headElement = DOC.getElementsByTagName("head")[0],
+			styleElement = DOC.createElement("style");
+			
+		styleElement.type = "text/css";
+		headElement.appendChild(styleElement);
+		
+		if (selector == NUL || rule == NUL) {
+			return;
+		}
+			
 		if (media == NUL) {
 			media = 'screen, projection, handheld';
 		}
-		if (!DOC.getElementsByTagName ||
-		  !(DOC.createElement || DOC.createElementNS)) 
-			{return;}
-		var head = DOC.getElementsByTagName("head")[0],
-			style = (typeof DOC.createElementNS != "undefined") ?
-		  DOC.createElementNS("http://www.w3.org/1999/xhtml", "style") :
-		  DOC.createElement("style");
-		if (typeof style.appendChild == 'function') {
-			var styleRule = DOC.createTextNode(selector + " {" + declaration + "}");
-				style.appendChild(styleRule); // bugs in IE/Win
-		}
-			style.setAttribute("type", "text/css");
-		style.setAttribute("media", media); 
-		head.appendChild(style);
-		if (typeof style.appendChild != 'function' &&  DOC.styleSheets &&  DOC.styleSheets.length > 0) {
-			var lastStyle = DOC.styleSheets[DOC.styleSheets.length - 1];
-			if (typeof lastStyle.addRule == "object") {
-				lastStyle.addRule(selector, declaration);
-			}
-		}
 		
+		styleElement.media = media;
+
+		if (styleElement.styleSheet) {
+			if (styleElement.styleSheet.cssText == '') {
+				styleElement.styleSheet.cssText = '';
+			}
+			styleElement.styleSheet.cssText += selector + " { " + rule + " }";
+		} 
+		else {
+			styleElement.appendChild(DOC.createTextNode(selector + " { " + rule + " }"));
+		}
+
 	}
 
 	function setCookie(name, value, expire, path, domain, secure) {
