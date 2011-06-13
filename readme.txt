@@ -39,6 +39,8 @@ I frequently use the plugin Theme My Login for bespoke client sites. Template fi
 3. Copy the framework’s assets/child/ directory into the assets directory of your child theme
 4. Update the theme information in your child themes style.css file
 
+You can override files in the framework by copying the file into your child theme and editing it there. It is recommended you start by copying header.php and footer.php into your child theme to allow you to customise the logo/footer credits as required.
+
 ========= SETTING YOUR THEME’S OPTIONS =========
 
 All of your theme’s options are set within the child theme’s functions.php. At the start of the project, you should ask your client what they want from their website and set the options as appropriate. 
@@ -162,6 +164,7 @@ To reduce the download time, I suggest you run your CSS and JavaScript through Y
 # $soup->defineChildVersions()
 -- intended to be overridden in the child theme
 For setting the version numbers of CSS and JavaScript files in the child theme. If you cache your static files for a long time (as recommended), you should update these numbers each time you publish changes to the files. I use the format YYYYMMDD.## for versioning.
+Also used for defining the javascript dependancies for the child's theme custom.js file in /assets/child/j/
 
 
 # $soup->defineOptions()

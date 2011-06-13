@@ -203,23 +203,18 @@ SOUPGIANT.base = function() {
 		if (!DOC.getElementsByTagName ||
 		  !(DOC.createElement || DOC.createElementNS)) 
 			{return;}
-		var agt = navigator.userAgent.toLowerCase(),
-			is_ie = ((agt.indexOf("msie") != -1) &&  (agt.indexOf("opera") == -1)),
-			is_iewin = (is_ie &&  (agt.indexOf("win") != -1)),
-			is_iemac = (is_ie &&  (agt.indexOf("mac") != -1));
-		if (is_iemac) return; // script doesn't work properly in IE/Mac
 		var head = DOC.getElementsByTagName("head")[0],
 			style = (typeof DOC.createElementNS != "undefined") ?
 		  DOC.createElementNS("http://www.w3.org/1999/xhtml", "style") :
 		  DOC.createElement("style");
-		if (!is_iewin) {
+		if (typeof style.appendChild == 'function') {
 			var styleRule = DOC.createTextNode(selector + " {" + declaration + "}");
 				style.appendChild(styleRule); // bugs in IE/Win
 		}
 			style.setAttribute("type", "text/css");
 		style.setAttribute("media", media); 
 		head.appendChild(style);
-		if (is_iewin &&  DOC.styleSheets &&  DOC.styleSheets.length > 0) {
+		if (typeof style.appendChild != 'function' &&  DOC.styleSheets &&  DOC.styleSheets.length > 0) {
 			var lastStyle = DOC.styleSheets[DOC.styleSheets.length - 1];
 			if (typeof lastStyle.addRule == "object") {
 				lastStyle.addRule(selector, declaration);
