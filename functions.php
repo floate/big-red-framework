@@ -266,7 +266,7 @@ function soup_setupParentThemeClass(){
 		function defineParentVersions() {
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110419';
-			$parent['jsVer']  = '20110613.03';
+			$parent['jsVer']  = '20110614.03';
 		}
 				
 		function setupOptions() {
@@ -562,13 +562,24 @@ function soup_setupParentThemeClass(){
 			}
 			
 			/* all media type */
+			if (!function_exists('mfbfw_defaults')) :
+				//defer to plugin
+				wp_register_style(
+					'fancybox',
+					$parent['css'] . "/jq.fancybox$pce.css",
+					null,
+					'1.3.4'				
+					);
+			endif; //if (function_exists('mfbfw_defaults')) :
+				
 			wp_register_style(
 				'prettyPhoto',
-				$parent['js'] . "/prettyPhoto_compressed_3.1.2/css/prettyPhoto.css",
-				null,
+				"dummy.css", // this is for backward compatibility with prettyPhoto
+				array('fancybox'),
 				'3.1.2'
 				);
-				
+			$wp_styles->registered['prettyPhoto']->src = '';
+			
 				
 				
 			/* combined media types */
@@ -770,13 +781,30 @@ function soup_setupParentThemeClass(){
 				true
 			);
 		
+		
+			if (!function_exists('mfbfw_defaults')) :
+				//defer to plugin
+				wp_register_script(
+					'fancybox',
+					$parent['js'] . "/jq.fancybox$pce.js",
+					array('jquery'),
+					'1.3.4',
+					true				
+					);
+			endif; //if (function_exists('mfbfw_defaults')) :		
+		
+		
 			wp_register_script(
 				'prettyPhoto',
-				$parent['js'] . "/prettyPhoto_compressed_3.1.2/js/jquery.prettyPhoto.js",
-				array('jquery'),
+				"dummy.js", //for backward compatibility
+				array('fancybox'),
 				'3.1.2',
 				true
 			);
+			$wp_scripts->registered['prettyPhoto']->src = '';
+			wp_enqueue_script('prettyPhoto');
+			
+			
 	
 			wp_register_script(
 				'hashchange',

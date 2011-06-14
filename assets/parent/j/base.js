@@ -173,43 +173,49 @@ SOUPGIANT.base = function() {
 			* selector
 				css selector
 				default: NULL/nil
-				
+
 			* rule
 				css properties
 				default: NULL/nill
-				
+
 			* media
 				css media to target
 				default: 'screen, projection, handheld'
-				
-				
+
+
 		RETURN: NULL/nil
 
 		DEPENDENCIES: NULL/nil
-		
+
 		CREDIT: http://rule52.com/2008/06/css-rule-page-load/
-		
+
 		changes
 		- added media to passed variables
-		
+
 		**** */
-		
+
 		// create a stylesheet
-		var headElement = DOC.getElementsByTagName("head")[0],
-			styleElement = DOC.createElement("style");
-			
-		styleElement.type = "text/css";
-		headElement.appendChild(styleElement);
-		
-		if (selector == NUL || rule == NUL) {
-			return;
-		}
-			
+
 		if (media == NUL) {
 			media = 'screen, projection, handheld';
 		}
+
+		var id = 'jsgen-css-' + media.replace(/[^a-zA-Z0-9]+/g,''),
+			headElement = DOC.getElementsByTagName("head")[0],
+			styleElement = DOC.getElementById(id);
 		
-		styleElement.media = media;
+		if (styleElement == NUL) {
+			styleElement = DOC.createElement("style");
+			styleElement.id = id;
+			styleElement.type = "text/css";
+			styleElement.media = media;
+			headElement.appendChild(styleElement);
+		}
+
+
+		if (selector == NUL || rule == NUL) {
+			return;
+		}
 
 		if (styleElement.styleSheet) {
 			if (styleElement.styleSheet.cssText == '') {
@@ -619,7 +625,8 @@ SOUPGIANT.base = function() {
 	function rtrim(str, chars) {
 		chars = chars || "\\s";
 		return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
-	}		
+	}	
+		
 	return {
 		setCookie: setCookie,
 		getCookie: getCookie,
@@ -638,7 +645,55 @@ SOUPGIANT.base = function() {
 	};
 }();
 
+(function($){
+	$.fn.prettyPhoto = function(options){
+		var defaults = {
+			cyclic: true,
+			overlayOpacity: 0.8,
+			overlayColor: '#000',
+			titlePosition: 'inside',
+			transitionIn: 'elastic',
+			transitionOut: 'elastic'
+			},
+			$this = this,
+			galleries = {};
+			
 
+		if ( typeof options == 'object') { 
+			options = $.extend( defaults, options );
+		} else {
+			options = defaults;
+		}
+
+		if ($this.selector.indexOf('a[rel^=\'prettyPhoto\']') != -1) {
+			//pretty photo uses rel="prettyPhoto[galName]" to set up different galleries,
+			//emulate this
+			
+			$this.each(function(){
+				var $rel = $(this),
+					normalisedRelTag;
+				if ($rel.attr('rel').indexOf('[') != -1) {
+					normalisedRelTag = $this.attr('rel').replace(/(\[|\])+/g,'__');
+					$rel.attr('rel', normalisedRelTag);
+				
+					galleries[normalisedRelTag] = normalisedRelTag;
+					$rel.addClass(normalisedRelTag);
+					$this = $this.not($rel);
+				}
+			});
+			
+			for (subSelector in galleries) {
+				if (galleries.hasOwnProperty(subSelector)) {
+					$('a.' + subSelector).fancybox(options);
+				}
+			}
+			
+		}
+	
+		$this.fancybox(options);
+		return this;				
+	}
+})(jQuery);
 
 // Default login form, to override just redefine the variable in custom.js
 // Any changes should be reflected in functions.php output of the login form
