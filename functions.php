@@ -266,7 +266,7 @@ function soup_setupParentThemeClass(){
 		function defineParentVersions() {
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110419';
-			$parent['jsVer']  = '20110614.03';
+			$parent['jsVer']  = '20110615.01';
 		}
 				
 		function setupOptions() {
@@ -759,7 +759,8 @@ function soup_setupParentThemeClass(){
 				'loginsubmit' => site_url( 'wp-login.php', 'login' ),
 				'currentURL' => site_url( $_SERVER['REQUEST_URI'] ),
 				// 'childAssets' => $child['assets'],
-				'childCSS' => get_stylesheet_uri()
+				'childCSS' => get_stylesheet_uri(),
+				'parentCSS' => get_template_directory_uri() . '/style.css'
 			));
 			
 			/* jQuery plugins */

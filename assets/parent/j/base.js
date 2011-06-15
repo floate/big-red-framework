@@ -28,6 +28,7 @@ SOUPGIANT.base = function() {
 		$html.removeClass('no-js').addClass('js');
 		//need to trick CDN plugins into replacing assets directory w/ cdn version
 		URLS.childAssets = URLS.childCSS.substring(0,URLS.childCSS.length - 10) + '/assets/child';
+		URLS.parentAssets = URLS.parentCSS.substring(0,URLS.parentCSS.length - 10) + '/assets/parent';
 	// });
 	
 	$WIN.ready(function(){
