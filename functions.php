@@ -568,7 +568,7 @@ function soup_setupParentThemeClass(){
 					'fancybox',
 					$parent['css'] . "/jq.fancybox$pce.css",
 					null,
-					'1.3.4a'				
+					'1.3.4'				
 					);
 			endif; //if (function_exists('mfbfw_defaults')) :
 				
@@ -778,7 +778,7 @@ function soup_setupParentThemeClass(){
 					'fancybox',
 					$parent['js'] . "/jq.fancybox$pce.js",
 					array('jquery'),
-					'1.3.4',
+					'1.3.4a',
 					true				
 					);
 			endif; //if (function_exists('mfbfw_defaults')) :		
