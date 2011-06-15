@@ -796,7 +796,7 @@ function soup_setupParentThemeClass(){
 				'modernizr',
 				$this->parent['js'] . "/modernizr$pje.js",
 				null,
-				'1.6',
+				'2.0.4',
 				false
 			);
 
@@ -927,7 +927,7 @@ function soup_setupParentThemeClass(){
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
 				$result .= $parent['js'];
-				$result .= "/selectivizr$pjs.js\"></script>";
+				$result .= "/selectivizr$pjs.js?ver=1.0.2\"></script>";
 				$result .= '<![endif]-->' . "\n";
 			endif; // ($options['js-html5-shiv'] !== false) :
 			echo $result;
