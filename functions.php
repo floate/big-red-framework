@@ -568,7 +568,7 @@ function soup_setupParentThemeClass(){
 					'fancybox',
 					$parent['css'] . "/jq.fancybox$pce.css",
 					null,
-					'1.3.4'				
+					'1.3.4a'				
 					);
 			endif; //if (function_exists('mfbfw_defaults')) :
 				

@@ -1099,7 +1099,7 @@
 		margin : 40,
 		opacity : false,
 		modal : false,
-		cyclic : false,
+		cyclic : true,
 		scrolling : 'auto',	// 'auto', 'yes' or 'no'
 
 		width : 560,
@@ -1116,16 +1116,16 @@
 		hideOnContentClick : false,
 
 		overlayShow : true,
-		overlayOpacity : 0.7,
-		overlayColor : '#777',
+		overlayOpacity : 0.8,
+		overlayColor : '#000',
 
 		titleShow : true,
-		titlePosition : 'float', // 'float', 'outside', 'inside' or 'over'
+		titlePosition : 'inside', // 'float', 'outside', 'inside' or 'over'
 		titleFormat : null,
 		titleFromAlt : false,
 
-		transitionIn : 'fade', // 'elastic', 'fade' or 'none'
-		transitionOut : 'fade', // 'elastic', 'fade' or 'none'
+		transitionIn : 'elastic', // 'elastic', 'fade' or 'none'
+		transitionOut : 'elastic', // 'elastic', 'fade' or 'none'
 
 		speedIn : 300,
 		speedOut : 300,
