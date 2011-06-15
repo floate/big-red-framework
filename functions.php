@@ -163,7 +163,7 @@ function soup_setupParentThemeClass(){
 			$child['jsDependencies'] = array(
 				'jquery'
 				,'soup-base'
-				// ,'prettyPhoto'
+				// ,'fancybox'
 				// ,'hashchange'
 				,'form-validation'
 				// ,'modernizr'
@@ -572,16 +572,6 @@ function soup_setupParentThemeClass(){
 					);
 			endif; //if (function_exists('mfbfw_defaults')) :
 				
-			wp_register_style(
-				'prettyPhoto',
-				"dummy.css", // this is for backward compatibility with prettyPhoto
-				array('fancybox'),
-				'3.1.2'
-				);
-			$wp_styles->registered['prettyPhoto']->src = '';
-			
-				
-				
 			/* combined media types */
 			wp_register_style(
 				'soup-all-media',
@@ -795,18 +785,6 @@ function soup_setupParentThemeClass(){
 		
 		
 			wp_register_script(
-				'prettyPhoto',
-				"dummy.js", //for backward compatibility
-				array('fancybox'),
-				'3.1.2',
-				true
-			);
-			$wp_scripts->registered['prettyPhoto']->src = '';
-			wp_enqueue_script('prettyPhoto');
-			
-			
-	
-			wp_register_script(
 				'hashchange',
 				$this->parent['js'] . "/jq.ba-hashchange$pje.js",
 				array('jquery'),
@@ -819,7 +797,7 @@ function soup_setupParentThemeClass(){
 				$this->parent['js'] . "/modernizr$pje.js",
 				null,
 				'1.6',
-				true
+				false
 			);
 
 			wp_register_script(
@@ -834,6 +812,7 @@ function soup_setupParentThemeClass(){
 
 		function enqueueJS() {
 			/* this just cleans up JS enqueing and applies any applicable combo packs */
+			global $wp_scripts;
 			
 			
 			if (wp_script_is('custom') == true) {
@@ -843,8 +822,24 @@ function soup_setupParentThemeClass(){
 			}
 			
 		
-			if (wp_script_is('prettyPhoto') == true) {
-				wp_enqueue_style('prettyPhoto');
+			if (wp_script_is('fancybox') == true) {
+				wp_enqueue_style('fancybox');
+			}
+			
+			if ( (wp_script_is('fancybox') == true) AND (wp_script_is('hashchange') == true) ) {
+				//use single combo file
+				$pje = '';
+				if ($this->parent['jsMin']) {
+					$pje = '-min';
+				}
+				
+				$comboVer .= $wp_scripts->registered['fancybox']->ver;
+				$comboVer .= '-';
+				$comboVer .= $wp_scripts->registered['hashchange']->ver;
+				
+				$wp_scripts->registered['fancybox']->src = $this->parent['js'] . "/jq.fancybox.hashchange$pje.js";
+				$wp_scripts->registered['fancybox']->ver = $comboVer;
+				$wp_scripts->registered['hashchange']->src = '';
 			}
 			
 			/* threaded comments */
@@ -872,23 +867,32 @@ function soup_setupParentThemeClass(){
 
 
 		function meta_tags(){
-			
+			$options = &$this->options;
 			$result = "";
 			
-			if ($options['favicon'] !== false) { 
-				$result .= '<link rel="shortcut icon" type="image/x-icon" href="';
-				$result .= $this->child['img'];
-				$result .= '/favicon.ico" />' . "\n";
-				$result .= '<link rel="icon" type="image/x-icon" href="';
-				$result .= $this->child['img'];
-				$result .= '/favicon.ico" />' . "\n";		
-			}
+			if (!is_admin()):
+				//double up IE header w/ meta tag to cover caching
+				if ($options['X-UA-Compatible'] !== false) {
+					$result .= '<meta http-equiv="X-UA-Compatible" content="';
+					$result .= $options['X-UA-Compatible'];
+					$result .= '" />' . "\n";
+				}
 			
-			if ($options['favicon-apple'] !== false) {
-				$result .= '<link rel="apple-touch-icon" href="';
-				$result .= $this->child['img'];
-				$result .= '/apple-touch-icon.png" />' . "\n";
-			}
+				if ($options['favicon'] !== false) { 
+					$result .= '<link rel="shortcut icon" type="image/x-icon" href="';
+					$result .= $this->child['img'];
+					$result .= '/favicon.ico" />' . "\n";
+					$result .= '<link rel="icon" type="image/x-icon" href="';
+					$result .= $this->child['img'];
+					$result .= '/favicon.ico" />' . "\n";		
+				}
+			
+				if ($options['favicon-apple'] !== false) {
+					$result .= '<link rel="apple-touch-icon" href="';
+					$result .= $this->child['img'];
+					$result .= '/apple-touch-icon.png" />' . "\n";
+				}
+			endif; //if (!is_admin()):			
 					
 			echo $result;
 			return;		
@@ -898,7 +902,9 @@ function soup_setupParentThemeClass(){
 			$options = &$this->options;
 			$parent  = &$this->parent;
 			
-			if ($options['js-html5-shiv'] !== false) :
+			
+			//not needed if modenizr included
+			if ( ($options['js-html5-shiv'] !== false) AND (!in_array('modernizr',  $this->child['jsDependencies'])) ):
 				$result = "";
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
