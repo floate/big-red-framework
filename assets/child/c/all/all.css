@@ -274,7 +274,10 @@ label, legend {
 	font-weight: bold;
 }
 
-fieldset.set label{
+fieldset.set label,
+#tmloginform .forgetmenot label,
+form.grunion .set-check label
+{
 	display: inline;
 	font-weight: normal;
 }
