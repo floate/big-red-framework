@@ -1787,8 +1787,12 @@ function soup_setupParentThemeClass(){
 						-email
 					*/
 					
+					if ($field['type'] == 'checkbox') {
+						$setType = ' set-check';
+					}
+					
 					$r .= "\n";
-					$r .= '<div class="set">' . "\n";
+					$r .= "<div class=\"set{$setType}\">\n";
 					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
 					$r .= htmlspecialchars( $field['label'] );
 					if ($field['required']) {
