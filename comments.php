@@ -80,7 +80,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 		$aria_req = ( $req ? " aria-required='true'" : '' );
 		
 		$commentFields = array(
-			'author' => "<div class='inputPair inputSet set-text comment-form-author'>\n" .
+			'author' => "<div class='set comment-form-author'>\n" .
 						"<label for='comment-form-author'> " . __('Name') . 
 						( $req ? " <span class='required'>*</span>" : "" ) . " </label>\n" .
 						"<input type='text' id='comment-form-author' name='author' value='" .
@@ -89,7 +89,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						"' /> </div>",
 
 
-			'email' => "<div class='inputPair inputSet set-email comment-form-email'>\n" .
+			'email' => "<div class='set comment-form-email'>\n" .
 						"<label for='comment-form-email'> " . __('Email') . 
 						( $req ? " <span class='required'>*</span>" : "" ) . " </label>\n" .
 						"<input type='email' id='comment-form-email' name='email' value='" .
@@ -98,7 +98,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						"' /> </div>",
 
 
-			'url' => "<div class='inputPair inputSet set-url comment-form-url'>\n" .
+			'url' => "<div class='set'>\n" .
 						"<label for='comment-form-url'> " . __('Website') . " </label>\n" .
 						"<input type='url' id='comment-form-url' name='url' value='" .
 						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
@@ -110,7 +110,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 		comment_form(array(
 			'fields' => apply_filters('comment_form_default_fields', $commentFields),
 				'comment_notes_after'  => '',
-				'comment_field' => "<div class='inputPair inputSet set-textarea comment-form-comment'>\n" .
+				'comment_field' => "<div class='set comment-form-comment'>\n" .
 							"<label for='comment-form-comment'> " . _x( 'Comment', 'noun' ) . 
 							" <span class='required'>*</span> </label>\n" .
 							"<textarea id='comment-form-comment' name='comment' " .

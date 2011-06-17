@@ -1523,7 +1523,7 @@ function soup_setupParentThemeClass(){
 
 			$r .= "<form action='#contact-form-$id' method='post' class='grunion'>\n";
 			$r .= $body;
-			$r .= "\t<p class='set'>\n";
+			$r .= "\t<p class='submit'>\n";
 			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' />\n";
 			$r .= "\t\t$nonce\n";
 			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
@@ -1759,6 +1759,9 @@ function soup_setupParentThemeClass(){
 						if ( $option == $field_value ) {
 							$r .= 'checked="checked" ';
 						}
+						if ($field['required']) {
+							$r .= 'required="required" ';
+						}
 						$r .= '/>' . "\n";
 						
 						$r .= "\t\t";
@@ -1818,6 +1821,9 @@ function soup_setupParentThemeClass(){
 					else {
 						$r .= 'value="'.esc_attr($field_value).'" ';
 					}					
+					if ($field['required']) {
+						$r .= 'required="required" ';
+					}
 					$r .= '/>' . "\n";
 					$r .= '</div>';
 					$r .= "\n";

@@ -208,18 +208,15 @@ a:visited {
 fieldset, div {
 	border: 0;
 }
-					/* formidable classes */
-input[type='text'], /* text */
-input[type='search'],  /* N/A */
-input[type='tel'], /* phone */
-input[type='url'], /* url, image */
-input[type='email'], /* email */
-input[type='password'], /* N/A */
-input[type='number'], /* number */
-input[type^='date'], /* date */
-input[type='month'], /* N/A */
-input[type='week'], /* N/A */
-input[type='time'], /* time */
+					
+input.text,input.tag,
+input.phone,
+input.url, input.image, 
+input.email, 
+input.password,
+input.number,
+input.date,
+input.time,
 textarea, 
 select {
 	color: #555;
@@ -250,17 +247,15 @@ select {
 	padding: 0; 
 }
 
-input[type='text']:focus, 
-input[type='search']:focus, 
-input[type='tel']:focus, 
-input[type='url']:focus, 
-input[type='email']:focus, 
-input[type='password']:focus, 
-input[type='number']:focus, 
-input[type^='date']:focus, 
-input[type='month']:focus, 
-input[type='week']:focus, 
-input[type='time']:focus, 
+input.text:focus,input.tag:focus,
+input.phone:focus,
+input.url:focus, input.image:focus, 
+input.email:focus, 
+input.password:focus,
+input.number:focus,
+input.date:focus,
+input.time:focus,
+select:focus,
 textarea:focus {
 	color: #000;
 	background: #FFF2CC;
@@ -291,18 +286,16 @@ form span.error {
 
 label,
 select,
-input[type='radio'], /* radio, scale */
-input[type='checkbox'], /* checkbox */
-input[type='submit'], /* NO CLASS */
-input[type='reset'],
-input[type='button'],
+input.radio, input.scale, /* radio, scale */
+input.checkbox, /* checkbox */
+form .submit input,
+.form-submit input,
 button, .button { 
 	cursor : pointer; 
 }
 
-input[type='submit'],
-input[type='reset'],
-input[type='button'],
+form .submit input,
+.form-submit input,
 button, a.button {
 	color: #333;
 
@@ -334,27 +327,23 @@ button, a.button {
 	cursor: pointer;
 }
 
-.lte7 input[type='submit'],
-.lte7 input[type='reset'],
-.lte7 input[type='button'],
+.lte7 form .submit input,
+.lte7 .form-submit input,
 .lte7 button, .lte7 a.button,
 
-.lte7m input[type='submit'],
-.lte7m input[type='reset'],
-.lte7m input[type='button'],
+.lte7m form .submit input,
+.lte7m .form-submit input,
 .lte7m button, .lte7m a.button {
 	display: inline;
 	zoom: 1;
 }
 
-input[type='submit']:hover,
-input[type='reset']:hover,
-input[type='button']:hover,
+form .submit input:hover,
+.form-submit input:hover,
 button:hover, a.button:hover,
 
-input[type='submit']:focus,
-input[type='reset']:focus,
-input[type='button']:focus,
+form .submit input:focus,
+.form-submit input:focus,
 button:focus, a.button:focus
  {
 	color: #000;
@@ -372,9 +361,8 @@ button:focus, a.button:focus
 }
 
 
-input[type='submit']:active,
-input[type='reset']:active,
-input[type='button']:active,
+form .submit input:active,
+.form-submit input:active,
 button:active, a.button:active {
 
 	background-color: #eee;

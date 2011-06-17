@@ -6,13 +6,13 @@ $bigRed_safeIds = bigRed_uniqueInputID();
 ?>
 	<form method="get" action="<?php echo home_url(); ?>" class="search-form">
 	
-		<div class="inputPair inputSet set-text">
+		<div class="set">
 			<label for="s-<?php echo $bigRed_safeIds; ?>" class="search-label">
 				Search this Site
 			</label>
 			<input type="text" name="s" id="s-<?php echo $bigRed_safeIds; ?>" class="text required" aria-required="true" />
 		</div>
 		<div class="submit">
-			<input type="submit" value="Search" class="search-submit" />
+			<input type="submit" value="Search" class="submit" />
 		</div>
 	</form>
