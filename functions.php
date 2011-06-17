@@ -1523,8 +1523,8 @@ function soup_setupParentThemeClass(){
 
 			$r .= "<form action='#contact-form-$id' method='post' class='grunion'>\n";
 			$r .= $body;
-			$r .= "\t<p class='set-submit'>\n";
-			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' class='pushbutton-wide'/>\n";
+			$r .= "\t<p class='set'>\n";
+			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' />\n";
 			$r .= "\t\t$nonce\n";
 			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
 			$r .= "\t</p>\n";
@@ -1677,7 +1677,7 @@ function soup_setupParentThemeClass(){
 					//massive exception here
 								
 					$r .= "\n";
-					$r .= '<div class="inputPair inputSet set-textarea">' . "\n";
+					$r .= '<div class="set">' . "\n";
 					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
 					$r .= htmlspecialchars( $field['label'] );
 					if ($field['required']) {
@@ -1702,7 +1702,7 @@ function soup_setupParentThemeClass(){
 				
 				case 'select':
 					$r .= "\n";
-					$r .= '<div class="inputPair inputSet set-select">' . "\n";
+					$r .= '<div class="set">' . "\n";
 					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
 					$r .= htmlspecialchars( $field['label'] );
 					if ($field['required']) {
@@ -1733,7 +1733,7 @@ function soup_setupParentThemeClass(){
 				break; //select
 				
 				case 'radio':
-					$r .= "\n" . '<fieldset class="inputSet set-radio">' . "\n";
+					$r .= "\n" . '<fieldset class="set">' . "\n";
 					$r .= "\t" . '<legend>';
 					$r .= htmlspecialchars( $field['label'] );
 					if ($field['required']) {
@@ -1750,7 +1750,7 @@ function soup_setupParentThemeClass(){
 
 					
 					foreach ( $field['options'] as $oid => $option ) {
-						$r .= "\t<div class=\"inputPair\">\n";
+						$r .= "\t<div>\n";
 						$r .= "\t\t";
 						$r .= '<input type="radio" name="'.esc_attr($field_id).'" ';
 						$r .= 'id="grunion-'.esc_attr($field_id).'-'.esc_attr($oid).'" ';
@@ -1785,7 +1785,7 @@ function soup_setupParentThemeClass(){
 					*/
 					
 					$r .= "\n";
-					$r .= '<div class="inputSet inputPair set-' . esc_attr($field['type']) . '">' . "\n";
+					$r .= '<div class="set">' . "\n";
 					$r .= "\t" . '<label for="grunion-'.esc_attr($field_id).'">';
 					$r .= htmlspecialchars( $field['label'] );
 					if ($field['required']) {
