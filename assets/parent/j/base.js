@@ -564,9 +564,13 @@ SOUPGIANT.base = function() {
 		});
 	}
 
-	function setupFormValidation($forms){
+	function setupFormValidation($forms, setSelector){
 		if (($forms == NUL) || (typeof $().validate != 'function')) {
 			return;
+		}
+		
+		if (setSelector == NUL) {
+			setSelector = '.set';
 		}
 		
 		$forms = $($forms);
@@ -581,7 +585,7 @@ SOUPGIANT.base = function() {
 				if ( $element.is('input[type="radio"],input[type="checkbox"]') ) {
 					placeTag = 'legend';
 				}
-				$place = $element.closest('.inputSet').find(placeTag);
+				$place = $element.closest(setSelector).find(placeTag);
 
 				$error.appendTo($place);
 			}
