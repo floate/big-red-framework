@@ -1834,7 +1834,7 @@ function soup_setupParentThemeClass(){
 					$wrapper = 'div';
 					$label = 'h3';
 					$for = '';
-					$set = 'inputSet set-' . $type . ' ';
+					$set = 'set';
 					$pair = '';
 					break;
 				case 'html':
@@ -1850,18 +1850,18 @@ function soup_setupParentThemeClass(){
 					$wrapper = 'fieldset';
 					$label = 'legend';
 					$for = '';
-					$set = 'inputSet set-' . $type . ' ';
-					$pair = 'inputPair ';
+					$set = 'set set-'. $type;
+					$pair = '';
 					break;
 				default: 
 					$wrapper = 'div';
 					$label = 'label';
 					$for = 'for="field_[key]" ';
-					$set = 'inputSet inputPair set-' . $type . ' ';
+					$set = 'set';
 					$pair = '';
 			}
 			$html = <<<DEFAULT_HTML
-				<{$wrapper} id="frm_field_[id]_container" class="{$set}form-field [required_class] [error_class]">
+				<{$wrapper} id="frm_field_[id]_container" class="{$set} form-field [required_class] [error_class]">
 			    	<{$label} {$for}class="frm_pos_[label_position]">[field_name]
 			        	<span class="frm_required">[required_label]</span>
 						[if error]<span htmlfor="field_[key]" generated="true" class="error">[error]</span>[/if error]
