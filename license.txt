@@ -1,12 +1,10 @@
 ===== INCLUDED SOFTWARE ======
-MIT Licensed
-	* DD_belatedPNG
-	* Modernizr (Duel BSD license)
-	* selectivizr
-	* HTML5 shiv
-	
-Creative Commons Attribution 2.5 Generic licensed
-	* prettyPhoto
+GPL and/or compatibly licensed code
+	* DD_belatedPNG - http://www.dillerdesign.com/experiment/DD_belatedPNG/
+	* Modernizr - http://www.modernizr.com/
+	* selectivizr - http://selectivizr.com/
+	* HTML5 shiv - http://code.google.com/p/html5shiv/
+	* FancyBox - http://fancybox.net/
 	
 Further licensing information for the included software may be found 
 in the original files located within this framework.
