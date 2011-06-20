@@ -74,11 +74,16 @@ tt {
 
 html, body,
 div, address,
+form
+ {
+	margin: 0;
+	padding: 0;
+}
+
 figure img,
 figure object,
-figure embed,
-fieldset
- {
+figure embed {
+	/* html5 elements seperated out to keep IE =<8 nice */
 	margin: 0;
 	padding: 0;
 }
@@ -122,6 +127,12 @@ h1,h2,h3,h4,h5,h6 {
 	page-break-after: avoid;
 }
 
+	/* margin on first element only in hgroup */
+	hgroup *:nth-child(n+2) {
+		margin-top:0
+	}
+
+
 h1 {
 	font-size:138.5%; /* 18px */
 }
@@ -159,6 +170,31 @@ dd, blockquote {
 address {
 	font-style: italic;
 }
+
+small, sup, sup {
+    font-size: 75%;
+}
+
+sub,
+sup {
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+mark {
+	/* for IE */
+    background: #ff0;
+}
+
 
 /* 3c. Links */
 
@@ -247,6 +283,17 @@ select {
 	padding: 0; 
 }
 
+input[type="search"] {
+    -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+
 input.text:focus,input.tag:focus,
 input.phone:focus,
 input.url:focus, input.image:focus, 
@@ -328,17 +375,9 @@ button, a.button {
 	display: inline-block;
 
 	cursor: pointer;
-}
 
-.lte7 form .submit input,
-.lte7 .form-submit input,
-.lte7 button, .lte7 a.button,
-
-.lte7m form .submit input,
-.lte7m .form-submit input,
-.lte7m button, .lte7m a.button {
-	display: inline;
-	zoom: 1;
+	*display: inline;
+	*zoom: 1;
 }
 
 form .submit input:hover,
@@ -547,16 +586,16 @@ button:active, a.button:active {
 .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
 
 /* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
-.ie6 .ui-datepicker-cover {
-    display: none; /*sorry for IE5*/
-    display/**/: block; /*sorry for IE5*/
-    position: absolute; /*must have*/
-    z-index: -1; /*must have*/
-    filter: mask(); /*must have*/
-    top: -4px; /*must have*/
-    left: -4px; /*must have*/
-    width: 200px; /*must have*/
-    height: 200px; /*must have*/
+.ui-datepicker-cover {
+    _display: none; /*sorry for IE5*/
+    _display/**/: block; /*sorry for IE5*/
+    _position: absolute; /*must have*/
+    _z-index: -1; /*must have*/
+    _filter: mask(); /*must have*/
+    _top: -4px; /*must have*/
+    _left: -4px; /*must have*/
+    _width: 200px; /*must have*/
+    _height: 200px; /*must have*/
 }
 
 /* ************** *
@@ -641,7 +680,7 @@ dd.gallery-caption {
 	padding: 0;
 }
 
-.entry-content:after {
+.entry-content::after {
 	/* clearfix */
 	visibility: hidden;
 	display: block;
@@ -651,8 +690,8 @@ dd.gallery-caption {
 	height: 0;
 }
 
-	.lte7 .entry-content {
-		zoom: 1;
+	.entry-content {
+		*zoom: 1;
 	}
 
 .more-link {
