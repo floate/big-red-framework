@@ -37,10 +37,10 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			</h2>
 			
 			<ol id="commentsList" class="commentsList <?php if (get_option('show_avatars') == 1) { echo 'show_avatars'; } else {echo 'no_avatars';}?>">
-				<?php wp_list_comments(array(
+				<?php wp_list_comments(apply_filters('brf_comment_args', array(
 					'type'=> 'comment',
 					'callback' => 'bigRed_commentsTemplate'
-					)); ?>
+					))); ?>
 			</ol>
 			<!-- //#comments-list -->
 			
@@ -59,10 +59,10 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 			<h2>Links to This Page</h2>
 
 			<ol id="trackbacksList" class="commentsList">
-		<?php wp_list_comments(array(
-			'type'=> 'pings',
+		<?php wp_list_comments(apply_filters('brf_ping_args', array(
+			'type'=> 'ping',
 			'callback' => 'bigRed_pingTemplate'
-			)); ?>
+			))); ?>
 			</ol>
 			<!-- //#trackbacksList -->
 
