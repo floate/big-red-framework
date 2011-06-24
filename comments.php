@@ -98,7 +98,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 						"' /> </div>",
 
 
-			'url' => "<div class='set'>\n" .
+			'url' => "<div class='set comment-form-url'>\n" .
 						"<label for='comment-form-url'> " . __('Website') . " </label>\n" .
 						"<input type='url' id='comment-form-url' name='url' value='" .
 						esc_attr( $commenter['comment_author_url'] ) . "' size='30' " . 
