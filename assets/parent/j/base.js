@@ -574,6 +574,7 @@ SOUPGIANT.base = function() {
 		}
 		
 		$forms = $($forms);
+		$forms.attr('novalidate','novalidate');
 		
 		$forms.each(function(){
 			var $form = $(this);
