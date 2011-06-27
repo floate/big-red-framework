@@ -1,6 +1,9 @@
 <?php
 if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	die ( 'Please do not load this page directly. Thanks.' );
+	
+	
+if ( have_comments() OR comments_open() ) :
 ?>
 <div id="comments" class="section">
 	<?php
@@ -74,7 +77,7 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	
 	
 	
-	<div class="section">
+	<div id="newComment" class="section">
 		<?php 
 		$req = get_option( 'require_name_email' );
 		$aria_req = ( $req ? " aria-required='true'" : '' );
@@ -131,3 +134,6 @@ if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
 	
 	
 </div>
+<?php
+endif; //if ( have_comments() OR comments_open() ) :
+?>
