@@ -64,14 +64,14 @@ These add and remove the meta tags WordPress adds to the "<head>" of your html, 
 
 
 == GENERAL OPTIONS ==
-These add or remove WordPress features commonly disabled on client sites. All the features default to the WordPress standard
+These add or remove WordPress features commonly disabled on client sites. All the features default to the WordPress standard:
 •	admin_bar – the much loved & much despised admin bar
 •	custom_admin_bar_css – allows you to customise the CSS for the admin bar to suit your client’s theme
-•	remove_capital_P_dangit – remove the filter to replace occurrences of Wordpress with the correct form WordPress. At Soupgiant we usually remove the filter as we’ve found it interferes with images name WordPress.jpg (capital W) or similar. <img src=”/files/WordPress.jpg”>
+•	remove_capital_P_dangit – remove the filter to replace occurrences of "Wordpress" with the correct form "WordPress". At Soupgiant we usually remove the filter as we’ve found it interferes with images named WordPress.jpg (capital W) or similar. <img src=”/files/WordPress.jpg”>
 
 == THEME OPTIONS ==
 
-A few generic options for use with your theme, this includes custom theme meta tags, enabling built in WordPress features such as post formats and thumbnails
+A few generic options for use with your theme. Includes custom theme meta tags, enabling built in WordPress features such as post formats and thumbnails:
 
 •	content_width – width of content throughout the site
 •	thumbnails – enable/disable post thumbnails
@@ -101,7 +101,7 @@ If you wish to customise the human readable name from the default, you can enabl
 
 == JAVASCRIPT OPTIONS ==
 
-Add conditional JavaScript files for various versions of IE. At the time of development, WordPress doesn’t support conditional tags for IE so these added to wp_head() as <script> html rather than using the wp_enqueue_script functions
+Add conditional JavaScript files for various versions of IE. At the time of development, WordPress doesn’t support conditional tags for IE so these are added to "wp_head()" as <script> html rather than using the wp_enqueue_script functions
 •	js-html5-shiv – add Remy Sharp’s html5 shiv for IE versions 8 and below
 •	js-selectivizr – add Selectivizr for IE versions 8 and below
 •	ddbelatedpng – add ddbelatedpng for IE6 to enable alpha transparency in png images
@@ -152,8 +152,8 @@ Constructor used by the parent theme, it calls all functions required for basic 
 
 # $soup->child__construct()
 -- intended to be overridden in the child theme
-Constructor used by the child theme, it call functions required for setup of the child theme.
-This function is intentionally blank in the framework's & the starter's functions.php. It is intended to be used by web developers adding advanced functionality to their child themes.
+Constructor used by the child theme, it calls functions required for setup of the child theme.
+This function is intentionally blank in the framework & the starter functions.php file. It is intended to be used by web developers adding advanced functionality to their child themes.
 
 
 # $soup->defineMinimised()
