@@ -10,15 +10,17 @@ get_header();
 				<h1 id="pageName">
 				Category Archives: <span><?php single_cat_title(); ?></span>
 				</h1>
-			</div>
-
-			<div id="contentA" class="hfeed">
+				
 				<?php
 				$category_description = category_description();
 				if ( ! empty( $category_description ) ) {
 					echo '<div class="archive-meta">' . $category_description . '</div>';
 				}
-				
+				?>
+			</div>
+
+			<div id="contentA" class="hfeed">
+				<?php
 				get_template_part( 'template-parts/loop', 'archive' ); 
 				?>
 			

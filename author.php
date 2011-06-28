@@ -13,11 +13,9 @@ get_header();
 				echo $authordata->display_name;
 				?></span>
 				</h1>
-			</div>
-
-			<div id="contentA" class="hfeed">
-			
-				<?php if ( get_the_author_meta( 'description' ) ) : ?>
+				
+				<?php
+				if ( get_the_author_meta( 'description' ) ) : ?>
 					<div id="entry-author-info">
 						<div id="author-avatar">
 							<?php echo get_avatar( get_the_author_meta( 'user_email' ), 60 ); ?>
@@ -28,8 +26,13 @@ get_header();
 						</div><!-- #author-description	-->
 					</div><!-- #entry-author-info -->
 				<?php 
-				
 				endif; //if ( get_the_author_meta( 'description' ) ) :
+				?>
+			</div>
+
+			<div id="contentA" class="hfeed">
+			
+				<?php
 				rewind_posts();
 				
 				
