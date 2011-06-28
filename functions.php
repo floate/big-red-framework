@@ -131,6 +131,7 @@ function soup_setupParentThemeClass(){
 			//navigation menus. true/false or string. If string that will be used for the english name
 			$options['header-menu'] = true;
 			$options['footer-menu'] = true;
+			$options['not-found-map'] = true; //on 404 and no search results pages.
 			
 			// javascript options (these js files can't be queued with conditional comments)
 			// currently setup in header.php, need to find a cleaner way.
@@ -1016,6 +1017,12 @@ function soup_setupParentThemeClass(){
 					$menus['footer'] = $options['footer-menu'];
 				}
 				
+				if ($options['not-found-map'] !== false) {
+					if (!is_string($options['not-found-map'])) {
+						$options['not-found-map'] = 'Not found sitemap';
+					}
+					$menus['not-found'] = $options['not-found-map'];
+				}
 				
 				register_nav_menus( $menus );
 			}

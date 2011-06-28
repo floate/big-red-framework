@@ -13,21 +13,11 @@ get_header();
 			</div>
 
 			<div id="contentA">
-
-			<p>Apologies, but we were unable to find what you were looking for. Perhaps  searching will help.</p>
 			
-			<form method="get" action="<?php echo home_url(); ?>" class="search-form">
-
-				<div class="set">
-					<label for="s-404notfound" class="search-label">
-						Search this Site
-					</label>
-					<input type="text" name="s" id="s-404notfound" class="text required" aria-required="true" />
-				</div>
-				<div class="submit">
-					<input type="submit" value="Search" class="submit" />
-				</div>
-			</form>
+			
+			<?php
+			get_template_part( 'template-parts/not-found', '404' ); 
+			?>
 			
 			
 			</div>
