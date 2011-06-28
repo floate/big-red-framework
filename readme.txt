@@ -5,21 +5,21 @@ The theme is filter and action heavy to allow use of the standard WordPress func
 
 ========= ACCESSING FUNCTIONS =========
 
-To make over riding functions in the child themes slightly easier, functions in this theme are placed in classes which can be accessed through the object $soup. 
+To make overriding functions in the child themes slightly easier, functions in this theme are placed in classes which can be accessed through the object "$soup". 
 
-A majority of the functions in the $soup objects are called as filters or actions, as such they have no global counterpart. In part this is to lower the risk of function name clashes. Functions with a global counterpart are defined towards the bottom of the parent's functions.php in the name space bigRed_*
+A majority of the functions in the $soup objects are called as filters or actions. As such they have no global counterpart. In part this is to lower the risk of function name clashes. Functions with a global counterpart are defined towards the bottom of the parent's functions.php file in the name-space "bigRed_*".
 
-The functions with a global counterpart are all pluggable to be easily overridden in the child theme's functions.php
+The functions with a global counterpart are all pluggable to be easily overridden in the child theme's functions.php file.
 
 ========= THE FUTURE =========
 
-One of the aims of the Big Red Framework is consistent html into the future. The aim is to keep bespoke client theme's consistent even as WordPress adds new features to the core. Whenever possible, new features affecting the html will be disabled by default in upgrades to the Big Red Framework. For example, had this framework been released prior to WordPress 3.1 the admin bar would be disabled by default.
+One of the aims of the Big Red Framework is consistent html into the future. The aim is to keep bespoke client themes consistent, even as WordPress adds new features to the core. Whenever possible, new features affecting the html will be disabled by default in upgrades to the Big Red Framework. For example, had this framework been released prior to WordPress 3.1 the admin bar would be disabled by default.
 
 NEW FEATURES ARE A GOOD THING!
-The intention is to avoid breaking client sites, not to cripple WordPress. As a result, while a new feature will be turned off in the parent's themes functions.php, it may be enabled in the _starter/functions.php. 
+The intention is to avoid breaking client sites, not to cripple WordPress. As a result, while a new feature will be turned off in the parent theme's functions.php file, it may be enabled in the _starter/functions.php file. 
 
 
-========= NON STANDARD THEME FUNCTIONS AND FILES =========
+========= NON-STANDARD THEME FUNCTIONS AND FILES =========
 
 The framework contains several non-standard features and files. These include functionality to enable consistent form output from a number of plugins. The form plugins filtered in this manner are for Grunion Contact Form and Formidable/Formidable Pro (I don't own Gravity forms so have been unable to filter this for consistency). 
 
@@ -34,21 +34,21 @@ I frequently use the plugin Theme My Login for bespoke client sites. Template fi
 
 ========= CREATING A CHILD THEME =========
 
-1. Copy the files from the starter directory (assets/_starter) into the base folder of your child theme
-2. Create the sub-directory assets in your child theme
-3. Copy the framework’s assets/child/ directory into the assets directory of your child theme
-4. Update the theme information in your child themes style.css file
+1. Copy the files from the starter directory, "assets/_starter", into the base folder of your child theme.
+2. Create the sub-directory "assets" in your child theme.
+3. Copy the framework’s "assets/child/" directory into the assets directory of your child theme.
+4. Update the theme information in your child theme's "style.css" file.
 
-You can override files in the framework by copying the file into your child theme and editing it there. It is recommended you start by copying header.php and footer.php into your child theme to allow you to customise the logo/footer credits as required.
+You can override files in the framework by copying the file into your child theme and editing it there. It is recommended you start by copying "header.php" and "footer.php" into your child theme to allow you to customise the logo/footer credits as required.
 
 ========= SETTING YOUR THEME’S OPTIONS =========
 
-All of your theme’s options are set within the child theme’s functions.php. At the start of the project, you should ask your client what they want from their website and set the options as appropriate. 
+All of your theme’s options are set within the child theme’s functions.php file. At the start of the project, you should ask your client what they want from their website and set the options appropriately. 
 
-Options are set in the class’s defineOptions() function in the form $options[‘option_name’]
+Options are set in the class’s "defineOptions()" function in the form "$options[‘option_name’]".
 
 == META TAGS ==
-These add and remove the meta tags WordPress adds to the <head> of your html, including feed links, parent pages, adjacent pages, etc. All of these are true by default except for the localised style sheet (rtl languages).
+These add and remove the meta tags WordPress adds to the "<head>" of your html, including feed links, parent pages, adjacent pages, etc. All of these are true by default except for the localised style sheet (rtl languages).
 
 •	feed_links (true) – the site’s rss feed (example.com/feed/) & rss comments feed (example.com/comments/feed/).
 •	feed_links_extra (true) – adds category rss feed (example.com/category/general/feed/), tags rss feed (example.com/tag/my-tag/feed/), per article comments feed (example.com/my-article/feed/) 
@@ -64,14 +64,14 @@ These add and remove the meta tags WordPress adds to the <head> of your html, in
 
 
 == GENERAL OPTIONS ==
-These add or remove WordPress features commonly disabled on client sites. All the features default to the WordPress standard
+These add or remove WordPress features commonly disabled on client sites. All the features default to the WordPress standard:
 •	admin_bar – the much loved & much despised admin bar
 •	custom_admin_bar_css – allows you to customise the CSS for the admin bar to suit your client’s theme
-•	remove_capital_P_dangit – remove the filter to replace occurrences of Wordpress with the correct form WordPress. At Soupgiant we usually remove the filter as we’ve found it interferes with images name WordPress.jpg (capital W) or similar. <img src=”/files/WordPress.jpg”>
+•	remove_capital_P_dangit – remove the filter to replace occurrences of "Wordpress" with the correct form "WordPress". At Soupgiant we usually remove the filter as we’ve found it interferes with images named WordPress.jpg (capital W) or similar. <img src=”/files/WordPress.jpg”>
 
 == THEME OPTIONS ==
 
-A few generic options for use with your theme, this includes custom theme meta tags, enabling built in WordPress features such as post formats and thumbnails
+A few generic options for use with your theme. Includes custom theme meta tags, enabling built in WordPress features such as post formats and thumbnails:
 
 •	content_width – width of content throughout the site
 •	thumbnails – enable/disable post thumbnails
@@ -101,7 +101,7 @@ If you wish to customise the human readable name from the default, you can enabl
 
 == JAVASCRIPT OPTIONS ==
 
-Add conditional JavaScript files for various versions of IE. At the time of development, WordPress doesn’t support conditional tags for IE so these added to wp_head() as <script> html rather than using the wp_enqueue_script functions
+Add conditional JavaScript files for various versions of IE. At the time of development, WordPress doesn’t support conditional tags for IE so these are added to "wp_head()" as <script> html rather than using the wp_enqueue_script functions
 •	js-html5-shiv – add Remy Sharp’s html5 shiv for IE versions 8 and below
 •	js-selectivizr – add Selectivizr for IE versions 8 and below
 •	ddbelatedpng – add ddbelatedpng for IE6 to enable alpha transparency in png images
@@ -152,8 +152,8 @@ Constructor used by the parent theme, it calls all functions required for basic 
 
 # $soup->child__construct()
 -- intended to be overridden in the child theme
-Constructor used by the child theme, it call functions required for setup of the child theme.
-This function is intentionally blank in the framework's & the starter's functions.php. It is intended to be used by web developers adding advanced functionality to their child themes.
+Constructor used by the child theme, it calls functions required for setup of the child theme.
+This function is intentionally blank in the framework & the starter functions.php file. It is intended to be used by web developers adding advanced functionality to their child themes.
 
 
 # $soup->defineMinimised()
