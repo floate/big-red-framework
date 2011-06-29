@@ -810,6 +810,13 @@ function soup_setupParentThemeClass(){
 				true
 			);
 			
+			wp_register_script(
+				'webfont-loader',
+				"$prot://ajax.googleapis.com/ajax/libs/webfont/1.0.21/webfont.js",
+				null,
+				'1.0.21'
+			);
+			
 		}
 
 		function enqueueJS() {
