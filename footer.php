@@ -23,7 +23,7 @@
 	<?php endif; /* bigRed_option('footer-menu', true) */ ?>
 	
 	<div id="footWidgets" role="complementary"><?php
-		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('footer') ) {
+		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('bigredwidget_footer') ) {
 			//insert static sidebar
 			echo '<!' . '-- no footer widgets --' . '>';
 		}

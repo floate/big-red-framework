@@ -953,7 +953,7 @@ function soup_setupParentThemeClass(){
 					}
 					register_sidebar(array(
 						'name' => $options['widget-header'],
-						'id' => 'header',
+						'id' => 'bigredwidget_header',
 						'before_widget' => '<div id="%1$s" class="head-widget widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
@@ -967,7 +967,7 @@ function soup_setupParentThemeClass(){
 					}
 					register_sidebar(array(
 						'name' => $options['widget-sidebar-a'],
-						'id' => 'sidebar-a',
+						'id' => 'bigredwidget_sidebar-a',
 						'before_widget' => '<div id="%1$s" class="widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
@@ -981,7 +981,7 @@ function soup_setupParentThemeClass(){
 					}
 					register_sidebar(array(
 						'name' => $options['widget-sidebar-b'],
-						'id' => 'sidebar-b',
+						'id' => 'bigredwidget_sidebar-b',
 						'before_widget' => '<div id="%1$s" class="widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
@@ -995,7 +995,7 @@ function soup_setupParentThemeClass(){
 					}
 					register_sidebar(array(
 						'name' => $options['widget-footer'],
-						'id' => 'footer',
+						'id' => 'bigredwidget_footer',
 						'before_widget' => '<div id="%1$s" class="foot-widget widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 

@@ -30,7 +30,7 @@
 	</a>
 	
 	<div id="headerWidgets"><?php
-		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('header') ) {
+		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('bigredwidget_header') ) {
 			//insert static sidebar
 			echo '<!' . '-- no header widgets --' . '>';
 		}
