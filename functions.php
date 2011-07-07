@@ -1299,6 +1299,15 @@ function soup_setupParentThemeClass(){
 				$classes[] = 'pagetree-' . sanitize_html_class($pageSlug);
 				$classes[] = 'pagetree-' . sanitize_html_class($pageID);
 				
+				if (!is_page_template()) {
+					//add .page-template-default (bug in 3.2)
+					
+					//remove first for when bug has been fixed
+					$classes = array_diff($classes, array('page-template-default'));
+					//and add it back in
+					$classes[] = 'page-template-default';	
+				}
+				
 				$tree = get_post_ancestors($post);
 				foreach ($tree as $tree_id) {
 					$classes[] = 'pagetree-' . $tree_id;
