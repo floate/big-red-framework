@@ -1,5 +1,5 @@
 <div id="footer" class="footer">
-	<?php if (bigRed_option('footer-menu', true)): ?>
+	<?php if (bigRed_option('footer-menu')): ?>
 		<?php
 			if (function_exists('wp_nav_menu')) {
 				wp_nav_menu(array(
@@ -20,7 +20,7 @@
 			}
 			
 		?>
-	<?php endif; /* bigRed_option('footer-menu', true) */ ?>
+	<?php endif; /* bigRed_option('footer-menu') */ ?>
 	
 	<div id="footWidgets" role="complementary"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('bigredwidget_footer') ) {

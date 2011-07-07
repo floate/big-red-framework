@@ -35,7 +35,7 @@ while ( have_posts() ) : the_post();
 		<?php edit_post_link('Edit', '<div class="footer"><p class="entry-meta">', '</p></div>'); ?>
 	
 	<?php 
-	if (bigRed_option('page-comments-enabled',true)) {
+	if (bigRed_option('page-comments-enabled')) {
 		comments_template(); 
 	}
 	?>

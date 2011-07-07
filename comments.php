@@ -57,7 +57,7 @@ if ( have_comments() OR comments_open() ) :
 			endif; //if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) 
 		endif; // REFERENCE: if ( $comment_count > 0 ) 
 		
-		if ( ($ping_count > 0) && (bigRed_option('trackbacks-enabled', true)) ) :
+		if ( ($ping_count > 0) && (bigRed_option('trackbacks-enabled')) ) :
 			?>
 			<h2>Links to This Page</h2>
 

@@ -273,60 +273,139 @@ function soup_setupParentThemeClass(){
 		function setupOptions() {
 			$options = &$this->options;
 
+			// 1. setup defaults -- needed for bigRed_option()
+			if (!isset($options['feed_links'])) {
+				 $options['feed_links'] = true; 
+			}
+			if (!isset($options['feed_links_extra'])) {
+				 $options['feed_links_extra'] = true;
+			}
+			if (!isset($options['rsd_link'])) {
+				 $options['rsd_link'] = true; 
+			}
+			if (!isset($options['wlwmanifest_link'])) {
+				 $options['wlwmanifest_link'] = true; 
+			}
+			if (!isset($options['index_rel_link'])) {
+				 $options['index_rel_link'] = true; 
+			}
+			if (!isset($options['parent_post_rel_link'])) {
+				 $options['parent_post_rel_link'] = true; 
+			}
+			if (!isset($options['start_post_rel_link'])) {
+				 $options['start_post_rel_link'] = true; 
+			}
+			if (!isset($options['adjacent_posts_rel_link_wp_head'])) {
+				 $options['adjacent_posts_rel_link_wp_head'] = true; 
+			}
+			if (!isset($options['locale_stylesheet'])) {
+				 $options['locale_stylesheet'] = false; 
+			}
+			if (!isset($options['wp_generator'])) {
+				 $options['wp_generator'] = true; 
+			}
+			if (!isset($options['wp_shortlink_wp_head'])) {
+				 $options['wp_shortlink_wp_head'] = true; 
+			}
+						
+			//general options
+			if (!isset($options['admin_bar'])) {
+				 $options['admin_bar'] = true; 
+			}
+			if (!isset($options['custom_admin_bar_css'])) {
+				 $options['custom_admin_bar_css'] = false; 
+			}
+			if (!isset($options['remove_capital_P_dangit'])) {
+				 $options['remove_capital_P_dangit'] = false; 
+			}
+			
+			/* theme options*/
+			if (!is_int($options['content_width']) OR ($options['content_width'] < 1)) {
+				 $options['content_width'] = 800; 
+			}
+			if (!isset($options['thumbnails'])) {
+				 $options['thumbnails'] = false; 
+			}
+			if (!is_int($options['attachment_page_img_width']) OR ($options['attachment_page_img_width'] < 1)) {
+				if ($options['content_width'] >= 600) {
+					$options['attachment_page_img_width'] = 600; 
+				}
+				else {
+					$options['attachment_page_img_width'] = $options['content_width']; 
+				}
+			}
+			if (!is_int($options['attachment_page_img_height']) OR ($options['attachment_page_img_height'] < 1)) {
+				 $options['attachment_page_img_height'] = 600; 
+			}
+			if (!isset($options['post-formats'])) {
+				 $options['post-formats'] = false;
+			}
+			if (!isset($options['favicon'])) {
+				 $options['favicon'] = true; 
+			}
+			if (!isset($options['favicon-apple'])) {
+				 $options['favicon-apple'] = true; 
+			}
+			if (trim($options['X-UA-Compatible']) == '') {
+				$options['X-UA-Compatible'] = 'IE=edge'; 
+			}
+			if (trim($options['mobile-css-query']) == '') {
+				$options['mobile-css-query'] = 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)'; 
+			}
+			if (!isset($options['page-comments-enabled'])) {
+				 $options['page-comments-enabled'] = true; 
+			}
+			if (!isset($options['trackbacks-enabled'])) {
+				 $options['trackbacks-enabled'] = true; 
+			}
+
+
+
+
+			//2 implement options
+
 			//meta tags in header
 			
-			if ( (function_exists('add_theme_support')) AND 
-				 ( ($options['feed_links'] == true) OR (!isset($options['feed_links'])) ) ) {
-				//default - add links
+			if ( (function_exists('add_theme_support')) AND ($options['feed_links'] == true) ) {
 				add_theme_support( 'automatic-feed-links' );
 			}
 			elseif (function_exists('remove_theme_support')) {
 				remove_theme_support( 'automatic-feed-links' );
 			}
 			
-			if ( (isset($options['feed_links_extra'])) AND ($options['feed_links_extra'] == false) ) {
-				//default: do not remove
+			if ($options['feed_links_extra'] == false) {
 				remove_action( 'wp_head', 'feed_links_extra', 3 );
 			}
 			
-			if ( (isset($options['rsd_link'])) AND ($options['rsd_link'] == false) ) {
-				//default: do not remove
+			if ($options['rsd_link'] == false) {
 				remove_action( 'wp_head', 'rsd_link');
 			}
 			
-			if ( (isset($options['wlwmanifest_link'])) AND ($options['wlwmanifest_link'] == false) ) {
-				//default: do not remove
+			if ($options['wlwmanifest_link'] == false) {
 				remove_action( 'wp_head', 'rsd_link');
 			}
 			
-			if ( (isset($options['index_rel_link'])) AND ($options['index_rel_link'] == false) ) {
-				//default: do not remove
+			if ($options['index_rel_link'] == false) {
 				remove_action( 'wp_head', 'index_rel_link');
 			}
 			
-			if ( (isset($options['parent_post_rel_link'])) AND ($options['parent_post_rel_link'] == false) ) {
-				//default: do not remove
+			if ($options['parent_post_rel_link'] == false) {
 				remove_action( 'wp_head', 'parent_post_rel_link', 10, 0);
 			}
 			
-			if ( (isset($options['start_post_rel_link'])) AND ($options['start_post_rel_link'] == false) ) {
-				//default: do not remove
+			if ($options['start_post_rel_link'] == false) {
 				remove_action( 'wp_head', 'start_post_rel_link', 10, 0);
 			}
 
-			if ( (isset($options['adjacent_posts_rel_link_wp_head'])) AND 
-			  ($options['adjacent_posts_rel_link_wp_head'] == false) ) {
-				//default: do not remove
+			if ($options['adjacent_posts_rel_link_wp_head'] == false) {
 				remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 			}
 			
-			if ( (isset($options['locale_stylesheet'])) AND ($options['locale_stylesheet'] == false) ) {
-				//default: do not remove
+			if ($options['locale_stylesheet'] == false) {
 				remove_action( 'wp_head', 'locale_stylesheet');
 			}
 			
-			if ( (isset($options['wp_generator'])) AND ($options['wp_generator'] == false) ) {
-				//default: do not remove
+			if ($options['wp_generator'] == false) {
 				remove_action( 'wp_head', 'wp_generator');
 				$feeds = array( 
 					'rss2_head', 
@@ -340,41 +419,29 @@ function soup_setupParentThemeClass(){
 				foreach ( $feeds as $action ) {
 					remove_action( $action, 'the_generator' );
 				}
-				
 			}
 			
-			if ( (isset($options['wp_shortlink_wp_head'])) AND ($options['wp_shortlink_wp_head'] == false) ) {
-				//default: do not remove
+			if ($options['wp_shortlink_wp_head'] == false) {
 				remove_action( 'wp_head', 'wp_shortlink_wp_head');
 			}
 			
 			
-			if ( (isset($options['admin_bar'])) AND ($options['admin_bar'] == false) ) {
-				//default: do not remove
+			if ($options['admin_bar'] == false) {
 				//source: http://yoast.com/disable-wp-admin-bar/
-				
-				/* Disable the Admin Bar. */
 				add_filter( 'show_admin_bar', '__return_false' );
-
-				/* Remove the Admin Bar preference in user profile */
 				remove_action( 'personal_options', '_admin_bar_preferences' );
 			}
 			
 			//for customised admin bar CSS, see css registrations.
 
-			if ( (isset($options['remove_capital_P_dangit'])) AND ($options['remove_capital_P_dangit'] == true) ) {
-				//default: do not remove
-				foreach ( array( 'the_content', 'the_title' ) as $filter )
+			if ($options['remove_capital_P_dangit'] == true) {
+				foreach ( array( 'the_content', 'the_title' ) as $filter ) {
 					remove_filter( $filter, 'capital_P_dangit', 11 );
+				}
 				remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 			}
 						
-			if  ( is_int($options['content_width']) AND ($options['content_width'] > 0) )  {
-				$this->content_width = $options['content_width'];
-			}
-			else {
-				$this->content_width = $options['content_width'] = 800;
-			}
+			$this->content_width = $options['content_width'] = 800;
 
 			if ($options['thumbnails'] == true)  {
 				if ( function_exists( 'add_theme_support' ) ) {
@@ -382,38 +449,22 @@ function soup_setupParentThemeClass(){
 				}	
 			}
 			
-			if (!is_int($options['attachment_page_img_width']) OR ($options['attachment_page_img_width'] < 1)) {
-				$options['attachment_page_img_width'] = 600;
-			}
-
-			if (!is_int($options['attachment_page_img_height']) OR ($options['attachment_page_img_width'] < 1)) {
-				$options['attachment_page_img_height'] = 600;
-			}
-			
-			if ( ($options['post-formats'] == true) OR (is_array($options['thumbnails'])) ) {
+			if ( ($options['post-formats'] == true) OR (is_array($options['post-formats'])) ) {
 				if ( function_exists( 'add_theme_support' ) ) {
-					if (!is_array($options['thumbnails'])) {
-						$options['thumbnails'] = array(
+					if (!is_array($options['post-formats'])) {
+						$options['post-formats'] = array(
 							'aside',	'gallery',
 							'link',		'image',
 							'quote',	'status',
 							'video',	'audio',
 							'chat');
 					}
-					add_theme_support( 'post-formats', $options['thumbnails'] );
+					add_theme_support( 'post-formats', $options['post-formats'] );
 				}
 			}
 
-			if (!isset($options['page-comments-enabled'])) {
-				$options['page-comments-enabled'] = true;
-			}
-			
 			if ($options['page-comments-enabled'] == false) {
 				add_filter( 'comments_open', array(&$this, 'pageCommentsDisabled'), 10, 2 );
-			}
-
-			if (!isset($options['trackbacks-enabled'])) {
-				$options['trackbacks-enabled'] = true;
 			}
 			
 			if ($options['trackbacks-enabled'] == false) {
@@ -444,8 +495,7 @@ function soup_setupParentThemeClass(){
 				add_filter('tiny_mce_before_init', array(&$this, 'editorEnglishClasses'));
 			}
 
-			if ( (isset($options['editor-fake-heading-levels'])) AND ($options['editor-fake-heading-levels'] == true) ) {
-				//default: do not fake
+			if ($options['editor-fake-heading-levels'] == true) {
 				add_filter('tiny_mce_before_init', array(&$this, 'editorHeadings'));
 			}
 						
@@ -862,12 +912,7 @@ function soup_setupParentThemeClass(){
 			$options = &$this->options;
 			if (!is_admin()):
 
-			if ($options['X-UA-Compatible'] !== false) {
-				
-				if (!is_string($options['X-UA-Compatible'])) {
-					$options['X-UA-Compatible'] = 'IE=edge';
-				}
-				
+			if ($options['X-UA-Compatible']) {
 				header('X-UA-Compatible: ' . $options['X-UA-Compatible']);
 			}
 			
@@ -881,13 +926,13 @@ function soup_setupParentThemeClass(){
 			
 			if (!is_admin()):
 				//double up IE header w/ meta tag to cover caching
-				if ($options['X-UA-Compatible'] !== false) {
+				if ($options['X-UA-Compatible'] == true) {
 					$result .= '<meta http-equiv="X-UA-Compatible" content="';
 					$result .= $options['X-UA-Compatible'];
 					$result .= '" />' . "\n";
 				}
 			
-				if ($options['favicon'] !== false) { 
+				if ($options['favicon'] == true) { 
 					$result .= '<link rel="shortcut icon" type="image/x-icon" href="';
 					$result .= $this->child['img'];
 					$result .= '/favicon.ico" />' . "\n";
@@ -896,7 +941,7 @@ function soup_setupParentThemeClass(){
 					$result .= '/favicon.ico" />' . "\n";		
 				}
 			
-				if ($options['favicon-apple'] !== false) {
+				if ($options['favicon-apple'] == true) {
 					$result .= '<link rel="apple-touch-icon" href="';
 					$result .= $this->child['img'];
 					$result .= '/apple-touch-icon.png" />' . "\n";
@@ -913,14 +958,14 @@ function soup_setupParentThemeClass(){
 			
 			
 			//not needed if modenizr included
-			if ( ($options['js-html5-shiv'] !== false) AND (!in_array('modernizr',  $this->child['jsDependencies'])) ):
+			if ( ($options['js-html5-shiv'] == true) AND (!in_array('modernizr',  $this->child['jsDependencies'])) ):
 				$result = "";
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
 				$result .= $parent['js'];
 				$result .= '/html5shiv.js"></script>';
 				$result .= '<![endif]-->' . "\n";
-			endif; // ($options['js-html5-shiv'] !== false) :
+			endif; // ($options['js-html5-shiv'] == true) ... :
 			echo $result;
 		}
 		
@@ -932,13 +977,13 @@ function soup_setupParentThemeClass(){
 				$pjs = '-min';
 			}
 			
-			if ($options['js-selectivizr'] !== false) :
+			if ($options['js-selectivizr'] == true) :
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
 				$result .= $parent['js'];
 				$result .= "/selectivizr$pjs.js?ver=1.0.2\"></script>";
 				$result .= '<![endif]-->' . "\n";
-			endif; // ($options['js-html5-shiv'] !== false) :
+			endif; // $options['js-selectivizr'] == true :
 			echo $result;
 		}
 		
@@ -947,7 +992,7 @@ function soup_setupParentThemeClass(){
 			
 			if ( function_exists('register_sidebar') ) {
 			
-				if ($options['widget-header'] !== false) {
+				if ($options['widget-header']) {
 					if (!is_string($options['widget-header'])) {
 						$options['widget-header'] = 'Header';
 					}
@@ -961,7 +1006,7 @@ function soup_setupParentThemeClass(){
 					));
 				}
 
-				if ($options['widget-sidebar-a'] !== false) {
+				if ($options['widget-sidebar-a']) {
 					if (!is_string($options['widget-sidebar-a'])) {
 						$options['widget-sidebar-a'] = 'Sidebar A';
 					}
@@ -975,7 +1020,7 @@ function soup_setupParentThemeClass(){
 					));
 				}
 			
-				if ($options['widget-sidebar-b'] !== false) {
+				if ($options['widget-sidebar-b']) {
 					if (!is_string($options['widget-sidebar-b'])) {
 						$options['widget-sidebar-b'] = 'Sidebar B';
 					}
@@ -989,7 +1034,7 @@ function soup_setupParentThemeClass(){
 					));
 				}
 
-				if ($options['widget-footer'] !== false) {
+				if ($options['widget-footer']) {
 					if (!is_string($options['widget-footer'])) {
 						$options['widget-footer'] = 'Footer';
 					}
@@ -1010,21 +1055,21 @@ function soup_setupParentThemeClass(){
 		function registerMenus() {
 			$options = &$this->options;
 			if ( function_exists('register_nav_menus') ) {
-				if ($options['header-menu'] !== false) {
+				if ($options['header-menu']) {
 					if (!is_string($options['header-menu'])) {
 						$options['header-menu'] = 'Header Navigation';
 					}
 					$menus['header'] = $options['header-menu'];
 				}
 
-				if ($options['footer-menu'] !== false) {
+				if ($options['footer-menu']) {
 					if (!is_string($options['footer-menu'])) {
 						$options['footer-menu'] = 'Footer Navigation';
 					}
 					$menus['footer'] = $options['footer-menu'];
 				}
 				
-				if ($options['not-found-map'] !== false) {
+				if ($options['not-found-map']) {
 					if (!is_string($options['not-found-map'])) {
 						$options['not-found-map'] = 'Not found sitemap';
 					}
@@ -1344,7 +1389,7 @@ function soup_setupParentThemeClass(){
 				$pjs = '';
 			}
 			
-			if ($options['ddbelatedpng'] !== false) :
+			if ($options['ddbelatedpng'] == true) :
 				$result = "";
 				$result .= '<!--[if IE 6]>';
 				$result .= '<script src="';
@@ -1359,7 +1404,7 @@ function soup_setupParentThemeClass(){
 				$result .= "/* ]]> */\n";
 				$result .= '</script>';				
 				$result .= '<![endif]-->' . "\n";
-			endif; // ($options['js-html5-shiv'] !== false) :
+			endif; // $options['ddbelatedpng'] == true :
 			echo $result;
 		}
 
