@@ -702,6 +702,37 @@ dd.gallery-caption {
 
 
 
+/* 
+You will also need to style the following, they will depend on your design
+*/
+.sticky {
+	/* attached to sticky posts */
+}
+
+.bypostauthor {
+	/* comments added by the post's author */
+}
+
+/*
+If you use post formats, you will also need 
+*/
+
+.format-aside,
+.format-gallery,
+.format-link,
+.format-image,
+.format-quote,
+.format-status,
+.format-video,
+.format-audio,
+.format-chat,
+.format-standard {
+}
+
+
+
+
+
 /* ********************* *
  * 8. Framework styles *
  * ********************* */
