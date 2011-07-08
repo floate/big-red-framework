@@ -22,6 +22,7 @@
 		?>
 	<?php endif; /* bigRed_option('footer-menu') */ ?>
 	
+	<?php if (bigRed_option('widget-footer')) :?>
 	<div id="footWidgets" role="complementary"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('bigredwidget_footer') ) {
 			//insert static sidebar
@@ -29,6 +30,9 @@
 		}
 	?></div>
 	<!-- //#footWidgets -->
+	<?php endif; //bigRed_option('widget-footer')
+	?>
+	
 
 	<ul id="footLegal" role="contentinfo">
 		<li class="copyright">Copyright &copy; 2011 <?php bloginfo('name'); ?></li>

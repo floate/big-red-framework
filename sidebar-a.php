@@ -1,3 +1,4 @@
+<?php if (bigRed_option('widget-sidebar-a')) :?>
 <div id="contentB" class="sidebar" role="complementary">
 	<?php
 	
@@ -8,3 +9,5 @@
 	?>
 </div>
 <!-- //#contentB .sidebar -->
+<?php endif; //bigRed_option('widget-sidebar-a')
+?>

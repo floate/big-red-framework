@@ -29,6 +29,7 @@
 	<p id="siteDesc"><span></span><?php bloginfo('description'); ?></p>
 	</a>
 	
+	<?php if (bigRed_option('widget-header')) :?>
 	<div id="headerWidgets"><?php
 		if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('bigredwidget_header') ) {
 			//insert static sidebar
@@ -36,6 +37,8 @@
 		}
 	?></div>
 	<!-- //#headerWidgets -->
+	<?php endif; //bigRed_option('widget-header')
+	?>
 	
 
 	<?php
