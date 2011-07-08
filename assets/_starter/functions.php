@@ -13,7 +13,7 @@ function soup_setupChildThemeClass() {
 
 		function child__construct() {
 			/* intended to be overridden in child theme */
-		}	
+		}
 		
 		function defineOptions() {
 			/* intended to be overridden in child theme */
@@ -63,6 +63,7 @@ function soup_setupChildThemeClass() {
 			//navigation menus. true/false or string. If string that will be used for the english name
 			$options['header-menu'] = true;
 			$options['footer-menu'] = true;
+			$options['not-found-map'] = true; //on 404 and no search results pages.
 			
 			// javascript options (these js files can't be queued with conditional comments)
 			// currently setup in header.php, need to find a cleaner way.
@@ -95,7 +96,7 @@ function soup_setupChildThemeClass() {
 			$child['jsDependencies'] = array(
 				'jquery'
 				,'soup-base'
-				// ,'prettyPhoto'
+				// ,'fancybox'
 				// ,'hashchange'
 				,'form-validation'
 				// ,'modernizr'
@@ -172,7 +173,7 @@ function soup_setupChildThemeClass() {
 				wp_enqueue_script('custom');
 			}
 		}
-			
+		
 	}
 
 } // function soup_setupChildThemeClass() 
