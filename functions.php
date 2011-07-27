@@ -441,7 +441,7 @@ function soup_setupParentThemeClass(){
 				remove_filter( 'comment_text', 'capital_P_dangit', 31 );
 			}
 						
-			$this->content_width = $options['content_width'] = 800;
+			$this->content_width = $options['content_width'];
 
 			if ($options['thumbnails'] == true)  {
 				if ( function_exists( 'add_theme_support' ) ) {
