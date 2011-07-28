@@ -1295,7 +1295,7 @@ function soup_setupParentThemeClass(){
 		function bodyClass($classes, $class = null) {
 			global $wp_query, $current_user, $wpdb;
 
-			if (is_home() OR is_category() OR is_tag() OR is_date()) {
+			if (is_home() OR is_archive()) {
 				$classes[] = 'all_blog';
 				$classes[] = 'list';
 			}
@@ -1311,9 +1311,7 @@ function soup_setupParentThemeClass(){
 				$post = $wp_query->get_queried_object();
 				$postSlug = $wp_query->post->post_name;
 
-				if ( 'post' == get_post_type() ) {
-					$classes[] = 'all_blog';
-				}
+				$classes[] = 'all_blog';
 				
 				$classes[] = 'postslug-' . sanitize_html_class($postSlug);
 				
