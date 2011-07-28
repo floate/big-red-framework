@@ -100,6 +100,12 @@ form .set
 
 img {
 	border: 0;
+	
+	/* *** uncomment following lines if using responsive design *** */
+	
+	/* width: auto !important; /* override inline widths */
+	/* height: auto !important; /* override inline heights */
+	/* max-width: 100%; /* do not overflow */
 }
 
 abbr[title], 
