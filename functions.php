@@ -957,9 +957,9 @@ function soup_setupParentThemeClass(){
 			$parent  = &$this->parent;
 			
 			
+			$result = "";
 			//not needed if modenizr included
 			if ( ($options['js-html5-shiv'] == true) AND (!in_array('modernizr',  $this->child['jsDependencies'])) ):
-				$result = "";
 				$result .= '<!--[if lt IE 9]>';
 				$result .= '<script src="';
 				$result .= $parent['js'];
