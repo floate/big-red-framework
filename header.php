@@ -1,13 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="ie ie6 lte9 lte8 lte7 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
-<!--[if (IE 7)&!(IEMobile)]> <html class="ie ie7 lte9 lte8 lte7 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
-<!--[if (IE 7)&(IEMobile)]> <html class="iem ie7m lte9m lte8m lte7m no-js no-jswin" <?php language_attributes(); ?>> <![endif]-->
-<!--[if (IE 8)&!(IEMobile)]> <html class="ie ie8 lte9 lte8 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
-<!--[if (IE 9)&!(IEMobile)]> <html class="ie ie9 lte9 no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
-<!--[if (IE 9)&(IEMobile)]> <html class="iem ie9m lte9m no-js no-jswin" <?php language_attributes(); ?>> <![endif]-->
-<!--[if (gt IE 9)&!(IEMobile)]> <html class="ie no-js no-jswin" <?php language_attributes(); ?>> <![endif]--> 
-<!--[if (gt IE 9)&(IEMobile)]> <html class="iem no-js no-jswin" <?php language_attributes(); ?>> <![endif]-->
-<!--[if !IE]><!--> <html class="no-js no-jswin" <?php language_attributes(); ?>> <!--<![endif]-->
+<html class="no-js no-jswin" <?php language_attributes(); ?>>
 <head>
 	<meta charset=<?php bloginfo('charset'); ?>>
 	<script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
