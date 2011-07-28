@@ -63,7 +63,7 @@ if ( have_comments() OR comments_open() ) :
 
 			<ol id="trackbacksList" class="commentsList">
 		<?php wp_list_comments(apply_filters('brf_ping_args', array(
-			'type'=> 'ping',
+			'type'=> 'pings',
 			'callback' => 'bigRed_pingTemplate'
 			))); ?>
 			</ol>
