@@ -693,6 +693,11 @@ dd.gallery-caption {
 	.entry-content {
 		*zoom: 1;
 	}
+	
+	/* need to clear post pagination links in entry-content */
+	#post-nav {
+		clear: both;
+	}
 
 .more-link {
 /*	display more links as blocks */
@@ -742,6 +747,10 @@ If you use post formats, you will also need
 	margin: 0;
 	font-weight: bold;
 	font-size:138.5%; /* 18px */
+}
+
+#siteDesc {
+	margin: 0;
 }
 
 #pageName {
