@@ -1165,7 +1165,7 @@ function soup_setupParentThemeClass(){
 			if ($r['container'] != 'ul') {
 				$menu .= '</ul>';
 			}
-			$menu .= '</' . $r['container'] . '/>';
+			$menu .= '</' . $r['container'] . '>';
 			
 			
 			if ( $r['echo'] )
@@ -1368,7 +1368,7 @@ function soup_setupParentThemeClass(){
 			$postAlt++;
 			$classes[] = 'p' . $postAlt;
 			$classes[] = $postAlt % 2 ? null : 'alt';
-			$classes[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author('login')));
+			$classes[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author()));
 			
 			$classes[] = get_the_tags() ? null : 'untagged';
 
