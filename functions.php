@@ -902,7 +902,7 @@ function soup_setupParentThemeClass(){
 			}
 			
 			/* threaded comments */
-			if ((!is_admin()) AND is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+			if ((!is_admin()) AND is_singular() AND comments_open() AND get_option('thread_comments') ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
 			
