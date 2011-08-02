@@ -66,7 +66,7 @@ function soup_setupParentThemeClass(){
 
 			/* misc filters */
 			add_filter('wp_nav_menu', array(&$this, 'filterMenus'));
-			add_filter('wp_title', array(&$this, 'filterHtmlTitle'), 10, 2);
+			// add_filter('wp_title', array(&$this, 'filterHtmlTitle'), 10, 2);
 
 			add_action('wp_head', array(&$this, 'setHeaderTags'));
 			
