@@ -118,6 +118,7 @@ function soup_setupParentThemeClass(){
 			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
 			$options['page-comments-enabled'] = true; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
+			$options['max-comment-depth'] = 10; //default: 10
 			
 
 
@@ -358,6 +359,9 @@ function soup_setupParentThemeClass(){
 			if (!isset($options['trackbacks-enabled'])) {
 				 $options['trackbacks-enabled'] = true; 
 			}
+			if ( !is_int($options['max-comment-depth']) ) {
+				$options['max-comment-depth'] = 10;
+			}
 
 
 
@@ -470,7 +474,11 @@ function soup_setupParentThemeClass(){
 			if ($options['trackbacks-enabled'] == false) {
 				add_filter( 'pings_open', '__return_false' );
 			}
-				
+			
+			if ($options['max-comment-depth'] != 10) {
+				add_filter( 'thread_comments_depth_max', array(&$this, 'maxCommentDepthAdmin') );
+				add_filter( 'option_thread_comments_depth', array(&$this, 'maxCommentDepthFrontEnd') );
+			}
 
 			add_action('wp_head', array(&$this, 'meta_tags')); //sets options meta_tags
 
@@ -1500,6 +1508,17 @@ function soup_setupParentThemeClass(){
 			return $open;
 		}
 		
+		function maxCommentDepthFrontEnd($depth) {
+			$maxDepth = $this->options['max-comment-depth'];
+			if ($depth > $maxDepth) {
+				$depth = $maxDepth;
+			}
+			return $depth;
+		}
+		
+		function maxCommentDepthAdmin($depth) {
+			return (int) $this->options['max-comment-depth'];
+		}
 		
 		/* === Grunion Contact Form === 
 		   fix up front end code output by
