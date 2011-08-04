@@ -66,7 +66,7 @@ function soup_setupParentThemeClass(){
 
 			/* misc filters */
 			add_filter('wp_nav_menu', array(&$this, 'filterMenus'));
-			// add_filter('wp_title', array(&$this, 'filterHtmlTitle'), 10, 2);
+			add_filter('wp_title', array(&$this, 'filterHtmlTitle'), 10, 2);
 
 			add_action('wp_head', array(&$this, 'setHeaderTags'));
 			add_action('wp_footer', array(&$this, 'showQueriesTimer'));
@@ -1224,6 +1224,11 @@ function soup_setupParentThemeClass(){
 		}
 
 		function filterHtmlTitle($title, $separator){
+			/* Don't do this if common SEO plugins are enabled */
+			if ( class_exists('All_in_One_SEO_Pack') || class_exists('WPSEO_Frontend') ) {
+				return $title;
+			}
+			
 			//write out the html title, format similar to All In One SEO
 			// SOURCE: twentyten theme
 			if (is_feed()){
