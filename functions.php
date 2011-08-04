@@ -1337,7 +1337,7 @@ function soup_setupParentThemeClass(){
 				
 				if (function_exists('get_terms')) {
 					$post_taxonomies = get_taxonomies(array('_builtin' => false));
-					$post_terms = get_terms($post_taxonomies);
+					$post_terms = wp_get_object_terms($post->ID, $post_taxonomies);
 					foreach ($post_terms as $term) {
 						$classes[] = 'postterm-' . sanitize_html_class($term->taxonomy . '-' . $term->slug);
 					}
