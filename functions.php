@@ -69,6 +69,7 @@ function soup_setupParentThemeClass(){
 			// add_filter('wp_title', array(&$this, 'filterHtmlTitle'), 10, 2);
 
 			add_action('wp_head', array(&$this, 'setHeaderTags'));
+			add_action('wp_footer', array(&$this, 'showQueriesTimer'));
 			
 			/* formidable filters */
 			add_filter('frm_custom_html', array(&$this, 'formidableHtml'), 10, 2);
@@ -1434,6 +1435,21 @@ function soup_setupParentThemeClass(){
 		function jsString($string){
 			//takes a string and converts it for output to Javascript (escaped chars, etc)
 		    return strtr($string, array('\\'=>'\\\\',"'"=>"\\'",'"'=>'\\"',"\r"=>'\\r',"\n"=>'\\n','</'=>'<\/', ';'=>'\\;'));
+		}
+
+		function showQueriesTimer(){
+			if (current_user_can('update_themes')) :
+				?>
+				<script type="text/javascript">
+				/* <![CDATA[ */
+					if (typeof console == "object") {
+						console.log('queries: <?php echo get_num_queries(); ?>');
+						console.log('<?php timer_stop(1); ?> seconds');
+					}
+				/* ]]> */
+				</script>
+				<?php
+			endif;
 		}
 
 		function commentTemplate($comment, $args, $depth) {
