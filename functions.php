@@ -928,7 +928,6 @@ function soup_setupParentThemeClass(){
 			endif; //if (!is_admin()):			
 		}
 
-
 		function meta_tags(){
 			$options = &$this->options;
 			$result = "";
