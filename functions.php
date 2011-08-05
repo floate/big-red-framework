@@ -871,9 +871,9 @@ function soup_setupParentThemeClass(){
 			
 			wp_register_script(
 				'webfont-loader',
-				"$prot://ajax.googleapis.com/ajax/libs/webfont/1.0.21/webfont.js",
+				"$prot://ajax.googleapis.com/ajax/libs/webfont/1.0.22/webfont.js",
 				null,
-				'1.0.21'
+				'1.0.22'
 			);
 			
 		}
