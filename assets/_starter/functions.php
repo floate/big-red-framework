@@ -150,9 +150,9 @@ function soup_setupChildThemeClass() {
 				// wp_enqueue_style('soup-all-ie8');
 				// wp_enqueue_style('soup-all-ie9');
 			
-				wp_enqueue_style('soup-mobile');
+				// wp_enqueue_style('soup-mobile');
 
-				wp_enqueue_style('soup-print');
+				// wp_enqueue_style('soup-print');
 				// wp_enqueue_style('soup-print-ie6');
 				// wp_enqueue_style('soup-print-ie7');
 				// wp_enqueue_style('soup-print-ie8');
