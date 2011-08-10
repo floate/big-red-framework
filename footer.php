@@ -36,7 +36,7 @@
 
 	<ul id="footLegal" role="contentinfo">
 		<li class="copyright">Copyright &copy; 2011 <?php bloginfo('name'); ?></li>
-		<li class="credits">Theme developed by <a href="http://soupgiant.com">Soupgiant</a></li>
+		<li class="credits">Theme developed with the <a href="http://bigredtin.com/wp-framework/">Big Red framework</a></li>
 		<li class="powered">Powered by <a href="http://wordpress.org">WordPress</a></li>
 	</ul>
 	<!-- //#footLegal -->
