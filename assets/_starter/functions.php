@@ -51,6 +51,7 @@ function soup_setupChildThemeClass() {
 			$options['viewport-meta-tag'] = false; //adds <meta name = "viewport" to header (default: false)s
 			$options['page-comments-enabled'] = true; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
+			$options['max-comment-depth'] = 10; //default: 10
 			
 
 
