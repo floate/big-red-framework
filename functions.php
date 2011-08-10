@@ -817,7 +817,7 @@ function soup_setupParentThemeClass(){
 				true
 			);
 			
-			$current_url = untrailingslashit( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
+			$current_url = untrailingslashit( "$prot://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
 			$current_url = esc_url($current_url);
 			wp_localize_script('soup-base', 'SOUPGIANT_wpURLS', array(
 				'register' => site_url('wp-login.php?action=register', 'login'),
