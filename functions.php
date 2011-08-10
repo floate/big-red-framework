@@ -117,6 +117,7 @@ function soup_setupParentThemeClass(){
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
 			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
+			$options['viewport-meta-tag'] = false; //adds <meta name = "viewport" to header (default: false)s
 			$options['page-comments-enabled'] = true; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
 			$options['max-comment-depth'] = 10; //default: 10
@@ -353,6 +354,9 @@ function soup_setupParentThemeClass(){
 			}
 			if (trim($options['mobile-css-query']) == '') {
 				$options['mobile-css-query'] = 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)'; 
+			}
+			if (!isset($options['viewport-meta-tag'])) {
+				$options['viewport-meta-tag'] = false;
 			}
 			if (!isset($options['page-comments-enabled'])) {
 				 $options['page-comments-enabled'] = true; 
@@ -939,6 +943,12 @@ function soup_setupParentThemeClass(){
 					$result .= $options['X-UA-Compatible'];
 					$result .= '" />' . "\n";
 				}
+				
+				if ($options['viewport-meta-tag'] == true) {
+					$result .= '<meta name="viewport" content="';
+					$result .= 'user-scalable=no,initial-scale=1.0,maximum-scale=1.0,width=device-width';
+					$result .= '" />' . "\n";
+				}				
 			
 				if ($options['favicon'] == true) { 
 					$result .= '<link rel="shortcut icon" type="image/x-icon" href="';

@@ -6,7 +6,6 @@
 	<title><?php wp_title("|", true, 'right'); ?></title>
 	
 	<?php wp_head(); ?>
-	<meta name = "viewport" content = "user-scalable=no,initial-scale=1.0,maximum-scale=1.0,width=device-width">	
 </head>
 <body <?php body_class(); ?>>
 <div id="skipLinks" class="nav">

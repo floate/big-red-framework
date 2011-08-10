@@ -85,6 +85,7 @@ A few generic options for use with your theme. Includes custom theme meta tags, 
 •	favicon-apple – add an idevice icon meta tag, file should be named /assets/child/i/apple-touch-icon.png
 •	X-UA-Compatible – IE version meta tag to be added, defaults to IE=edge
 •	mobile-css-query – css media query used for loading the mobile stylesheet.
+•	viewport-meta-tag – adds the viewport meta tag
 •	page-comments-enabled – enables/disables comments on pages
 •	trackbacks-enabled – enables/disables trackbacks and pingbacks throughout the site
 
