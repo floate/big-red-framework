@@ -1,8 +1,4 @@
-<?php
-if ( 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) )
-	die ( 'Please do not load this page directly. Thanks.' );
-	
-	
+<?php	
 if ( have_comments() OR comments_open() ) :
 ?>
 <div id="comments" class="section">
