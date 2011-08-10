@@ -88,6 +88,7 @@ A few generic options for use with your theme. Includes custom theme meta tags, 
 •	viewport-meta-tag – adds the viewport meta tag
 •	page-comments-enabled – enables/disables comments on pages
 •	trackbacks-enabled – enables/disables trackbacks and pingbacks throughout the site
+•	max-comment-depth – maximum comment depth the theme is designed for, defaults to ten
 
 == WIDGETS & NAVIGATION AREAS ==
 
