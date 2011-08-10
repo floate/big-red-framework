@@ -816,12 +816,15 @@ function soup_setupParentThemeClass(){
 				$this->parent['jsVer'],
 				true
 			);
+			
+			$current_url = untrailingslashit( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
+			$current_url = esc_url($current_url);
 			wp_localize_script('soup-base', 'SOUPGIANT_wpURLS', array(
 				'register' => site_url('wp-login.php?action=register', 'login'),
 				'regoEnabled' => get_option('users_can_register') ? "y" : "n",
-				'lostpassword' => wp_lostpassword_url( site_url( $_SERVER['REQUEST_URI'] ) ),
+				'lostpassword' => wp_lostpassword_url( $current_url ),
 				'loginsubmit' => site_url( 'wp-login.php', 'login' ),
-				'currentURL' => site_url( $_SERVER['REQUEST_URI'] ),
+				'currentURL' => $current_url,
 				// 'childAssets' => $child['assets'],
 				'childCSS' => get_stylesheet_uri(),
 				'parentCSS' => get_template_directory_uri() . '/style.css'
