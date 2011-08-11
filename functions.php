@@ -1393,7 +1393,7 @@ function soup_setupParentThemeClass(){
 			$postAlt = &$this->postAlt;
 			$postAlt++;
 			$classes[] = 'p' . $postAlt;
-			$classes[] = $postAlt % 2 ? null : 'alt';
+			$postAlt % 2 ? null : $classes[] = 'alt';
 			$classes[] = 'author-' . sanitize_title_with_dashes(strtolower(get_the_author()));
 			
 			$classes[] = get_the_tags() ? null : 'untagged';
