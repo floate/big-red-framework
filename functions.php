@@ -1023,7 +1023,7 @@ function soup_setupParentThemeClass(){
 						'before_widget' => '<div id="%1$s" class="head-widget widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
-						'after_title' => '</h5>', 
+						'after_title' => '</h5>'
 					));
 				}
 
@@ -1037,7 +1037,7 @@ function soup_setupParentThemeClass(){
 						'before_widget' => '<div id="%1$s" class="widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
-						'after_title' => '</h5>', 
+						'after_title' => '</h5>' 
 					));
 				}
 			
@@ -1051,7 +1051,7 @@ function soup_setupParentThemeClass(){
 						'before_widget' => '<div id="%1$s" class="widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
-						'after_title' => '</h5>', 
+						'after_title' => '</h5>' 
 					));
 				}
 
@@ -1065,7 +1065,7 @@ function soup_setupParentThemeClass(){
 						'before_widget' => '<div id="%1$s" class="foot-widget widget %2$s">', 
 						'after_widget' => '</div>', 
 						'before_title' => '<h5 class="widget-title">', 
-						'after_title' => '</h5>', 
+						'after_title' => '</h5>' 
 					));
 				}
 
