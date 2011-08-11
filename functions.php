@@ -1621,12 +1621,6 @@ function soup_setupParentThemeClass(){
 			else
 				$contact_form_last_id = $id;
 
-			ob_start();
-				wp_nonce_field( 'contact-form_' . $id );
-				$nonce = ob_get_contents();
-			ob_end_clean();
-
-
 			$body = contact_form_parse( $content );
 
 			$r = "<div id='contact-form-$id'>\n";
@@ -1645,7 +1639,7 @@ function soup_setupParentThemeClass(){
 			$r .= $body;
 			$r .= "\t<p class='submit'>\n";
 			$r .= "\t\t<input type='submit' value='" . __( "Submit &#187;" ) . "' />\n";
-			$r .= "\t\t$nonce\n";
+			$r .= "\t\t" . wp_nonce_field( 'contact-form_' . $id , "_wpnonce", true, false) . "\n";
 			$r .= "\t\t<input type='hidden' name='contact-form-id' value='$id' />\n";
 			$r .= "\t</p>\n";
 			$r .= "</form>\n</div>";
