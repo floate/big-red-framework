@@ -75,6 +75,7 @@ function soup_setupParentThemeClass(){
 			add_filter('frm_custom_html', array(&$this, 'formidableHtml'), 10, 2);
 			add_filter('get_frm_stylesheet', '');
 			
+			add_filter('the_password_form', array(&$this, 'passwordProtectedForm') );
 			
 			$this->betterFormShortcodes();
 			$this->httpHeaders();
@@ -1995,6 +1996,17 @@ function soup_setupParentThemeClass(){
 				</{$wrapper}>
 DEFAULT_HTML;
 			return $html;
+		}
+
+		function passwordProtectedForm($output) {
+			global $post;
+			$label = 'pwbox-'.(empty($post->ID) ? rand() : $post->ID);
+			
+			$output = '<form action="' . get_option('siteurl') . '/wp-pass.php" method="post" class="protected">
+			<p>' . __("This post is password protected. To view it please enter your password below:") . '</p>
+			<div class="set"><label for="' . $label . '">' . __("Password:") . '</label><input name="post_password" id="' . $label . '" type="password" class="password" /></div><div class="submit"><input type="submit" name="Submit" value="' . esc_attr__("Submit") . '" /></div></form>';
+			
+			return $output;
 		}
 	}
 
