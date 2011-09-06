@@ -164,6 +164,8 @@ function soup_setupParentThemeClass(){
 			$child = &$this->child;
 			$child['cssVer'] = '20110606.01';
 			$child['jsVer']  = '20110606.01';
+			$child['childtheme']  = '20110812.01';
+			$child['framework'] = '20110812.01'; // framework version child theme based on - don't change.
 			
 			$child['jsDependencies'] = array(
 				'jquery'
@@ -174,7 +176,7 @@ function soup_setupParentThemeClass(){
 				// ,'modernizr'
 				);
 		}
-
+		
 		function setImageSizes() {
 			/* intended to be overridden in child theme */
 			if ( function_exists( 'set_post_thumbnail_size' ) ) {
@@ -272,8 +274,20 @@ function soup_setupParentThemeClass(){
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110617.01';
 			$parent['jsVer']  = '20110624.01';
+			$parent['framework']  = '20110812.01';
 		}
 				
+		function versionCheck($versionNumber) {
+			$parent = &$this->parent;
+			$child = &$this->child;
+			if (isset($parent['framework']) AND isset($child['framework']) AND isset($child['childtheme']) AND ($versionNumber >= $parent['framework'])) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
 		function setupOptions() {
 			$options = &$this->options;
 

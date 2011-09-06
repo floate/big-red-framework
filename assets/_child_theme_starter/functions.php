@@ -94,6 +94,8 @@ function soup_setupChildThemeClass() {
 			$child = &$this->child;
 			$child['cssVer'] = '20110606.01';
 			$child['jsVer']  = '20110606.01';
+			$child['childtheme']  = '20110812.01';
+			$child['framework'] = '20110812.01'; // framework version child theme based on - don't change.
 			
 			$child['jsDependencies'] = array(
 				'jquery'
