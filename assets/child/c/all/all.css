@@ -327,6 +327,10 @@ label, legend {
 	font-weight: bold;
 }
 
+form.protected label {
+	display: inline;
+}
+
 fieldset.set label,
 #tmloginform .forgetmenot label,
 form.grunion .set-check label
