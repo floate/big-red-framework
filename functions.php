@@ -1015,6 +1015,13 @@ function soup_setupParentThemeClass(){
 			
 			if ($options['js-selectivizr'] == true) :
 				$result .= '<!--[if lt IE 9]>';
+				if (wp_script_is('jquery') == false) :
+					
+					$result .= '<script src="';
+					$result .= "//s3.amazonaws.com/nwapi/nwmatcher/nwmatcher-1.2.4$pjs.js";
+					$result .= '"></script>';
+					
+				endif;
 				$result .= '<script src="';
 				$result .= $parent['js'];
 				$result .= "/selectivizr$pjs.js?ver=1.0.2\"></script>";
