@@ -2152,6 +2152,13 @@ function bigRed_multiTagTitle($echo = true){
 }
 endif; //if ( !function_exists('bigRed_multiTagTitle') ) :
 
+if ( !function_exists('bigRed_versionCheck') ):
+function bigRed_versionCheck($versionNumber) {
+	global $soup;
+	return $soup->versionCheck($versionNumber);
+}
+endif; //if ( !function_exists('bigRed_versionCheck') ) :
+
 /* 
 	need to reverse the order the function.php files usually run in
 	parent's function.php needs to run before child's
