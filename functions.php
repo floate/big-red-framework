@@ -285,7 +285,7 @@ function soup_setupParentThemeClass(){
 				$versionNumber = $child['framework'];
 			}
 			
-			if (isset($parent['framework']) AND isset($child['framework']) AND isset($child['childtheme']) AND ($versionNumber >= $parent['framework'])) {
+			if (isset($parent['framework']) AND isset($child['framework']) AND isset($child['childtheme']) AND ($versionNumber >= $child['framework'])) {
 				return true;
 			}
 			else {
