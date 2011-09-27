@@ -11,7 +11,7 @@ while ( have_posts() ) : the_post();
 		if (!$the_title) {
 			$the_title = 'Untitled post #' . $post->ID;
 		}
-		if (is_home()) : 
+		if (is_home() OR bigRed_versionCheck(20110927.01)) : 
 		?>
 		<h2 class="entry-title"><a href="<?php the_permalink();?>"><?php echo $the_title; ?></a></h2>
 		<?php else : ?>
