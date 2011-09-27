@@ -581,7 +581,7 @@ function soup_setupParentThemeClass(){
 				
 				$settings['body_class'] .= 'page';
 			}
-			else {			
+			elseif ($this->versionCheck(20110927.01) == false) {			
 				$formats = array(
 					'Paragraph' => 'p',
 					'Address' => 'address',
@@ -589,6 +589,18 @@ function soup_setupParentThemeClass(){
 					'Heading 1' => 'h4',
 					'Heading 2' => 'h5',
 					'Heading 3' => 'h6'
+				);
+				$settings['body_class'] .= 'single';
+			}
+			else {			
+				$formats = array(
+					'Paragraph' => 'p',
+					'Address' => 'address',
+					'Preformatted' => 'pre',
+					'Heading 1' => 'h3',
+					'Heading 2' => 'h4',
+					'Heading 3' => 'h5',
+					'Heading 4' => 'h6'
 				);
 				$settings['body_class'] .= 'single';
 			}
