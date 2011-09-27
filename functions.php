@@ -164,8 +164,8 @@ function soup_setupParentThemeClass(){
 			$child = &$this->child;
 			$child['cssVer'] = '20110606.01';
 			$child['jsVer']  = '20110606.01';
-			$child['childtheme']  = '20110812.01';
-			$child['framework'] = '20110812.01'; // framework version child theme based on - don't change.
+			$child['childtheme']  = '20110927.01';
+			$child['framework'] = '20110927.01'; // framework version child theme based on - don't change.
 			
 			$child['jsDependencies'] = array(
 				'jquery'
@@ -274,12 +274,17 @@ function soup_setupParentThemeClass(){
 			$parent = &$this->parent;
 			$parent['cssVer'] = '20110617.01';
 			$parent['jsVer']  = '20110624.01';
-			$parent['framework']  = '20110812.01';
+			$parent['framework']  = '20110927.01';
 		}
 				
-		function versionCheck($versionNumber) {
+		function versionCheck($versionNumber = null) {
 			$parent = &$this->parent;
 			$child = &$this->child;
+			if ($versionNumber === null) {
+				//doing work around for default so global function works.
+				$versionNumber = $child['framework'];
+			}
+			
 			if (isset($parent['framework']) AND isset($child['framework']) AND isset($child['childtheme']) AND ($versionNumber >= $parent['framework'])) {
 				return true;
 			}
@@ -2153,7 +2158,7 @@ function bigRed_multiTagTitle($echo = true){
 endif; //if ( !function_exists('bigRed_multiTagTitle') ) :
 
 if ( !function_exists('bigRed_versionCheck') ):
-function bigRed_versionCheck($versionNumber) {
+function bigRed_versionCheck($versionNumber = null) {
 	global $soup;
 	return $soup->versionCheck($versionNumber);
 }
