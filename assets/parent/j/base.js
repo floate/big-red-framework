@@ -612,6 +612,20 @@ SOUPGIANT.base = function() {
 		});
 		
 	}
+	
+	
+	function setupGalleryLightboxes() {
+		var i = 0;
+		$('#contentA div.gallery').each(function(){
+			i++;
+			$('a', this).attr('rel', 'gallery' + i);
+		});
+		
+		$('a[href$=".jpg"], a[href$=".png"],a[href$=".gif"]', $('#content')).fancybox();
+	}
+	
+	
+	
 	/**
 	*
 	*  Javascript trim, ltrim, rtrim
@@ -646,7 +660,8 @@ SOUPGIANT.base = function() {
 		createLoginForm:createLoginForm,
 		closeLoginForm:closeLoginForm,
 		formHightlight:formHightlight,
-		setupFormValidation:setupFormValidation
+		setupFormValidation:setupFormValidation,
+		setupGalleryLightboxes: setupGalleryLightboxes
 		
 	};
 }();
