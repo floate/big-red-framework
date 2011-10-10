@@ -157,10 +157,10 @@ SOUPGIANT.base = function() {
 		});
 		
 		//create css declaration
-		className = '.' + className;
+		// className = '.' + className;
 		classDeclaration = 'min-height: ' + tallestCol + 'px; ';
 		classDeclaration += '_height: ' + tallestCol + 'px;';
-		createStyleRule(context + className, classDeclaration, media);
+		createStyleRule(context + ' .' + className, classDeclaration, media);
 		
 		return className; //in case it's needed for later manipulation
 	}
