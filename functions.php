@@ -163,7 +163,7 @@ function soup_setupParentThemeClass(){
 			/* intended to be overridden in child theme */
 			$child = &$this->child;
 			$child['cssVer'] = '20110606.01';
-			$child['jsVer']  = '20110606.01';
+			$child['jsVer']  = '20111026.01';
 			$child['childtheme']  = '20110927.01';
 			$child['framework'] = '20110927.01'; // framework version child theme based on - don't change.
 			

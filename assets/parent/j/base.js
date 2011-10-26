@@ -407,8 +407,12 @@ SOUPGIANT.base = function() {
 		if (!resizable) {
 			resizable = "yes";
 		}
+		
+		//center on screen
+		var top = (screen.height/2)-(height/2),
+			left = (screen.width/2)-(width/2);
 
-		var idPopup = WIN.open(href,popupId,"width="+width+",height="+height+",scrollbars="+scrollbars+",location="+locationBar+",toolbar="+toolbar+",status="+statusBar+",resizable="+resizable);
+		var idPopup = WIN.open(href,popupId,"width="+width+",height="+height+",scrollbars="+scrollbars+",location="+locationBar+",toolbar="+toolbar+",status="+statusBar+",resizable="+resizable+',top='+top+',left='+left);
 
 		if (idPopup != NUL) {
 			if (WIN.focus) {
