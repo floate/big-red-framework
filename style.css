@@ -4,7 +4,7 @@ Theme URI: http://bigredtin.com/wp-framework/
 Description: The Big Red Framework is intended for web developers creating bespoke themes for their clients. It contains a ton of options for the developer to configure, without a messy options screen cluttering up the WordPress admin. This theme is intended for use with child themes.
 Author: Soupgiant
 Author URI: http://soupgiant.com/
-Version: 3.2.1
+Version: 3.2.2
 License: GNU General Public License
 License URI: license.txt
 Tags: microformats, sticky-post, threaded-comments, editor-style, custom-menu
@@ -15,5 +15,31 @@ Tags: microformats, sticky-post, threaded-comments, editor-style, custom-menu
 /* 
 
 Default CSS can be found in assets/child/c/all/all.css
+
+
+
+
+CHANGE LOG
+3.2.2
+see: https://github.com/soupgiant/big-red-framework/compare/3.2.1...3.2.2
+
+
+customise html for protected posts form
+add version numbers to enable conditional checks against future features
+When jQuery isn't queued, add nwmatcher to the selectivizr conditional comment
+fix loop to display entry-titles on search & archives as h2
+fix 'fake heading levels' to match loop fix
+add function setupGalleryLightboxes to base.js
+class name was being returned from equalheight prefixed by .
+update form highlight to include div.set as a parent element
+force popups to be centred on screen, update JS version number
+
+
+
+3.2.1
+Initial WordPress.org release
+
+
+
 
 */
