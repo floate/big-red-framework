@@ -28,10 +28,10 @@ if (bigRed_option('not-found-map')) {
 		wp_nav_menu(array(
 				'theme_location' => 'not-found',
 				'container' => 'div',
-				'container_id' => 'footNavWrap',
+				'container_id' => 'notFoundNavWrap',
 				'container_class' => 'nav',
 				'menu_class' => '',
-				'menu_id' => 'footNav',
+				'menu_id' => 'notFoundNav',
 				'depth' => 4,
 				'show_home' => 1,
 				'fallback_cb' => 'bigRed_listPages'
