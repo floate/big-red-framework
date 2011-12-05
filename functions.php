@@ -2027,7 +2027,7 @@ function soup_setupParentThemeClass(){
 				<{$wrapper} id="frm_field_[id]_container" class="{$set} form-field [required_class] [error_class]">
 			    	<{$label} {$for}class="frm_pos_[label_position]">[field_name]
 			        	<span class="frm_required">[required_label]</span>
-						[if error]<span htmlfor="field_[key]" generated="true" class="error frm_error">[error]</span>[/if error]
+						[if error]<span htmlfor="field_[key]" generated="true" class="error">[error]</span>[/if error]
 			    	</{$label}>
 			    	[input]
 			    	[if description]<div class="frm_description">[description]</div>[/if description]
