@@ -735,3 +735,19 @@ if (SOUPGIANT_wpURLS.regoEnabled == "y") {
 }
 
 SOUPGIANT.wp_login_form += "<\/div>";
+
+
+function frmThemeOverride_frmPlaceError(key,errObj) {
+	//custom placement of formidable errors
+	var $ = jQuery,
+		$field = $('#frm_field_'+key+'_container'),
+		$label;
+		
+	if ($field[0].tagName.toLowerCase() == 'fieldset') {
+		$label = $field.find('legend');
+	}
+	else {
+		$label = $field.find('label');
+	}
+	$label.append('<span class="frm_error error">'+errObj[key]+'</span>');	
+}
