@@ -20,6 +20,12 @@ Default CSS can be found in assets/child/c/all/all.css
 
 
 CHANGE LOG
+3.3
+move js and css registration & enqueing to wp_enqueue_scripts and remove !is_admin checks http://bit.ly/vgZAmJ
+
+
+
+
 3.2.2
 see: https://github.com/soupgiant/big-red-framework/compare/3.2.1...3.2.2
 

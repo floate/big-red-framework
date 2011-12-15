@@ -49,12 +49,12 @@ function soup_setupParentThemeClass(){
 			$this->setImageSizes();
 
 			/* javascript and CSS */
-			add_action('wp_print_styles', array(&$this,'registerCSS'), 50);
-			add_action('wp_print_styles', array(&$this,'registerJS'),  75);
-			add_action('wp_print_styles', array(&$this,'registerMoreCssJs'),  100);
-			add_action('wp_print_styles', array(&$this,'enqueueCSS'),  125);
-			add_action('wp_print_styles', array(&$this,'enqueueChildJs'),  150);
-			add_action('wp_print_styles', array(&$this,'enqueueJS'),  175);
+			add_action('wp_enqueue_scripts', array(&$this,'registerCSS'), 50);
+			add_action('wp_enqueue_scripts', array(&$this,'registerJS'),  75);
+			add_action('wp_enqueue_scripts', array(&$this,'registerMoreCssJs'),  100);
+			add_action('wp_enqueue_scripts', array(&$this,'enqueueCSS'),  125);
+			add_action('wp_enqueue_scripts', array(&$this,'enqueueChildJs'),  150);
+			add_action('wp_enqueue_scripts', array(&$this,'enqueueJS'),  175);
 			add_filter('script_loader_src', array(&$this, 'removeVersionQstring'));
 			add_filter('style_loader_src', array(&$this, 'removeVersionQstring'));
 			
@@ -215,37 +215,31 @@ function soup_setupParentThemeClass(){
 			/* *******************
 			 * Don't queue both seperate and combined sheets!
 			 * ****************** */
-			if (!is_admin()) {
-			
-			
-				wp_enqueue_style('soup-all');
-				// wp_enqueue_style('soup-all-ie6');
-				// wp_enqueue_style('soup-all-ie7');
-				// wp_enqueue_style('soup-all-ie8');
-				// wp_enqueue_style('soup-all-ie9');
-			
-				// wp_enqueue_style('soup-mobile');
+			wp_enqueue_style('soup-all');
+			// wp_enqueue_style('soup-all-ie6');
+			// wp_enqueue_style('soup-all-ie7');
+			// wp_enqueue_style('soup-all-ie8');
+			// wp_enqueue_style('soup-all-ie9');
+		
+			// wp_enqueue_style('soup-mobile');
 
-				// wp_enqueue_style('soup-print');
-				// wp_enqueue_style('soup-print-ie6');
-				// wp_enqueue_style('soup-print-ie7');
-				// wp_enqueue_style('soup-print-ie8');
-				// wp_enqueue_style('soup-print-ie9');
-			
-				// wp_enqueue_style('soup-all-media');
-				// wp_enqueue_style('soup-all-media-ie6');
-				// wp_enqueue_style('soup-all-media-ie7');
-				// wp_enqueue_style('soup-all-media-ie8');
-				// wp_enqueue_style('soup-all-media-ie9');
-			}
+			// wp_enqueue_style('soup-print');
+			// wp_enqueue_style('soup-print-ie6');
+			// wp_enqueue_style('soup-print-ie7');
+			// wp_enqueue_style('soup-print-ie8');
+			// wp_enqueue_style('soup-print-ie9');
+		
+			// wp_enqueue_style('soup-all-media');
+			// wp_enqueue_style('soup-all-media-ie6');
+			// wp_enqueue_style('soup-all-media-ie7');
+			// wp_enqueue_style('soup-all-media-ie8');
+			// wp_enqueue_style('soup-all-media-ie9');
 			
 		}
 
 		function enqueueChildJs(){
 			/* intended to be overridden in child theme */
-			if (!is_admin()) {
-				wp_enqueue_script('custom');
-			}
+			wp_enqueue_script('custom');
 		}
 		
 		function definePaths(){
@@ -950,7 +944,7 @@ function soup_setupParentThemeClass(){
 			}
 			
 			/* threaded comments */
-			if ((!is_admin()) AND is_singular() AND comments_open() AND get_option('thread_comments') ) {
+			if (is_singular() AND comments_open() AND get_option('thread_comments') ) {
 				wp_enqueue_script( 'comment-reply' );
 			}
 			
