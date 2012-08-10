@@ -117,7 +117,6 @@ function soup_setupParentThemeClass(){
 			$options['favicon'] = true; //show favicon meta tags in header (default:true)
 			$options['favicon-apple'] = true; //show apple-icon meta tag in header (default: true)
 			$options['X-UA-Compatible'] = 'IE=edge'; //ie header verson (default: IE=edge)
-			$options['mobile-css-query'] = ''; // default: 'handheld, only screen and (min-device-width : 1px) and (max-device-width : 1024px)';
 			$options['viewport-meta-tag'] = false; //adds <meta name = "viewport" to header (default: false)s
 			$options['page-comments-enabled'] = true; //default: true 
 			$options['trackbacks-enabled'] = true; //default: true;
@@ -1511,7 +1510,7 @@ function soup_setupParentThemeClass(){
 					<p class="comment-author vcard">
 						<?php 
 							if ($args['avatar_size'] != 0) {
-								echo get_avatar($comment, $args['avatar_size']); 
+								echo get_avatar(get_comment_author_email(get_comment_ID()), $args['avatar_size']); 
 							}
 						?>
 						<cite class="fn"><?php comment_author_link(); ?></cite> <span class="says">says:</span>
